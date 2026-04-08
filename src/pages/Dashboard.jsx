@@ -1,11 +1,66 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { getStations as fetchStations, getActivities } from '../utils/api';
+import { 
+  LineChart, 
+  Line, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip, 
+  ResponsiveContainer,
+  AreaChart,
+  Area
+} from 'recharts';
+
+const incomeData = [
+  { name: 'Mon', income: 4200 },
+  { name: 'Tue', income: 5900 },
+  { name: 'Wed', income: 4800 },
+  { name: 'Thu', income: 7200 },
+  { name: 'Fri', income: 6800 },
+  { name: 'Sat', income: 9400 },
+  { name: 'Sun', income: 11200 },
+];
 
 const Dashboard = () => {
-  const stats = [
-    { title: 'Total Revenue', value: '$124,592.00', trend: '+12.5%', icon: 'payments', variant: 'primary' },
-    { title: 'Total Users', value: '3,842', trend: '+214 today', icon: 'group', variant: 'surface' },
-    { title: 'Active Stations', value: '48 / 52', progress: 92, icon: 'ev_station', variant: 'surface' },
-  ];
+  const [stations, setStations] = useState([]);
+  const [activities, setActivities] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [stationsRes, activitiesRes] = await Promise.all([
+          fetchStations(),
+          getActivities()
+        ]);
+        if (stationsRes.data.success) {
+          setStations(stationsRes.data.data || []);
+        }
+        if (activitiesRes.data.success) {
+          setActivities(activitiesRes.data.data || []);
+        }
+      } catch (error) {
+        console.error('Failed to fetch dashboard data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  // Helper function to format relative time
+  const formatTime = (dateString) => {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffInSeconds = Math.floor((now - date) / 1000);
+    
+    if (diffInSeconds < 60) return 'Just now';
+    if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} mins ago`;
+    if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)} hours ago`;
+    return date.toLocaleDateString();
+  };
 
   return (
     <div className="space-y-8">
@@ -20,7 +75,7 @@ const Dashboard = () => {
           <div className="flex justify-between items-start">
             <div>
               <p className="text-xs font-semibold uppercase tracking-wider opacity-80">Total Revenue</p>
-              <h2 className="font-headline text-4xl font-extrabold mt-1">$124,592.00</h2>
+              <h2 className="font-headline text-4xl font-extrabold mt-1">Rs. 0.00</h2>
             </div>
             <div className="bg-white/20 p-3 rounded-full backdrop-blur-md">
               <span className="material-symbols-outlined">payments</span>
@@ -29,7 +84,7 @@ const Dashboard = () => {
           <div className="flex items-center gap-2 mt-4">
             <span className="flex items-center text-tertiary-fixed text-xs font-bold bg-tertiary-container/30 px-2 py-1 rounded-full">
               <span className="material-symbols-outlined text-[14px] mr-1">trending_up</span>
-              +12.5%
+              +0.0%
             </span>
             <span className="text-[10px] opacity-70 uppercase font-medium">vs last month</span>
           </div>
@@ -47,11 +102,11 @@ const Dashboard = () => {
         >
           <div>
             <p className="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Total Users</p>
-            <h2 className="font-headline text-3xl font-extrabold mt-1 text-on-surface">3,842</h2>
+            <h2 className="font-headline text-3xl font-extrabold mt-1 text-on-surface">0</h2>
           </div>
           <div className="flex items-end justify-between">
             <div className="flex items-center gap-2">
-              <span className="text-tertiary font-bold text-sm">+214</span>
+              <span className="text-tertiary font-bold text-sm">+0</span>
               <span className="text-[10px] text-on-surface-variant uppercase font-medium">New today</span>
             </div>
             <div className="w-12 h-12 bg-primary-fixed-dim/20 text-primary rounded-full flex items-center justify-center">
@@ -69,12 +124,17 @@ const Dashboard = () => {
         >
           <div>
             <p className="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Active Stations</p>
-            <h2 className="font-headline text-3xl font-extrabold mt-1 text-on-surface">48 / 52</h2>
+            <h2 className="font-headline text-3xl font-extrabold mt-1 text-on-surface">
+              {loading ? '...' : `${stations.filter(s => s.operatingStatus === 'Opened').length} / ${stations.length}`}
+            </h2>
           </div>
           <div className="flex items-end justify-between">
             <div className="flex-1 mr-4">
               <div className="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
-                <div className="h-full bg-tertiary w-[92%]"></div>
+                <div 
+                  className="h-full bg-tertiary transition-all duration-500" 
+                  style={{ width: `${stations.length > 0 ? (stations.filter(s => s.operatingStatus === 'Opened').length / stations.length) * 100 : 0}%` }}
+                ></div>
               </div>
             </div>
             <div className="w-12 h-12 bg-tertiary-fixed-dim/20 text-tertiary rounded-full flex items-center justify-center">
@@ -87,40 +147,57 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Analytics Section */}
         <div className="lg:col-span-2 space-y-8">
-          <div className="bg-surface-container-low p-8 rounded-full">
-            <div className="flex justify-between items-center mb-8">
+          <div className="bg-surface-container-low p-8 rounded-[2.5rem] border border-white">
+            <div className="flex justify-between items-center mb-8 px-4">
               <div>
                 <h3 className="font-headline text-xl font-bold text-primary">Income Over Time</h3>
-                <p className="text-xs text-on-surface-variant mt-1">Monthly revenue distribution across all regions</p>
+                <p className="text-xs text-on-surface-variant mt-1 font-medium italic">Revenue distribution across the Plug Me grid</p>
               </div>
               <div className="flex gap-2">
-                <button className="px-4 py-1.5 rounded-full bg-white text-xs font-bold shadow-sm">Daily</button>
-                <button className="px-4 py-1.5 rounded-full bg-primary text-white text-xs font-bold">Weekly</button>
-                <button className="px-4 py-1.5 rounded-full bg-white text-xs font-bold shadow-sm">Monthly</button>
+                <button className="px-5 py-2 rounded-full bg-white text-[10px] font-black uppercase tracking-widest shadow-sm border border-black/5 hover:bg-slate-50 transition-colors">Daily</button>
+                <button className="px-5 py-2 rounded-full bg-primary text-white text-[10px] font-black uppercase tracking-widest shadow-lg shadow-primary/20">Weekly</button>
+                <button className="px-5 py-2 rounded-full bg-white text-[10px] font-black uppercase tracking-widest shadow-sm border border-black/5 hover:bg-slate-50 transition-colors">Monthly</button>
               </div>
             </div>
-            <div className="h-64 flex items-end justify-between gap-2 px-2 relative">
-              <svg className="absolute bottom-0 left-0 w-full h-full opacity-30" preserveAspectRatio="none" viewBox="0 0 100 100">
-                <path d="M0,80 Q20,20 40,60 T100,10" fill="none" stroke="#00535b" strokeWidth="2" />
-                <path d="M0,80 Q20,20 40,60 T100,10 V100 H0 Z" fill="url(#gradient-chart)" />
-                <defs>
-                  <linearGradient id="gradient-chart" x1="0%" x2="0%" y1="0%" y2="100%">
-                    <stop offset="0%" style={{ stopColor: '#00535b', stopOpacity: 0.2 }} />
-                    <stop offset="100%" style={{ stopColor: '#00535b', stopOpacity: 0 }} />
-                  </linearGradient>
-                </defs>
-              </svg>
-              <div className="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-5">
-                <div className="border-b border-primary w-full"></div>
-                <div className="border-b border-primary w-full"></div>
-                <div className="border-b border-primary w-full"></div>
-                <div className="border-b border-primary w-full"></div>
-              </div>
-            </div>
-            <div className="flex justify-between mt-4 px-2">
-              {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(day => (
-                <span key={day} className="text-[10px] font-bold text-on-surface-variant uppercase">{day}</span>
-              ))}
+            
+            <div className="h-72 w-full px-2">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={incomeData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                  <defs>
+                    <linearGradient id="colorIncome" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#00535b" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#00535b" stopOpacity={0}/>
+                    </linearGradient>
+                  </defs>
+                  <Tooltip 
+                    contentStyle={{ 
+                      backgroundColor: 'rgba(255, 255, 255, 0.95)', 
+                      borderRadius: '20px', 
+                      border: 'none', 
+                      boxShadow: '0 10px 25px rgba(0,0,0,0.05)',
+                      padding: '12px 16px'
+                    }}
+                    itemStyle={{ color: '#00535b', fontWeight: 'bold' }}
+                    formatter={(value) => [`Rs. ${value}`, 'Revenue']}
+                  />
+                  <Area 
+                    type="monotone" 
+                    dataKey="income" 
+                    stroke="#00535b" 
+                    strokeWidth={4} 
+                    fillOpacity={1} 
+                    fill="url(#colorIncome)" 
+                    animationDuration={2000}
+                  />
+                  <XAxis 
+                    dataKey="name" 
+                    axisLine={false} 
+                    tickLine={false} 
+                    tick={{ fontSize: 10, fontWeight: 'bold', fill: '#6b7280' }} 
+                    dy={15}
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
             </div>
           </div>
 
@@ -159,11 +236,24 @@ const Dashboard = () => {
         {/* Live Feed */}
         <div className="bg-surface-container-lowest p-8 rounded-full shadow-[0px_24px_48px_rgba(0,83,91,0.06)] h-fit sticky top-24">
           <h3 className="font-headline text-xl font-bold text-primary mb-6">Live Feed</h3>
-          <div className="space-y-8">
-            <ActivityItem icon="electric_car" title="Session Started" subtitle="Station HUB-A #4 occupied by Tesla Model 3" time="2 mins ago" variant="tertiary" />
-            <ActivityItem icon="paid" title="Payment Received" subtitle="Revenue of $42.50 finalized from session #8492" time="14 mins ago" variant="primary" />
-            <ActivityItem icon="warning" title="Station Alert" subtitle="Station MALL-X #2 reported offline" time="48 mins ago" variant="error" />
-            <ActivityItem icon="person_add" title="New User Joined" subtitle="Sara Jenkins registered via Apple Pay" time="1 hour ago" variant="secondary" />
+          <div className="space-y-8 min-h-[200px]">
+            {activities.length === 0 ? (
+              <div className="flex flex-col items-center justify-center py-10 opacity-40">
+                <span className="material-symbols-outlined text-4xl mb-2">history</span>
+                <p className="text-xs font-bold uppercase tracking-widest text-center">No recent activity detected on the grid.</p>
+              </div>
+            ) : (
+              activities.map((activity) => (
+                <ActivityItem 
+                  key={activity._id}
+                  icon={activity.icon || 'history'} 
+                  title={activity.action.replace(/_/g, ' ')} 
+                  subtitle={`${activity.description} (By ${activity.adminName})`} 
+                  time={formatTime(activity.createdAt)} 
+                  variant={activity.variant || 'primary'} 
+                />
+              ))
+            )}
           </div>
           <button className="w-full mt-10 py-3 rounded-full border-2 border-primary/10 text-primary font-bold text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-all">
             View Full History

@@ -29,7 +29,7 @@ const Login = () => {
       if (response.data.success) {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
-        navigate('/');
+        navigate('/dashboard');
       }
     } catch (err) {
       setError(err.response?.data?.message || 'Authentication failed. Please check your credentials.');
@@ -87,10 +87,10 @@ const Login = () => {
               <input 
                 type="email" 
                 required
+                autoComplete="off"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full bg-surface-container-high border-none rounded-full py-4 pl-14 pr-6 focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all outline-none placeholder:text-outline/50 font-medium" 
-                placeholder="admin@plugme.com"
               />
             </div>
           </div>
@@ -102,10 +102,10 @@ const Login = () => {
               <input 
                 type="password" 
                 required
+                autoComplete="new-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full bg-surface-container-high border-none rounded-full py-4 pl-14 pr-6 focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all outline-none placeholder:text-outline/50 font-medium" 
-                placeholder="••••••••"
               />
             </div>
           </div>

@@ -1,6 +1,7 @@
 import SideNavBar from './SideNavBar';
 import TopAppBar from './TopAppBar';
 import { useLocation } from 'react-router-dom';
+import { ModalProvider } from '../context/ModalContext';
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -23,15 +24,17 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className="flex min-h-screen bg-background text-on-background">
-      <SideNavBar />
-      <main className="flex-1 ml-64 min-h-screen flex flex-col">
-        <TopAppBar title={getTitle(location.pathname)} />
-        <div className="p-8 max-w-7xl mx-auto w-full">
-          {children}
-        </div>
-      </main>
-    </div>
+    <ModalProvider>
+      <div className="flex min-h-screen bg-background text-on-background">
+        <SideNavBar />
+        <main className="flex-1 ml-64 min-h-screen flex flex-col">
+          <TopAppBar title={getTitle(location.pathname)} />
+          <div className="p-8 max-w-7xl mx-auto w-full">
+            {children}
+          </div>
+        </main>
+      </div>
+    </ModalProvider>
   );
 };
 

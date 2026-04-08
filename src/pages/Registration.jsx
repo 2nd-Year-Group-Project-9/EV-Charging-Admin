@@ -27,8 +27,8 @@ const Registration = () => {
     try {
       const response = await register({ ...formData, role: 'admin' });
       if (response.data.success) {
-        // Automatically redirect to login page as requested
-        navigate('/login', { state: { message: 'Account created successfully! Please sign in.' } });
+        // Automatically redirect to login page (root) as requested
+        navigate('/', { state: { message: 'Account created successfully! Please sign in.' } });
       }
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed. Please check your details.');
@@ -78,7 +78,6 @@ const Registration = () => {
                 value={formData.firstName}
                 onChange={handleInputChange}
                 className="w-full bg-surface-container-high border-none rounded-full py-3.5 px-6 focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all outline-none placeholder:text-outline/50 font-medium" 
-                placeholder="John"
               />
             </div>
             <div className="space-y-2">
@@ -90,7 +89,6 @@ const Registration = () => {
                 value={formData.lastName}
                 onChange={handleInputChange}
                 className="w-full bg-surface-container-high border-none rounded-full py-3.5 px-6 focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all outline-none placeholder:text-outline/50 font-medium" 
-                placeholder="Doe"
               />
             </div>
           </div>
@@ -103,10 +101,10 @@ const Registration = () => {
                 type="email" 
                 name="email"
                 required
+                autoComplete="off"
                 value={formData.email}
                 onChange={handleInputChange}
                 className="w-full bg-surface-container-high border-none rounded-full py-3.5 pl-14 pr-6 focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all outline-none placeholder:text-outline/50 font-medium" 
-                placeholder="admin@plugme.com"
               />
             </div>
           </div>
@@ -119,10 +117,10 @@ const Registration = () => {
                 type="password" 
                 name="password"
                 required
+                autoComplete="new-password"
                 value={formData.password}
                 onChange={handleInputChange}
                 className="w-full bg-surface-container-high border-none rounded-full py-3.5 pl-14 pr-6 focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all outline-none placeholder:text-outline/50 font-medium" 
-                placeholder="••••••••"
               />
             </div>
           </div>
@@ -137,7 +135,6 @@ const Registration = () => {
                 value={formData.phoneNumber}
                 onChange={handleInputChange}
                 className="w-full bg-surface-container-high border-none rounded-full py-3.5 pl-14 pr-6 focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all outline-none placeholder:text-outline/50 font-medium" 
-                placeholder="+1 (555) 000-0000"
               />
             </div>
           </div>

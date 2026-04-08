@@ -25,5 +25,6 @@ export const updateStation = (id, data) => api.patch(`/stations/${id}`, data);
 export const deleteStation = (id) => api.delete(`/stations/${id}`);
 
 export const getAdmins = () => api.get('/users/admins');
+export const getActivities = () => api.get('/activities');
 
 export default api;

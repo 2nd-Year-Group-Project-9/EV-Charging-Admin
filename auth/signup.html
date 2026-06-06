@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Sign Up | Plug Me</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#00535b",
+                        "on-secondary-fixed-variant": "#00497d",
+                        "surface-container": "#edeeef",
+                        "background": "#f8f9fa",
+                        "on-primary-fixed-variant": "#004f56",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#33a0fd",
+                        "secondary-fixed-dim": "#9ecaff",
+                        "primary-container": "#006d77",
+                        "on-tertiary-container": "#a7f0a9",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#abf4ac",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#0d5621",
+                        "on-surface-variant": "#3e494a",
+                        "on-primary-container": "#9becf7",
+                        "secondary": "#0061a4",
+                        "primary-fixed": "#9ff0fb",
+                        "on-tertiary-fixed": "#002107",
+                        "on-surface": "#191c1d",
+                        "on-secondary-fixed": "#001d36",
+                        "on-secondary-container": "#00355c",
+                        "inverse-on-surface": "#f0f1f2",
+                        "secondary-fixed": "#d1e4ff",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-tint": "#006972",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#001f23",
+                        "inverse-primary": "#82d3de",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-variant": "#e1e3e4",
+                        "inverse-surface": "#2e3132",
+                        "on-tertiary-fixed-variant": "#07521d",
+                        "surface-container-low": "#f3f4f5",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#2c6f36",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#f8f9fa",
+                        "primary-fixed-dim": "#82d3de",
+                        "surface-dim": "#d9dadb",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f8f9fa",
+                        "on-background": "#191c1d",
+                        "outline-variant": "#bec8ca",
+                        "outline": "#6f797a",
+                        "tertiary-fixed-dim": "#90d792"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background min-h-screen flex flex-col md:flex-row">
+    <div class="hidden md:flex md:w-1/2 lg:w-3/5 relative bg-primary overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img alt="EV Charging Station" class="w-full h-full object-cover mix-blend-overlay opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIYhcaGODeUItih4i_aPwlook6J752xdnWdeX04JsUQs6g9oYf1paqjiN-_P9MZ901G0ZqYiOrBlUfGH2E5bQOoMA_CBhPogKd7IcvbQBucV1QMeuuZoOjlCiN64O3P5fcfLTuKZVI_X0Locu6nzXHx2Q7r3WqyIxSU8H1ULziq1GH81hvwDltfHp1Apq97CzdbztH5Fl6IN8-h77ehEV6Mwai4v5gPW2rsfW7WDMuNXOqv1jiC_GwtOk-JIo999fyRoQadChYajE2"/>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary-container/40 to-transparent z-10"></div>
+        <div class="relative z-20 flex flex-col justify-between p-16 h-full">
+            <div>
+                <h1 class="text-4xl lg:text-6xl font-headline font-extrabold text-white tracking-tight leading-tight">
+                    Join the <br/><span class="text-primary-fixed">Green Revolution</span> Today.
+                </h1>
+                <p class="mt-6 text-primary-fixed-dim text-lg lg:text-xl max-w-md font-body leading-relaxed">
+                    Start managing your charging infrastructure with the world's most advanced platform.
+                </p>
+            </div>
+            <div class="flex gap-12 items-center text-white">
+                <div class="flex flex-col">
+                    <span class="text-3xl font-headline font-bold">500+</span>
+                    <span class="text-primary-fixed-dim text-sm uppercase tracking-wider font-semibold">Stations Managed</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-3xl font-headline font-bold">50k+</span>
+                    <span class="text-primary-fixed-dim text-sm uppercase tracking-wider font-semibold">Active Users</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-full md:w-1/2 lg:w-2/5 flex flex-col items-center py-12 md:py-24 px-8 bg-surface-container-low overflow-y-auto">
+        <div class="w-full max-w-md space-y-8">
+            <div class="text-center md:text-left">
+                <div class="flex items-center justify-center md:justify-start gap-3 mb-8">
+                    <div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center shadow-lg">
+                        <span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                    </div>
+                    <span class="text-3xl font-headline font-black text-primary tracking-tighter">Plug Me</span>
+                </div>
+                <h2 class="text-3xl font-headline font-bold text-on-surface">Create Account</h2>
+                <p class="text-on-surface-variant font-body mt-2">Become a partner and manage your energy grid.</p>
+            </div>
+            <form class="space-y-4 mt-8">
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-on-surface-variant tracking-wide uppercase" for="name">Full Name</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <span class="material-symbols-outlined text-outline text-lg">person</span>
+                        </div>
+                        <input class="block w-full pl-11 pr-4 py-4 bg-surface-container-highest border-none rounded-xl text-on-surface focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest outline-none transition-all" id="name" name="name" placeholder="John Doe" type="text" required/>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-on-surface-variant tracking-wide uppercase" for="email">Email Address</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <span class="material-symbols-outlined text-outline text-lg">mail</span>
+                        </div>
+                        <input class="block w-full pl-11 pr-4 py-4 bg-surface-container-highest border-none rounded-xl text-on-surface focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest outline-none transition-all" id="email" name="email" placeholder="name@company.com" type="email" required/>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-on-surface-variant tracking-wide uppercase" for="password">Password</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <span class="material-symbols-outlined text-outline text-lg">lock</span>
+                        </div>
+                        <input class="block w-full pl-11 pr-4 py-4 bg-surface-container-highest border-none rounded-xl text-on-surface focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest outline-none transition-all" id="password" name="password" placeholder="••••••••" type="password" required/>
+                    </div>
+                </div>
+                <div class="flex items-center py-2">
+                    <input class="h-5 w-5 text-primary focus:ring-primary border-outline-variant rounded-lg bg-surface-container" id="terms" name="terms" type="checkbox" required/>
+                    <label class="ml-3 block text-sm font-medium text-on-surface-variant" for="terms">I agree to the <a href="#" class="text-primary font-bold">Terms of Service</a> and <a href="#" class="text-primary font-bold">Privacy Policy</a></label>
+                </div>
+                <button class="w-full py-4 px-6 bg-gradient-to-br from-primary to-primary-container text-white font-headline font-bold text-lg rounded-xl shadow-lg hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2" type="submit">
+                    Create Account
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </form>
+            <p class="text-center text-on-surface-variant text-sm font-medium mt-8">
+                Already have an account? 
+                <a class="text-primary font-bold hover:underline" href="login.html">Sign In</a>
+            </p>
+        </div>
+    </div>
+    <script src="../assets/js/auth.js"></script>
+    <script>
+        // ── Guard: redirect already-logged-in users ────────────────────────
+        (function() {
+            const u = Auth.refreshSession();
+            if (u) window.location.replace(Auth.getRedirectUrl(u));
+        })();
+
+        // ── Inline error display helper ─────────────────────────────────────
+        const signupErrorBox = document.createElement('div');
+        signupErrorBox.id = 'signup-error';
+        signupErrorBox.className = 'hidden mt-4 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm font-medium flex items-center gap-2';
+        signupErrorBox.innerHTML = '<span class="material-symbols-outlined text-base">error</span><span id="signup-error-msg"></span>';
+        document.querySelector('form').appendChild(signupErrorBox);
+
+        function showSignupError(msg) {
+            document.getElementById('signup-error-msg').textContent = msg;
+            signupErrorBox.classList.remove('hidden');
+        }
+
+        // ── Form submit ──────────────────────────────────────────────────────
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            signupErrorBox.classList.add('hidden');
+
+            const name     = document.getElementById('name').value.trim();
+            const email    = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const terms    = document.getElementById('terms').checked;
+
+            if (!name || !email || !password) {
+                showSignupError('Please fill in all required fields.');
+                return;
+            }
+            if (password.length < 6) {
+                showSignupError('Password must be at least 6 characters.');
+                return;
+            }
+            if (!terms) {
+                showSignupError('You must agree to the Terms of Service.');
+                return;
+            }
+
+            const btn = this.querySelector('button[type="submit"]');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">autorenew</span> Creating account…';
+
+            setTimeout(() => {
+                // Creates admin with isApproved=0 and status='pending_onboarding'
+                const result = Auth.signup(name, email, password);
+                if (result.success) {
+                    window.location.replace('../admin/onboarding.html');
+                } else {
+                    showSignupError(result.message);
+                    btn.disabled = false;
+                    btn.innerHTML = 'Create Account <span class="material-symbols-outlined">arrow_forward</span>';
+                }
+            }, 300);
+        });
+    </script>
+</body>
+</html>

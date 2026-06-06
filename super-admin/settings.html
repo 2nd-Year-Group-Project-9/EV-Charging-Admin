@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plug Me | Settings (Super Admin)</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <!-- Scripts -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00535b",
+                        "surface-container": "#edeeef",
+                        background: "#f8f9fa",
+                        tertiary: "#0d5621",
+                        "on-surface-variant": "#3e494a",
+                        "on-surface": "#191c1d",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-container-low": "#f3f4f5",
+                        error: "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#006d77"
+                    },
+                    fontFamily: {
+                        headline: ["Manrope"],
+                        body: ["Inter"],
+                        label: ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface">
+
+<div class="flex min-h-screen">
+    <!-- SideNavBar -->
+    <aside id="sidebar" class="h-screen w-64 fixed left-0 top-0 -translate-x-full lg:translate-x-0 transition-transform duration-300 z-[60] bg-slate-100 dark:bg-slate-950 flex flex-col p-4 gap-2 ">
+        <div class="mb-8 px-2 flex flex-col">
+            <h1 class="text-teal-900 dark:text-teal-100 font-black text-2xl font-headline tracking-tight">Plug Me</h1>
+            <span class="text-xs font-semibold tracking-wide uppercase text-slate-500">Energy Management</span>
+        </div>
+        <nav class="flex-1 space-y-1">
+            <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
+                <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold">Dashboard</span>
+            </a>
+            <a href="manage-admins.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
+                <span class="material-symbols-outlined" data-icon="group">group</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold">Manage Admins</span>
+            </a>
+            <a href="manage-stations.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
+                <span class="material-symbols-outlined" data-icon="ev_station">ev_station</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold">Charging Stations</span>
+            </a>
+            <a href="reports.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
+                <span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold">Reports</span>
+            </a>
+            <a href="settings.html" class="flex items-center gap-3 px-3 py-2.5 text-teal-700 dark:text-teal-300 bg-white dark:bg-slate-900 rounded-lg shadow-sm font-bold transition-transform duration-200">
+                <span class="material-symbols-outlined" data-icon="settings">settings</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold">Settings</span>
+            </a>
+        </nav>
+        <div class="mt-auto pt-4 space-y-1">
+            <a data-action="logout" class="flex items-center gap-3 px-3 py-2.5 text-error hover:bg-error/5 rounded-lg transition-colors cursor-pointer">
+                <span class="material-symbols-outlined" data-icon="logout">logout</span>
+                <span class="text-sm font-semibold tracking-wide uppercase">Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="lg:ml-64 flex-1 flex flex-col">
+        <header class="w-full sticky top-0 z-40 bg-slate-50/70 backdrop-blur-xl flex justify-between items-center px-8 py-4 shadow-[0px_24px_48px_rgba(0,83,91,0.06)]">
+            <div class="flex items-center gap-4">
+                <button id="mobile-menu-btn" class="lg:hidden text-slate-600 hover:text-primary transition-colors flex items-center justify-center mr-2">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
+                <h2 class="text-2xl font-headline font-bold text-primary">System Settings</h2>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="text-right">
+                    <p class="text-sm font-bold text-teal-800">Super Admin</p>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+                    <span class="material-symbols-outlined">admin_panel_settings</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="p-8 max-w-4xl mx-auto space-y-8 w-full">
+            
+            <!-- Global Platform Settings -->
+            <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined">language</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold font-headline text-primary">Platform Defaults</h3>
+                        <p class="text-sm text-slate-500">Manage global settings for the entire EV network.</p>
+                    </div>
+                </div>
+
+                <form class="space-y-6">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Base Currency</label>
+                            <select class="w-full px-4 py-3 bg-surface-container-low border-transparent rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-transparent font-medium">
+                                <option>USD ($)</option>
+                                <option>EUR (€)</option>
+                                <option>GBP (£)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Timezone</label>
+                            <select class="w-full px-4 py-3 bg-surface-container-low border-transparent rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-transparent font-medium">
+                                <option>UTC (Coordinated Universal Time)</option>
+                                <option>PST (Pacific Standard Time)</option>
+                                <option>EST (Eastern Standard Time)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Default Support Email</label>
+                        <input type="email" value="support@plugme.com" class="w-full px-4 py-3 bg-surface-container-low border-transparent rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-transparent font-medium">
+                    </div>
+                    
+                    <div class="pt-4 flex justify-end border-t border-slate-100 mt-6">
+                        <button type="button" class="px-6 py-2.5 bg-primary text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:bg-primary-container transition-all">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Security Settings -->
+            <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-10 h-10 rounded-full bg-error/10 flex items-center justify-center text-error">
+                        <span class="material-symbols-outlined">security</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold font-headline text-error">Security Policies</h3>
+                        <p class="text-sm text-slate-500">Configure authentication and access requirements.</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between p-4 bg-surface-container-low rounded-2xl">
+                        <div>
+                            <p class="font-bold text-primary">Require 2FA for Admins</p>
+                            <p class="text-xs text-slate-500">Force all station owners to use Two-Factor Authentication.</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" checked class="sr-only peer">
+                            <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                        </label>
+                    </div>
+
+                    <div class="flex items-center justify-between p-4 bg-surface-container-low rounded-2xl">
+                        <div>
+                            <p class="font-bold text-primary">Session Timeout</p>
+                            <p class="text-xs text-slate-500">Automatically logout inactive users after 30 minutes.</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" checked class="sr-only peer">
+                            <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Danger Zone -->
+            <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-error-container">
+                <h3 class="text-xl font-bold font-headline text-error mb-2">Danger Zone</h3>
+                <p class="text-sm text-slate-500 mb-6">These actions affect the entire database and cannot be undone.</p>
+                
+                <div class="flex items-center justify-between p-4 border border-error-container rounded-2xl">
+                    <div>
+                        <p class="font-bold text-on-surface">Factory Reset Database</p>
+                        <p class="text-xs text-slate-500 mt-1">Clears all stations, admins, and logs. Restores default seed data.</p>
+                    </div>
+                    <button onclick="resetSystem()" class="px-6 py-2 bg-error text-white font-bold rounded-xl shadow-md hover:bg-error/90 transition-colors">Wipe Data</button>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+</div>
+
+<script src="../assets/js/auth.js"></script>
+<script>
+    // Security
+    const currentUser = Auth.requireRole('superadmin');
+    if (!currentUser) throw new Error('Access denied');
+
+    // Logout
+    document.querySelectorAll('[data-action="logout"]').forEach(el => {
+        el.onclick = e => { e.preventDefault(); Auth.logout(); };
+    });
+
+    // Reset System functionality
+    function resetSystem() {
+        if(confirm("CRITICAL WARNING: This will delete ALL admins and ALL stations from localStorage. Are you absolutely sure?")) {
+            localStorage.removeItem('plugme_admins_list');
+            localStorage.removeItem('plugme_stations_list');
+            alert("Database wiped. You will be logged out.");
+            Auth.logout();
+        }
+    }
+</script>
+
+<!-- Mobile Sidebar Overlay -->
+<div id="mobile-overlay" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[55] hidden lg:hidden transition-opacity opacity-0"></div>
+
+<script>
+    // Mobile Sidebar Toggle Logic
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('mobile-overlay');
+
+        if(mobileMenuBtn && sidebar && overlay) {
+            function toggleSidebar() {
+                const isOpen = !sidebar.classList.contains('-translate-x-full');
+                if (isOpen) {
+                    // Close
+                    sidebar.classList.add('-translate-x-full');
+                    overlay.classList.add('opacity-0');
+                    setTimeout(() => overlay.classList.add('hidden'), 300);
+                } else {
+                    // Open
+                    overlay.classList.remove('hidden');
+                    // slight delay to allow display:block to apply before opacity transition
+                    setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                    sidebar.classList.remove('-translate-x-full');
+                }
+            }
+
+            mobileMenuBtn.addEventListener('click', toggleSidebar);
+            overlay.addEventListener('click', toggleSidebar);
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Plug Me | Super Admin Dashboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Scripts -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "primary": "#00535b",
+                "on-secondary-fixed-variant": "#00497d",
+                "surface-container": "#edeeef",
+                "background": "#f8f9fa",
+                "on-primary-fixed-variant": "#004f56",
+                "error-container": "#ffdad6",
+                "secondary-container": "#33a0fd",
+                "secondary-fixed-dim": "#9ecaff",
+                "primary-container": "#006d77",
+                "on-tertiary-container": "#a7f0a9",
+                "on-error-container": "#93000a",
+                "tertiary-fixed": "#abf4ac",
+                "on-tertiary": "#ffffff",
+                "tertiary": "#0d5621",
+                "on-surface-variant": "#3e494a",
+                "on-primary-container": "#9becf7",
+                "secondary": "#0061a4",
+                "primary-fixed": "#9ff0fb",
+                "on-tertiary-fixed": "#002107",
+                "on-surface": "#191c1d",
+                "on-secondary-fixed": "#001d36",
+                "on-secondary-container": "#00355c",
+                "inverse-on-surface": "#f0f1f2",
+                "secondary-fixed": "#d1e4ff",
+                "surface-container-high": "#e7e8e9",
+                "surface-tint": "#006972",
+                "on-secondary": "#ffffff",
+                "on-primary-fixed": "#001f23",
+                "inverse-primary": "#82d3de",
+                "surface-container-highest": "#e1e3e4",
+                "surface-variant": "#e1e3e4",
+                "inverse-surface": "#2e3132",
+                "on-tertiary-fixed-variant": "#07521d",
+                "surface-container-low": "#f3f4f5",
+                "on-error": "#ffffff",
+                "on-primary": "#ffffff",
+                "tertiary-container": "#2c6f36",
+                "error": "#ba1a1a",
+                "surface-bright": "#f8f9fa",
+                "primary-fixed-dim": "#82d3de",
+                "surface-dim": "#d9dadb",
+                "surface-container-lowest": "#ffffff",
+                "surface": "#f8f9fa",
+                "on-background": "#191c1d",
+                "outline-variant": "#bec8ca",
+                "outline": "#6f797a",
+                "tertiary-fixed-dim": "#90d792"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "fontFamily": {
+                "headline": ["Manrope"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface">
+<!-- SideNavBar (Authority: JSON) -->
+<aside id="sidebar" class="h-screen w-64 fixed left-0 top-0 -translate-x-full lg:translate-x-0 transition-transform duration-300 z-[60] bg-slate-100 dark:bg-slate-950 flex flex-col p-4 gap-2 ">
+        <div class="mb-8 px-2 flex flex-col">
+            <h1 class="text-teal-900 dark:text-teal-100 font-black text-2xl font-headline tracking-tight">Plug Me</h1>
+            <span class="text-xs font-semibold tracking-wide uppercase text-slate-500">Energy Management</span>
+        </div>
+        <nav class="flex-1 space-y-1">
+            <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-teal-700 dark:text-teal-300 bg-white dark:bg-slate-900 rounded-lg shadow-sm font-bold transition-transform duration-200">
+                <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold">Dashboard</span>
+            </a>
+            <a href="manage-admins.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
+                <span class="material-symbols-outlined" data-icon="group">group</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold">Manage Admins</span>
+            </a>
+            <a href="manage-stations.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
+                <span class="material-symbols-outlined" data-icon="ev_station">ev_station</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold">Charging Stations</span>
+            </a>
+            <a href="reports.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
+                <span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold">Reports</span>
+            </a>
+            <a href="settings.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
+                <span class="material-symbols-outlined" data-icon="settings">settings</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold">Settings</span>
+            </a>
+        </nav>
+        <div class="mt-auto pt-4 space-y-1">
+            <a data-action="logout" class="flex items-center gap-3 px-3 py-2.5 text-error hover:bg-error/5 rounded-lg transition-colors cursor-pointer">
+                <span class="material-symbols-outlined" data-icon="logout">logout</span>
+                <span class="text-sm font-semibold tracking-wide uppercase">Logout</span>
+            </a>
+        </div>
+    </aside>
+<!-- Main Content Area -->
+<main class="lg:ml-64 min-h-screen">
+        <header class="w-full sticky top-0 z-40 bg-slate-50/70 backdrop-blur-xl flex justify-between items-center px-8 py-4 shadow-[0px_24px_48px_rgba(0,83,91,0.06)]">
+            <div class="flex items-center gap-4">
+                <button id="mobile-menu-btn" class="lg:hidden text-slate-600 hover:text-primary transition-colors flex items-center justify-center mr-2">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
+                <h2 class="text-2xl font-headline font-bold text-primary">System Overview</h2>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                    <input type="text" id="searchInput" placeholder="Search systems or admins..." class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-sm w-48 sm:w-80 focus:ring-2 focus:ring-primary/20">
+                </div>
+                <div class="w-px h-6 bg-slate-200 mx-2"></div>
+                <div class="text-right">
+                    <p class="text-sm font-bold text-teal-800">Super Admin</p>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+                    <span class="material-symbols-outlined">admin_panel_settings</span>
+                </div>
+            </div>
+        </header>
+<!-- Dashboard Canvas -->
+<div class="p-8 max-w-7xl mx-auto space-y-8">
+<!-- Bento Grid Stats Section -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Total Admins -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl shadow-[0px_24px_48px_rgba(0,83,91,0.06)] border border-white/50 relative overflow-hidden group">
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined p-2 bg-primary/10 text-primary rounded-xl" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="text-tertiary text-xs font-bold bg-tertiary-fixed px-2 py-1 rounded-full">+12%</span>
+</div>
+<p class="text-on-surface-variant text-sm font-label tracking-wide uppercase font-semibold">Total Admins</p>
+<h2 class="text-4xl font-headline font-extrabold text-on-surface mt-1">1,284</h2>
+<div class="mt-4 h-1 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-3/4 rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Total Stations -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl shadow-[0px_24px_48px_rgba(0,83,91,0.06)] border border-white/50 relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined p-2 bg-secondary/10 text-secondary rounded-xl" style="font-variation-settings: 'FILL' 1;">ev_station</span>
+<span class="text-on-secondary-fixed-variant text-xs font-bold bg-secondary-fixed px-2 py-1 rounded-full">+8%</span>
+</div>
+<p class="text-on-surface-variant text-sm font-label tracking-wide uppercase font-semibold">Total Stations</p>
+<h2 class="text-4xl font-headline font-extrabold text-on-surface mt-1">42,903</h2>
+<div class="mt-4 h-1 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-1/2 rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Active Stations -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl shadow-[0px_24px_48px_rgba(0,83,91,0.06)] border border-white/50 relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined p-2 bg-tertiary/10 text-tertiary rounded-xl" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="text-on-tertiary-fixed-variant text-xs font-bold bg-tertiary-fixed px-2 py-1 rounded-full">94% Capacity</span>
+</div>
+<p class="text-on-surface-variant text-sm font-label tracking-wide uppercase font-semibold">Active Stations</p>
+<h2 class="text-4xl font-headline font-extrabold text-on-surface mt-1">40,122</h2>
+<div class="mt-4 h-1 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[94%] rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Data Visuals Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- System Growth Chart -->
+<section class="lg:col-span-2 bg-surface-container-low p-8 rounded-3xl">
+<div class="flex justify-between items-end mb-10">
+<div>
+<h3 class="text-2xl font-headline font-bold text-primary">System Growth</h3>
+<p class="text-on-surface-variant text-sm">Station onboarding vs Energy demand</p>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-1.5 bg-white shadow-sm rounded-full text-xs font-bold text-primary">Monthly</button>
+<button class="px-4 py-1.5 text-xs font-bold text-on-surface-variant hover:bg-white/50 rounded-full transition-colors">Quarterly</button>
+</div>
+</div>
+<!-- Clean Bar Chart -->
+<div class="h-64 relative flex flex-col justify-end">
+    <!-- Grid lines -->
+    <div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+        <div class="h-[1px] w-full bg-outline-variant/10"></div>
+        <div class="h-[1px] w-full bg-outline-variant/10"></div>
+        <div class="h-[1px] w-full bg-outline-variant/10"></div>
+    </div>
+    
+    <!-- Bars Container -->
+    <div class="relative z-10 flex justify-between items-end h-[200px] px-2 w-full gap-4">
+        <!-- JAN -->
+        <div class="w-full flex flex-col justify-end items-center h-full group cursor-pointer relative">
+            <div class="flex w-full justify-center gap-1 items-end h-full">
+                <div class="w-full max-w-[1.5rem] bg-secondary-fixed-dim rounded-t-lg h-[40%] group-hover:bg-secondary transition-colors"></div>
+                <div class="w-full max-w-[1.5rem] bg-primary-fixed-dim rounded-t-lg h-[60%] group-hover:bg-primary transition-colors"></div>
+            </div>
+            <span class="text-[10px] font-bold text-on-surface-variant mt-3">JAN</span>
+        </div>
+        <!-- FEB -->
+        <div class="w-full flex flex-col justify-end items-center h-full group cursor-pointer relative">
+            <div class="flex w-full justify-center gap-1 items-end h-full">
+                <div class="w-full max-w-[1.5rem] bg-secondary-fixed-dim rounded-t-lg h-[45%] group-hover:bg-secondary transition-colors"></div>
+                <div class="w-full max-w-[1.5rem] bg-primary-fixed-dim rounded-t-lg h-[75%] group-hover:bg-primary transition-colors"></div>
+            </div>
+            <span class="text-[10px] font-bold text-on-surface-variant mt-3">FEB</span>
+        </div>
+        <!-- MAR -->
+        <div class="w-full flex flex-col justify-end items-center h-full group cursor-pointer relative">
+            <div class="flex w-full justify-center gap-1 items-end h-full">
+                <div class="w-full max-w-[1.5rem] bg-secondary-fixed-dim rounded-t-lg h-[60%] group-hover:bg-secondary transition-colors"></div>
+                <div class="w-full max-w-[1.5rem] bg-primary-fixed-dim rounded-t-lg h-[80%] group-hover:bg-primary transition-colors"></div>
+            </div>
+            <span class="text-[10px] font-bold text-on-surface-variant mt-3">MAR</span>
+        </div>
+        <!-- APR -->
+        <div class="w-full flex flex-col justify-end items-center h-full group cursor-pointer relative">
+            <div class="flex w-full justify-center gap-1 items-end h-full">
+                <div class="w-full max-w-[1.5rem] bg-secondary-fixed-dim rounded-t-lg h-[65%] group-hover:bg-secondary transition-colors"></div>
+                <div class="w-full max-w-[1.5rem] bg-primary-fixed-dim rounded-t-lg h-[90%] group-hover:bg-primary transition-colors"></div>
+            </div>
+            <span class="text-[10px] font-bold text-on-surface-variant mt-3">APR</span>
+        </div>
+        <!-- MAY -->
+        <div class="w-full flex flex-col justify-end items-center h-full group cursor-pointer relative">
+            <div class="flex w-full justify-center gap-1 items-end h-full">
+                <div class="w-full max-w-[1.5rem] bg-secondary-fixed-dim rounded-t-lg h-[85%] group-hover:bg-secondary transition-colors"></div>
+                <div class="w-full max-w-[1.5rem] bg-primary-fixed-dim rounded-t-lg h-[100%] group-hover:bg-primary transition-colors"></div>
+            </div>
+            <span class="text-[10px] font-bold text-on-surface-variant mt-3">MAY</span>
+        </div>
+    </div>
+    
+    <!-- Legend -->
+    <div class="flex justify-center gap-6 mt-4">
+        <div class="flex items-center gap-2">
+            <div class="w-3 h-3 rounded-full bg-secondary-fixed-dim"></div>
+            <span class="text-[10px] font-bold text-on-surface-variant">ONBOARDING</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <div class="w-3 h-3 rounded-full bg-primary-fixed-dim"></div>
+            <span class="text-[10px] font-bold text-on-surface-variant">ENERGY DEMAND</span>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- Recent Admin Requests (Tonal Nesting) -->
+<section class="bg-surface-container-highest p-8 rounded-3xl space-y-6 flex flex-col">
+<div class="flex justify-between items-center">
+<h3 class="text-xl font-headline font-bold text-primary">Requests</h3>
+<span class="text-[10px] font-bold bg-primary text-white px-2 py-0.5 rounded-full">4 PENDING</span>
+</div>
+<div class="space-y-3 flex-1 overflow-y-auto pr-2" style="max-height: 300px;">
+<!-- Request Card -->
+<div class="bg-surface-container-lowest p-3 rounded-2xl shadow-sm border-l-4 border-secondary transition-transform hover:-translate-y-1 duration-200 flex items-center justify-between">
+<div class="flex gap-3 items-center">
+<div class="w-10 h-10 rounded-full bg-slate-200 shrink-0">
+<img alt="Admin candidate" class="rounded-full w-full h-full object-cover" data-alt="minimalist user portrait icon with soft pastel circular background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFLa4aN-U6V2td_dO9aJoqkF_8GecCCsiywyH41OgGwssphoMbYx1RHrsxdotIDdx6MA4e6vrKDvH1lyBwmSGmsRq1d6pB6I9a7mMNGZXbBVmxVkaUQdWEHNhHkBfOB8bqj-XDA-VVfqAt93H0LewHIaR_65nJoDQlRLjoHXCBNS-hatSF6EByM8dtpPTImO6AXcz9NN1cMKeqPxmqCCtJUHNS4yvDKI5dEOkXAQvoJ9pJA4dGk7koukU88HxUl3It0dqDKZRmafJV"/>
+</div>
+<div class="min-w-0">
+<h4 class="text-sm font-bold truncate">Jonathan Doe</h4>
+<p class="text-[10px] text-on-surface-variant truncate">Regional Manager | Berlin</p>
+</div>
+</div>
+<button class="material-symbols-outlined text-primary hover:bg-primary/5 p-1 rounded shrink-0">check_circle</button>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-2xl shadow-sm border-l-4 border-tertiary transition-transform hover:-translate-y-1 duration-200 flex items-center justify-between">
+<div class="flex gap-3 items-center">
+<div class="w-10 h-10 rounded-full bg-slate-200 shrink-0">
+<img alt="Admin candidate" class="rounded-full w-full h-full object-cover" data-alt="professional minimalist profile icon for a female user with a modern geometric background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbB0tOPCjco0VqyxPta4VQmxWVYVumB8PDyZSpTUmkLsuN6tPjaraaH5r5dsgE7IuwfDe2QQTtE71JQdflewov4oq2_ZvEkm6UzzQGxqANbVrZwTUnRLIGYBNY8aGyoNjwzrM4s5ODtxTDDZZPXCJiR0klZBEf4QElGXdStG4BdeQIlkpnhxIsCKlRYN0qOc31gcuQldPb-0ri0_sGTBcRb6giKnIk-jXdqoZW0xe1Ptaf386JpCA6YXmp6pH0NzYVVJIOhiI7_clW"/>
+</div>
+<div class="min-w-0">
+<h4 class="text-sm font-bold truncate">Sarah Koenig</h4>
+<p class="text-[10px] text-on-surface-variant truncate">Grid Specialist | Oslo</p>
+</div>
+</div>
+<button class="material-symbols-outlined text-primary hover:bg-primary/5 p-1 rounded shrink-0">check_circle</button>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-2xl shadow-sm border-l-4 border-error transition-transform hover:-translate-y-1 duration-200 flex items-center justify-between">
+<div class="flex gap-3 items-center">
+<div class="w-10 h-10 rounded-full bg-slate-200 shrink-0">
+<img alt="Admin candidate" class="rounded-full w-full h-full object-cover" data-alt="clean vector style user icon for a business professional on a neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALMG2Ve1kpKa0ggQ97o-Kb7otns5PdCTVTuXT0Mm7VB0XuSAT84NVACAbpuxspzy5A5GwOnKGjHsE5UE1o2wvvp4z2EHSVFi6-CfEqe78Vk_WYbPoY893CcZ6Z7mythQxrnYRLrO11ZYR8xSkSpcW2Ri3afUIN_4_pC2cWva-QHJXmFTVtSkuEdDkbe1pnFf-2YC5duEsQ_NFzBzmI6nvB1PzAP4a_sRO2XG1olzd-L3kqmCxU7sdU4Dr9iA4eXudDMcYjtlg_tntY"/>
+</div>
+<div class="min-w-0">
+<h4 class="text-sm font-bold truncate">Marcus Bell</h4>
+<p class="text-[10px] text-on-surface-variant truncate">Station Auditor | London</p>
+</div>
+</div>
+<button class="material-symbols-outlined text-primary hover:bg-primary/5 p-1 rounded shrink-0">check_circle</button>
+</div>
+</div>
+<a href="manage-admins.html" class="w-full py-2 mt-auto text-xs font-bold text-primary hover:bg-primary/5 rounded-lg border border-primary/20 transition-colors shrink-0 text-center inline-block">
+    View All Requests
+</a>
+</section>
+</div>
+<!-- Top Performing Stations Section (Table with No Borders) -->
+<section class="bg-surface-container-lowest rounded-3xl p-8 shadow-[0px_24px_48px_rgba(0,83,91,0.06)]">
+<div class="flex justify-between items-center mb-10">
+<h3 class="text-2xl font-headline font-bold text-primary">Top Performing Stations</h3>
+<div class="flex gap-4">
+<div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container-low rounded-full">
+<span class="w-2 h-2 bg-tertiary rounded-full"></span>
+<span class="text-xs font-bold text-on-surface-variant">Live Data</span>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="text-on-surface-variant border-none">
+<th class="pb-6 px-4 text-sm font-label tracking-widest uppercase opacity-60">Station ID</th>
+<th class="pb-6 px-4 text-sm font-label tracking-widest uppercase opacity-60">Location</th>
+<th class="pb-6 px-4 text-sm font-label tracking-widest uppercase opacity-60 text-center">Uptime</th>
+<th class="pb-6 px-4 text-sm font-label tracking-widest uppercase opacity-60 text-right">Revenue (24h)</th>
+<th class="pb-6 px-4 text-sm font-label tracking-widest uppercase opacity-60 text-center">Status</th>
+</tr>
+</thead>
+<tbody class="space-y-4">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors rounded-xl group cursor-pointer">
+<td class="py-5 px-4 font-bold text-primary">#PM-BER-102</td>
+<td class="py-5 px-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold">Berlin Tiergarten</span>
+<span class="text-xs text-on-surface-variant">District 4, DE</span>
+</div>
+</td>
+<td class="py-5 px-4 text-center text-sm font-bold text-tertiary">99.98%</td>
+<td class="py-5 px-4 text-right text-sm font-bold">€12,450.00</td>
+<td class="py-5 px-4">
+<div class="flex justify-center">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-4 py-1 rounded-full text-xs font-bold">AVAILABLE</span>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors rounded-xl group cursor-pointer">
+<td class="py-5 px-4 font-bold text-primary">#PM-OSL-449</td>
+<td class="py-5 px-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold">Oslo Central</span>
+<span class="text-xs text-on-surface-variant">Harbor District, NO</span>
+</div>
+</td>
+<td class="py-5 px-4 text-center text-sm font-bold text-tertiary">99.12%</td>
+<td class="py-5 px-4 text-right text-sm font-bold">€10,892.40</td>
+<td class="py-5 px-4">
+<div class="flex justify-center">
+<span class="bg-secondary-fixed text-on-secondary-fixed-variant px-4 py-1 rounded-full text-xs font-bold">BUSY</span>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors rounded-xl group cursor-pointer">
+<td class="py-5 px-4 font-bold text-primary">#PM-LON-082</td>
+<td class="py-5 px-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold">London Soho Square</span>
+<span class="text-xs text-on-surface-variant">Westminster, UK</span>
+</div>
+</td>
+<td class="py-5 px-4 text-center text-sm font-bold text-tertiary">98.45%</td>
+<td class="py-5 px-4 text-right text-sm font-bold">€9,215.15</td>
+<td class="py-5 px-4">
+<div class="flex justify-center">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-4 py-1 rounded-full text-xs font-bold">AVAILABLE</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+<script src="../assets/js/auth.js"></script>
+<script>
+    // ── Security: superadmin role required ────────────────────────────────
+    const user = Auth.requireRole('superadmin');
+    if (!user) throw new Error('Access denied');  // requireRole already redirected
+
+    // ── Connect Logout ────────────────────────────────────────────────────
+    document.querySelectorAll('a[href*="logout"], a[data-action="logout"]').forEach(el => {
+        el.onclick = e => { e.preventDefault(); Auth.logout(); };
+    });
+
+    // ── Live Stats from localStorage ──────────────────────────────────────
+    function updateStats() {
+        const admins        = JSON.parse(localStorage.getItem('plugme_admins_list')) || [];
+        const allAdmins     = admins.filter(a => a.role === 'admin');
+        const pendingCount  = allAdmins.filter(a => a.status === 'pending_approval').length;
+        const approvedCount = allAdmins.filter(a => a.isApproved === 1).length;
+
+        // Total admins stat card (first .text-4xl)
+        const statCards = document.querySelectorAll('.text-4xl.font-headline.font-extrabold');
+        if (statCards[0]) statCards[0].innerText = allAdmins.length.toLocaleString();
+
+        // Update the pending requests badge in the sidebar / dashboard
+        const pendingBadge = document.querySelector('.text-\\[10px\\].font-bold.bg-primary');
+        if (pendingBadge) pendingBadge.textContent = `${pendingCount} PENDING`;
+    }
+
+    updateStats();
+</script>
+
+<!-- Mobile Sidebar Overlay -->
+<div id="mobile-overlay" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[55] hidden lg:hidden transition-opacity opacity-0"></div>
+
+<script>
+    // Mobile Sidebar Toggle Logic
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('mobile-overlay');
+
+        if(mobileMenuBtn && sidebar && overlay) {
+            function toggleSidebar() {
+                const isOpen = !sidebar.classList.contains('-translate-x-full');
+                if (isOpen) {
+                    // Close
+                    sidebar.classList.add('-translate-x-full');
+                    overlay.classList.add('opacity-0');
+                    setTimeout(() => overlay.classList.add('hidden'), 300);
+                } else {
+                    // Open
+                    overlay.classList.remove('hidden');
+                    // slight delay to allow display:block to apply before opacity transition
+                    setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                    sidebar.classList.remove('-translate-x-full');
+                }
+            }
+
+            mobileMenuBtn.addEventListener('click', toggleSidebar);
+            overlay.addEventListener('click', toggleSidebar);
+        }
+    });
+</script>
+</body></html>

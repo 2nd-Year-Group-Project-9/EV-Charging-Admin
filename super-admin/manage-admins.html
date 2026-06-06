@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Plug Me | Admin Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#00535b",
+                    "on-secondary-fixed-variant": "#00497d",
+                    "surface-container": "#edeeef",
+                    "background": "#f8f9fa",
+                    "on-primary-fixed-variant": "#004f56",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#33a0fd",
+                    "secondary-fixed-dim": "#9ecaff",
+                    "primary-container": "#006d77",
+                    "on-tertiary-container": "#a7f0a9",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#abf4ac",
+                    "on-tertiary": "#ffffff",
+                    "tertiary": "#0d5621",
+                    "on-surface-variant": "#3e494a",
+                    "on-primary-container": "#9becf7",
+                    "secondary": "#0061a4",
+                    "primary-fixed": "#9ff0fb",
+                    "on-tertiary-fixed": "#002107",
+                    "on-surface": "#191c1d",
+                    "on-secondary-fixed": "#001d36",
+                    "on-secondary-container": "#00355c",
+                    "inverse-on-surface": "#f0f1f2",
+                    "secondary-fixed": "#d1e4ff",
+                    "surface-container-high": "#e7e8e9",
+                    "surface-tint": "#006972",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#001f23",
+                    "inverse-primary": "#82d3de",
+                    "surface-container-highest": "#e1e3e4",
+                    "surface-variant": "#e1e3e4",
+                    "inverse-surface": "#2e3132",
+                    "on-tertiary-fixed-variant": "#07521d",
+                    "surface-container-low": "#f3f4f5",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#2c6f36",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#f8f9fa",
+                    "primary-fixed-dim": "#82d3de",
+                    "surface-dim": "#d9dadb",
+                    "surface-container-lowest": "#ffffff",
+                    "surface": "#f8f9fa",
+                    "on-background": "#191c1d",
+                    "outline-variant": "#bec8ca",
+                    "outline": "#6f797a",
+                    "tertiary-fixed-dim": "#90d792"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      h1, h2, h3 {
+        font-family: 'Manrope', sans-serif;
+      }
+    </style>
+</head>
+<body class="bg-background text-on-surface flex min-h-screen">
+<!-- SideNavBar -->
+<aside id="sidebar" class="h-screen w-64 fixed left-0 top-0 -translate-x-full lg:translate-x-0 transition-transform duration-300 z-[60] bg-slate-100 dark:bg-slate-950 flex flex-col p-4 gap-2 ">
+        <div class="mb-8 px-2 flex flex-col">
+            <h1 class="text-teal-900 dark:text-teal-100 font-black text-2xl font-headline tracking-tight">Plug Me</h1>
+            <span class="text-xs font-semibold tracking-wide uppercase text-slate-500">Energy Management</span>
+        </div>
+        <nav class="flex-1 space-y-1">
+            <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
+                <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold">Dashboard</span>
+            </a>
+            <a href="manage-admins.html" class="flex items-center gap-3 px-3 py-2.5 text-teal-700 dark:text-teal-300 bg-white dark:bg-slate-900 rounded-lg shadow-sm font-bold transition-transform duration-200">
+                <span class="material-symbols-outlined" data-icon="group">group</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold">Manage Admins</span>
+            </a>
+            <a href="manage-stations.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
+                <span class="material-symbols-outlined" data-icon="ev_station">ev_station</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold">Charging Stations</span>
+            </a>
+            <a href="reports.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
+                <span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold">Reports</span>
+            </a>
+            <a href="settings.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
+                <span class="material-symbols-outlined" data-icon="settings">settings</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold">Settings</span>
+            </a>
+        </nav>
+        <div class="mt-auto pt-4 space-y-1">
+            <a data-action="logout" class="flex items-center gap-3 px-3 py-2.5 text-error hover:bg-error/5 rounded-lg transition-colors cursor-pointer">
+                <span class="material-symbols-outlined" data-icon="logout">logout</span>
+                <span class="text-sm font-semibold tracking-wide uppercase">Logout</span>
+            </a>
+        </div>
+    </aside>
+<!-- Main Canvas -->
+<main class="flex-1 lg:ml-64 min-h-screen flex flex-col">
+<!-- TopNavBar -->
+        <header class="w-full sticky top-0 z-40 bg-slate-50/70 backdrop-blur-xl flex justify-between items-center px-8 py-4 shadow-[0px_24px_48px_rgba(0,83,91,0.06)]">
+            <div class="flex items-center gap-4">
+                <button id="mobile-menu-btn" class="lg:hidden text-slate-600 hover:text-primary transition-colors flex items-center justify-center mr-2">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
+                <h2 class="text-2xl font-headline font-bold text-primary">User Management</h2>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                    <input type="text" id="searchInput" placeholder="Search across grid..." class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-sm w-48 sm:w-80 focus:ring-2 focus:ring-primary/20">
+                </div>
+                <div class="w-px h-6 bg-slate-200 mx-2"></div>
+                <div class="text-right">
+                    <p class="text-sm font-bold text-teal-800">Super Admin</p>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+                    <span class="material-symbols-outlined">admin_panel_settings</span>
+                </div>
+            </div>
+        </header>
+<div class="p-8 max-w-7xl mx-auto w-full">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-10">
+<div>
+<h2 class="text-3xl md:text-4xl font-extrabold text-primary tracking-tight mb-2">User Management</h2>
+<p class="text-on-surface-variant text-base md:text-lg">System-wide administrative control and access review.</p>
+</div>
+<button class="w-full md:w-auto bg-gradient-to-br from-primary to-primary-container text-white px-6 py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+                    Invite New Admin
+                </button>
+</div>
+<!-- Management Interface -->
+<div class="bg-surface-container-low rounded-[2rem] p-4 md:p-8 shadow-sm">
+<!-- Filters Bar -->
+<div class="flex flex-col xl:flex-row gap-6 mb-8 items-start xl:items-center">
+<div class="flex-1 w-full relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary" data-icon="filter_list">filter_list</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary/20 text-sm placeholder:text-slate-400" placeholder="Filter by admin name or email address..." type="text"/>
+</div>
+<div class="w-full xl:w-auto overflow-x-auto pb-2 xl:pb-0">
+<div class="flex gap-2 p-1 bg-surface-container-high rounded-full min-w-max">
+<button class="px-6 py-2 rounded-full text-xs font-bold bg-surface-container-lowest text-primary shadow-sm">ALL</button>
+<button class="px-6 py-2 rounded-full text-xs font-bold text-on-surface-variant hover:bg-white/50 transition-colors">PENDING</button>
+<button class="px-6 py-2 rounded-full text-xs font-bold text-on-surface-variant hover:bg-white/50 transition-colors">APPROVED</button>
+<button class="px-6 py-2 rounded-full text-xs font-bold text-on-surface-variant hover:bg-white/50 transition-colors">REJECTED</button>
+</div>
+</div>
+</div>
+<!-- Admin Table -->
+<div class="overflow-x-auto">
+<table class="w-full min-w-[800px] border-separate border-spacing-y-4">
+<thead>
+<tr class="text-left text-on-surface-variant">
+<th class="px-6 pb-2 text-[10px] font-bold uppercase tracking-[0.15em]">Admin User</th>
+<th class="px-6 pb-2 text-[10px] font-bold uppercase tracking-[0.15em]">Contact Info</th>
+<th class="px-6 pb-2 text-[10px] font-bold uppercase tracking-[0.15em]">Access Status</th>
+<th class="px-6 pb-2 text-[10px] font-bold uppercase tracking-[0.15em] text-right">Administrative Actions</th>
+</tr>
+</thead>
+<tbody>
+<!-- Admin Row 1 -->
+<tr class="group hover:scale-[1.01] transition-transform duration-200">
+<td class="bg-surface-container-lowest px-6 py-5 rounded-l-2xl">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed-dim flex items-center justify-center overflow-hidden">
+<img alt="Admin face" class="w-full h-full object-cover" data-alt="Headshot of a mid-30s woman with glasses smiling professionally, soft daylight, minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhTIaMeiPEioBsGcZnFNfbMMPUJ9qRjTqpRGOLWCbTXogILS4u-Ze8tgFcX3CR38sduTx2C7SLL1ekCp2kXqUfjJd80vbTDN0nOQy4p_9zon4MD2-eyim0YrIQamhUdLHPu8UtFfrsv_lJv33FmZcDPWTFRSiwfYq0D-XySkD6LZIS2E23M8j6s_nOb0AgAbk8AKEw6i5FwXL1RKrvgWPCGR_lkdY0pdpWZj_xnR_u5Ps_d4SXyDd9AHqxLYxaTrpyYiHv-qKpgHIL"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Alex Rivers</p>
+<p class="text-xs text-on-surface-variant">Regional Supervisor</p>
+</div>
+</div>
+</td>
+<td class="bg-surface-container-lowest px-6 py-5">
+<p class="text-sm font-medium">alex.rivers@plugme.com</p>
+<p class="text-xs text-on-surface-variant">+1 (555) 0123 456</p>
+</td>
+<td class="bg-surface-container-lowest px-6 py-5">
+<span class="inline-flex items-center px-4 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase bg-tertiary-fixed text-on-tertiary-fixed-variant">
+                                        Approved
+                                    </span>
+</td>
+<td class="bg-surface-container-lowest px-6 py-5 rounded-r-2xl text-right">
+<div class="flex justify-end gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-primary-fixed-dim text-primary transition-colors" title="View Profile">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-error-container text-error transition-colors" title="Revoke">
+<span class="material-symbols-outlined" data-icon="block">block</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Admin Row 2 -->
+<tr class="group hover:scale-[1.01] transition-transform duration-200">
+<td class="bg-surface-container-lowest px-6 py-5 rounded-l-2xl">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-secondary-fixed-dim flex items-center justify-center overflow-hidden">
+<img alt="Admin face" class="w-full h-full object-cover" data-alt="Close up of a young man with a friendly expression, outdoor lighting, high resolution portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiknaBQKb_Nj7u0qUMS2_ReGyls1qm51KOuezIjr6zipc4bvZ5WylstVKPnY4E8tKTdV0PVYXJX60fS4eC-blzn-hB971ZIFEe73rDabCfYiliuI5yAptR8vF-oyeeW46jHHdk2VPpJAC6rTFbe9g_90AGWX-4R3N6BcC9Mc4YLkKqx96sGzws67yk2TGY1abJAxLJYlDEuAtfHdPAqIs99aTGrkFWoSYBp4mUE7QL_TBrGGqST-q9deI2IjmD8JBTgyWspIJB4vLZ"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Jordan Smith</p>
+<p class="text-xs text-on-surface-variant">Maintenance Lead</p>
+</div>
+</div>
+</td>
+<td class="bg-surface-container-lowest px-6 py-5">
+<p class="text-sm font-medium">j.smith@plugme.com</p>
+<p class="text-xs text-on-surface-variant">+1 (555) 0987 654</p>
+</td>
+<td class="bg-surface-container-lowest px-6 py-5">
+<span class="inline-flex items-center px-4 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase bg-secondary-fixed text-on-secondary-fixed-variant">
+                                        Pending
+                                    </span>
+</td>
+<td class="bg-surface-container-lowest px-6 py-5 rounded-r-2xl text-right">
+<div class="flex justify-end gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-tertiary-fixed text-tertiary transition-colors" title="Approve">
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-error-container text-error transition-colors" title="Reject">
+<span class="material-symbols-outlined" data-icon="cancel">cancel</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-primary-fixed-dim text-primary transition-colors" title="View Details">
+<span class="material-symbols-outlined" data-icon="info">info</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Admin Row 3 -->
+<tr class="group hover:scale-[1.01] transition-transform duration-200">
+<td class="bg-surface-container-lowest px-6 py-5 rounded-l-2xl">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-surface-dim flex items-center justify-center overflow-hidden">
+<img alt="Admin face" class="w-full h-full object-cover" data-alt="Middle-aged executive man in a neutral office setting, confident posture, soft cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_iG0Ljj43uy-9ylLSHqNVXhXUFfOCQUATo80tRM90G9sP8X7VOcLp_bbEzpKxp6ZTLGuBKw6vfT3m21xG4T9Hxv_IW66mQC6OswQr_jO0seY9ZcmTUBqJ1oO9S7vJZxXF9agO3PdOMZI7nOBa-rdqx4-arnfTogUdYMnkxJJIctcdsQLS247i4Tj2i5vJLs_snVhpGHf_IZI_mIZoUMdQ2CXi4K9gzyvnwFSvJblGHymhLK5JtYgnWabu8bYnczhqkdpu2xDqaoqW"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Elena Vance</p>
+<p class="text-xs text-on-surface-variant">External Auditor</p>
+</div>
+</div>
+</td>
+<td class="bg-surface-container-lowest px-6 py-5">
+<p class="text-sm font-medium">e.vance.contract@plugme.com</p>
+<p class="text-xs text-on-surface-variant">+1 (555) 4433 221</p>
+</td>
+<td class="bg-surface-container-lowest px-6 py-5">
+<span class="inline-flex items-center px-4 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase bg-surface-dim text-on-surface-variant">
+                                        Rejected
+                                    </span>
+</td>
+<td class="bg-surface-container-lowest px-6 py-5 rounded-r-2xl text-right">
+<div class="flex justify-end gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-slate-200 text-on-surface transition-colors" title="Re-evaluate">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-error-container text-error transition-colors" title="Delete">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination/Footer -->
+<div class="mt-8 pt-6 flex justify-between items-center text-sm">
+<p class="text-on-surface-variant font-medium">Showing <span class="text-primary font-bold">1-12</span> of <span class="text-primary font-bold">48</span> Admins</p>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:bg-surface-dim transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center font-bold">1</button>
+<button class="w-10 h-10 rounded-xl bg-surface-container-lowest flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">2</button>
+<button class="w-10 h-10 rounded-xl bg-surface-container-lowest flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">3</button>
+<button class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:bg-surface-dim transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script src="../assets/js/auth.js"></script>
+<script>
+    // ── Security: superadmin role required ────────────────────────────────
+    const user = Auth.requireRole('superadmin');
+    if (!user) throw new Error('Access denied');
+
+    // ── Connect Logout ────────────────────────────────────────────────────
+    document.querySelectorAll('a[href*="logout"], a[data-action="logout"]').forEach(el => {
+        el.onclick = e => { e.preventDefault(); Auth.logout(); };
+    });
+
+    // ── Toast notification ────────────────────────────────────────────────
+    function showToast(msg, type = 'success') {
+        const toast = document.createElement('div');
+        const color = type === 'success' ? 'bg-tertiary text-white' : 'bg-error text-white';
+        toast.className = `fixed bottom-6 right-6 z-[200] ${color} px-6 py-3 rounded-xl shadow-xl font-semibold text-sm flex items-center gap-2 animate-bounce`;
+        toast.innerHTML = `<span class="material-symbols-outlined text-base">${type === 'success' ? 'check_circle' : 'error'}</span>${msg}`;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    }
+
+    // ── Current filter state ──────────────────────────────────────────────
+    let currentFilter = 'all';
+    let searchQuery   = '';
+
+    // ── Render admin table ────────────────────────────────────────────────
+    function renderAdmins() {
+        const admins  = JSON.parse(localStorage.getItem('plugme_admins_list')) || [];
+        const tbody   = document.querySelector('tbody');
+        tbody.innerHTML = '';
+
+        let rows = admins.filter(a => a.role === 'admin');
+
+        // Apply status filter
+        if (currentFilter !== 'all') {
+            rows = rows.filter(a => {
+                if (currentFilter === 'pending')  return a.status === 'pending_approval';
+                if (currentFilter === 'approved') return a.isApproved === 1;
+                if (currentFilter === 'rejected') return a.status === 'rejected';
+                return true;
+            });
+        }
+
+        // Apply search filter
+        if (searchQuery) {
+            const q = searchQuery.toLowerCase();
+            rows = rows.filter(a =>
+                a.name.toLowerCase().includes(q) ||
+                a.email.toLowerCase().includes(q) ||
+                (a.onboardingData?.company || '').toLowerCase().includes(q)
+            );
+        }
+
+        if (rows.length === 0) {
+            tbody.innerHTML = `
+                <tr><td colspan="4" class="py-12 text-center text-on-surface-variant font-medium">
+                    No admins found.
+                </td></tr>`;
+            return;
+        }
+
+        rows.forEach(admin => {
+            const row = document.createElement('tr');
+            row.className = 'group hover:scale-[1.01] transition-transform duration-200';
+
+            let statusBadge = '';
+            if (admin.isApproved === 1 && admin.status === 'approved') {
+                statusBadge = '<span class="inline-flex items-center gap-1 px-4 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase bg-tertiary-fixed text-on-tertiary-fixed-variant"><span class="material-symbols-outlined text-xs" style="font-size:12px">check_circle</span>Approved</span>';
+            } else if (admin.status === 'pending_approval') {
+                statusBadge = '<span class="inline-flex items-center gap-1 px-4 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase bg-secondary-fixed text-on-secondary-fixed-variant"><span class="material-symbols-outlined text-xs" style="font-size:12px">pending</span>Pending</span>';
+            } else if (admin.status === 'rejected') {
+                statusBadge = '<span class="inline-flex items-center gap-1 px-4 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase bg-red-100 text-red-600"><span class="material-symbols-outlined text-xs" style="font-size:12px">cancel</span>Rejected</span>';
+            } else {
+                statusBadge = '<span class="inline-flex items-center gap-1 px-4 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase bg-slate-100 text-slate-500"><span class="material-symbols-outlined text-xs" style="font-size:12px">hourglass_empty</span>Incomplete</span>';
+            }
+
+            const approveBtn = `<button onclick="handleApprove('${admin.id}')" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-tertiary-fixed text-tertiary transition-colors" title="Approve">
+                <span class="material-symbols-outlined">check_circle</span></button>`;
+            const rejectBtn  = `<button onclick="handleReject('${admin.id}')" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-error-container text-error transition-colors" title="Reject">
+                <span class="material-symbols-outlined">cancel</span></button>`;
+
+            const actionBtns = admin.status === 'pending_approval'
+                ? approveBtn + rejectBtn
+                : admin.status === 'approved'
+                    ? `<button onclick="handleReject('${admin.id}')" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-error-container text-error transition-colors" title="Revoke"><span class="material-symbols-outlined">block</span></button>`
+                    : admin.status === 'rejected'
+                        ? approveBtn
+                        : '';
+
+            row.innerHTML = `
+                <td class="bg-surface-container-lowest px-6 py-5 rounded-l-2xl">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-primary-fixed-dim flex items-center justify-center">
+                            <span class="material-symbols-outlined text-2xl text-primary">person</span>
+                        </div>
+                        <div>
+                            <p class="font-bold text-on-surface">${admin.name}</p>
+                            <p class="text-xs text-on-surface-variant">${admin.onboardingData?.company || 'New Partner'}</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="bg-surface-container-lowest px-6 py-5">
+                    <p class="text-sm font-medium">${admin.email}</p>
+                    <p class="text-xs text-on-surface-variant">${admin.onboardingData?.location || 'N/A'}</p>
+                </td>
+                <td class="bg-surface-container-lowest px-6 py-5">${statusBadge}</td>
+                <td class="bg-surface-container-lowest px-6 py-5 rounded-r-2xl text-right">
+                    <div class="flex justify-end gap-2">${actionBtns}</div>
+                </td>`;
+            tbody.appendChild(row);
+        });
+    }
+
+    // ── Approve handler ───────────────────────────────────────────────────
+    function handleApprove(id) {
+        const result = Auth.approveAdmin(id);
+        if (result.success) {
+            showToast('Admin approved successfully!', 'success');
+            renderAdmins();
+        } else {
+            showToast('Failed to approve admin.', 'error');
+        }
+    }
+
+    // ── Reject handler ────────────────────────────────────────────────────
+    function handleReject(id) {
+        const result = Auth.rejectAdmin(id);
+        if (result.success) {
+            showToast('Admin request rejected.', 'error');
+            renderAdmins();
+        } else {
+            showToast('Failed to reject admin.', 'error');
+        }
+    }
+
+    // ── Filter buttons ────────────────────────────────────────────────────
+    document.querySelectorAll('.flex.gap-2.p-1 button').forEach((btn, i) => {
+        const filters = ['all', 'pending', 'approved', 'rejected'];
+        btn.addEventListener('click', () => {
+            currentFilter = filters[i] || 'all';
+            // Update active state
+            document.querySelectorAll('.flex.gap-2.p-1 button').forEach(b => {
+                b.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+                b.classList.add('text-on-surface-variant');
+            });
+            btn.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+            btn.classList.remove('text-on-surface-variant');
+            renderAdmins();
+        });
+    });
+
+    // ── Search input ──────────────────────────────────────────────────────
+    const searchInput = document.querySelector('input[placeholder*="Filter"]');
+    if (searchInput) {
+        searchInput.addEventListener('input', () => {
+            searchQuery = searchInput.value.trim();
+            renderAdmins();
+        });
+    }
+
+    // ── Initial render ────────────────────────────────────────────────────
+    renderAdmins();
+</script>
+
+<!-- Mobile Sidebar Overlay -->
+<div id="mobile-overlay" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[55] hidden lg:hidden transition-opacity opacity-0"></div>
+
+<script>
+    // Mobile Sidebar Toggle Logic
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('mobile-overlay');
+
+        if(mobileMenuBtn && sidebar && overlay) {
+            function toggleSidebar() {
+                const isOpen = !sidebar.classList.contains('-translate-x-full');
+                if (isOpen) {
+                    // Close
+                    sidebar.classList.add('-translate-x-full');
+                    overlay.classList.add('opacity-0');
+                    setTimeout(() => overlay.classList.add('hidden'), 300);
+                } else {
+                    // Open
+                    overlay.classList.remove('hidden');
+                    // slight delay to allow display:block to apply before opacity transition
+                    setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                    sidebar.classList.remove('-translate-x-full');
+                }
+            }
+
+            mobileMenuBtn.addEventListener('click', toggleSidebar);
+            overlay.addEventListener('click', toggleSidebar);
+        }
+    });
+</script>
+</body></html>

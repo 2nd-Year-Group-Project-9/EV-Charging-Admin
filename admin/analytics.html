@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Analytics | Plug Me</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#00535b",
+                        "surface-container": "#edeeef",
+                        "background": "#f8f9fa",
+                        "tertiary": "#0d5621",
+                        "on-surface-variant": "#3e494a",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "secondary": "#0061a4"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bar { transition: height 1s ease-out; }
+    </style>
+</head>
+<body class="bg-background text-on-surface flex min-h-screen">
+
+<!-- SideNavBar -->
+<aside id="sidebar" class="h-screen w-64 fixed left-0 top-0 -translate-x-full lg:translate-x-0 transition-transform duration-300 z-[60] bg-slate-100 dark:bg-slate-950 flex flex-col p-4 gap-2 ">
+    <div class="mb-8 px-2 flex flex-col">
+        <h1 class="text-teal-900 dark:text-teal-100 font-black text-2xl font-headline tracking-tight">Plug Me</h1>
+        <span class="text-xs font-semibold tracking-wide uppercase text-slate-500">Partner Portal</span>
+    </div>
+    <nav class="flex-1 space-y-1">
+        <a href="Dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
+            <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+            <span class="text-sm font-label tracking-wide uppercase font-semibold">Dashboard</span>
+        </a>
+        <a href="stations.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
+            <span class="material-symbols-outlined" data-icon="ev_station">ev_station</span>
+            <span class="text-sm font-label tracking-wide uppercase font-semibold">Charging Stations</span>
+        </a>
+        <a href="analytics.html" class="flex items-center gap-3 px-3 py-2.5 text-teal-700 dark:text-teal-300 bg-white dark:bg-slate-900 rounded-lg shadow-sm font-bold transition-transform duration-200">
+            <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+            <span class="text-sm font-label tracking-wide uppercase font-semibold">Analytics</span>
+        </a>
+        <a href="settings.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
+            <span class="material-symbols-outlined" data-icon="settings">settings</span>
+            <span class="text-sm font-label tracking-wide uppercase font-semibold">Settings</span>
+        </a>
+    </nav>
+    <div class="mt-auto pt-4 space-y-1">
+        <a data-action="logout" class="flex items-center gap-3 px-3 py-2.5 text-error hover:bg-error/5 rounded-lg transition-colors cursor-pointer logout-btn">
+            <span class="material-symbols-outlined" data-icon="logout">logout</span>
+            <span class="text-sm font-semibold tracking-wide uppercase">Logout</span>
+        </a>
+    </div>
+</aside>
+
+<!-- Main Content Canvas -->
+<main class="lg:ml-64 flex-1 flex flex-col min-h-screen">
+    <!-- TopNavBar -->
+    <header class="w-full sticky top-0 z-40 bg-slate-50/70 backdrop-blur-xl flex justify-between items-center px-8 py-4 shadow-[0px_24px_48px_rgba(0,83,91,0.06)]">
+        <div class="flex items-center gap-4">
+                <button id="mobile-menu-btn" class="lg:hidden text-slate-600 hover:text-primary transition-colors flex items-center justify-center mr-2">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
+            <h2 class="text-2xl font-headline font-bold text-primary">Station Analytics</h2>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 hover:bg-primary/20 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">download</span>
+                Export Report
+            </button>
+            <div class="w-px h-6 bg-slate-200 mx-2"></div>
+            <div class="text-right">
+                <p class="text-sm font-bold text-teal-800" id="profile-name">Loading...</p>
+                <p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Station Owner</p>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+                <span class="material-symbols-outlined">person</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content Area -->
+    <div class="p-8 space-y-8 max-w-[1400px]">
+        
+        <!-- Summary Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-gradient-to-br from-primary to-[#006d77] p-8 rounded-3xl shadow-xl shadow-primary/20 text-white relative overflow-hidden group hover:-translate-y-1 transition-all duration-300">
+                <div class="absolute -right-4 -top-4 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
+                <div class="flex justify-between items-start mb-4 relative z-10">
+                    <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center backdrop-blur-sm">
+                        <span class="material-symbols-outlined text-white">payments</span>
+                    </div>
+                    <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">+18.2%</span>
+                </div>
+                <p class="text-sm font-bold text-white/70 uppercase tracking-widest relative z-10">Monthly Revenue</p>
+                <h3 class="text-5xl font-headline font-extrabold mt-2 relative z-10">$8,492</h3>
+            </div>
+
+            <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
+                        <span class="material-symbols-outlined">bolt</span>
+                    </div>
+                    <span class="bg-tertiary/10 text-tertiary text-xs font-bold px-3 py-1 rounded-full">+5.4%</span>
+                </div>
+                <p class="text-sm font-bold text-slate-500 uppercase tracking-widest">Energy Delivered</p>
+                <h3 class="text-5xl font-headline font-extrabold text-primary mt-2">18.2 <span class="text-xl text-slate-400">MWh</span></h3>
+            </div>
+
+            <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-50 flex items-center justify-center text-purple-600">
+                        <span class="material-symbols-outlined">ev_charger</span>
+                    </div>
+                </div>
+                <p class="text-sm font-bold text-slate-500 uppercase tracking-widest">Total Charging Sessions</p>
+                <h3 class="text-5xl font-headline font-extrabold text-primary mt-2">1,204</h3>
+            </div>
+        </div>
+
+        <!-- Charts Area -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Utilization Graph -->
+            <div class="lg:col-span-2 bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h3 class="text-xl font-bold font-headline text-primary">Station Utilization</h3>
+                        <p class="text-sm text-slate-500">Average port occupancy over 24 hours</p>
+                    </div>
+                    <select class="bg-surface-container-low border-transparent rounded-xl focus:ring-2 focus:ring-primary/20 text-sm font-bold text-primary">
+                        <option>Today</option>
+                        <option>Yesterday</option>
+                        <option>Last 7 Days</option>
+                    </select>
+                </div>
+                
+                <!-- Pure CSS Mockup of Area Chart -->
+                <div class="h-64 relative flex items-end">
+                    <!-- Background Grid -->
+                    <div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+                        <div class="border-b border-slate-100 w-full"></div>
+                        <div class="border-b border-slate-100 w-full"></div>
+                        <div class="border-b border-slate-100 w-full"></div>
+                        <div class="border-b border-slate-100 w-full"></div>
+                        <div class="border-b border-slate-100 w-full"></div>
+                    </div>
+                    <!-- Chart SVG Mock -->
+                    <svg viewBox="0 0 1000 200" class="w-full h-full preserve-3d z-10" preserveAspectRatio="none">
+                        <!-- Gradient def -->
+                        <defs>
+                            <linearGradient id="chart-gradient" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#00535b" stop-opacity="0.3"/>
+                                <stop offset="100%" stop-color="#00535b" stop-opacity="0"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Area -->
+                        <path d="M0,200 L0,150 C100,100 200,180 300,120 C400,60 500,140 600,80 C700,20 800,120 900,40 C950,10 980,60 1000,90 L1000,200 Z" fill="url(#chart-gradient)"></path>
+                        <!-- Line -->
+                        <path d="M0,150 C100,100 200,180 300,120 C400,60 500,140 600,80 C700,20 800,120 900,40 C950,10 980,60 1000,90" fill="none" stroke="#00535b" stroke-width="4" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+                <div class="flex justify-between items-center mt-4 text-xs font-bold text-slate-400">
+                    <div>12 AM</div>
+                    <div>6 AM</div>
+                    <div>12 PM</div>
+                    <div>6 PM</div>
+                    <div>11 PM</div>
+                </div>
+            </div>
+
+            <!-- Best Performing Station -->
+            <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100 flex flex-col">
+                <h3 class="text-xl font-bold font-headline text-primary mb-2">Top Performer</h3>
+                <p class="text-sm text-slate-500 mb-6">Your highest revenue station this month.</p>
+                
+                <div class="flex-1 flex flex-col items-center justify-center text-center p-6 bg-gradient-to-b from-slate-50 to-white rounded-2xl border border-slate-100 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4">
+                        <span class="material-symbols-outlined text-amber-400 text-3xl drop-shadow-md">military_tech</span>
+                    </div>
+                    <div class="w-20 h-20 bg-teal-50 rounded-full flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-teal-600 text-3xl">ev_station</span>
+                    </div>
+                    <h4 class="font-bold text-lg text-primary">Downtown Hub - Alpha</h4>
+                    <p class="text-xs text-slate-500 mt-1 mb-4">Seattle, WA</p>
+                    <div class="w-full bg-surface-container-low rounded-xl p-4">
+                        <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Generated</p>
+                        <p class="font-headline font-black text-2xl text-teal-700">$3,420</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<script src="../assets/js/auth.js"></script>
+<script>
+    // ── Security ─────────────────────────────────────
+    const user = Auth.refreshSession();
+    if (!user || user.role !== 'admin') window.location.replace('../auth/login.html');
+    if (user.status !== 'approved') window.location.replace('dashboard.html');
+
+    // Logout
+    document.querySelectorAll('.logout-btn').forEach(btn => {
+        btn.onclick = e => { e.preventDefault(); Auth.logout(); };
+    });
+
+    // Profile Name
+    const nameEl = document.getElementById('profile-name');
+    if (nameEl && user) nameEl.innerText = user.name;
+</script>
+
+<!-- Mobile Sidebar Overlay -->
+<div id="mobile-overlay" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[55] hidden lg:hidden transition-opacity opacity-0"></div>
+
+<script>
+    // Mobile Sidebar Toggle Logic
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('mobile-overlay');
+
+        if(mobileMenuBtn && sidebar && overlay) {
+            function toggleSidebar() {
+                const isOpen = !sidebar.classList.contains('-translate-x-full');
+                if (isOpen) {
+                    // Close
+                    sidebar.classList.add('-translate-x-full');
+                    overlay.classList.add('opacity-0');
+                    setTimeout(() => overlay.classList.add('hidden'), 300);
+                } else {
+                    // Open
+                    overlay.classList.remove('hidden');
+                    // slight delay to allow display:block to apply before opacity transition
+                    setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                    sidebar.classList.remove('-translate-x-full');
+                }
+            }
+
+            mobileMenuBtn.addEventListener('click', toggleSidebar);
+            overlay.addEventListener('click', toggleSidebar);
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#00535b",
+                    "background": "#f8f9fa",
+                    "primary-container": "#006d77",
+                    "on-surface": "#191c1d",
+                    "on-surface-variant": "#3e494a",
+                    "surface-container-highest": "#e1e3e4",
+                    "surface-container-lowest": "#ffffff"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-fixed-dim">
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col h-screen w-64 fixed left-0 top-0 bg-slate-100 dark:bg-slate-950 p-4 gap-2 border-r-0">
+<div class="mb-6 px-4 py-2">
+<span class="text-teal-900 dark:text-teal-100 font-black block">Plug Me</span>
+<span class="text-xs text-slate-500 uppercase tracking-widest font-semibold">Energy Management</span>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200" href="dashboard.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-semibold tracking-wide uppercase">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-teal-700 dark:text-teal-300 bg-white dark:bg-slate-900 rounded-lg shadow-sm font-bold" href="stations.html">
+<span class="material-symbols-outlined">ev_station</span>
+<span class="text-sm font-semibold tracking-wide uppercase">Charging Stations</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">bolt</span>
+<span class="text-sm font-semibold tracking-wide uppercase">Energy Grid</span>
+</a>
+</nav>
+<div class="mt-auto pt-4 space-y-1 border-t border-slate-200/50">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 logout-btn" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="text-sm font-semibold tracking-wide uppercase">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 lg:ml-64 p-8">
+    <div class="max-w-5xl mx-auto">
+        <h1 class="text-4xl font-extrabold font-headline text-on-surface tracking-tight mb-8">Configure Station</h1>
+        <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100">
+            <p class="text-slate-500 italic">Station configuration form placeholder...</p>
+            <button class="mt-8 px-8 py-2.5 rounded-full font-semibold text-white bg-gradient-to-br from-primary to-primary-container shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">Save Configuration</button>
+        </div>
+    </div>
+</main>
+</div>
+<script src="../assets/js/auth.js"></script>
+<script>
+    const user = Auth.getCurrentUser();
+    if (!user || user.role !== 'admin') {
+        window.location.href = '../auth/login.html';
+    }
+    if (user.status !== 'approved') {
+        window.location.href = 'dashboard.html';
+    }
+    document.querySelectorAll('.logout-btn').forEach(btn => {
+        btn.onclick = (e) => {
+            e.preventDefault();
+            Auth.logout();
+        };
+    });
+    document.querySelector('button.bg-gradient-to-br').onclick = () => {
+        alert('Station configuration saved successfully!');
+        window.location.href = 'stations.html';
+    };
+</script>
+</body></html>

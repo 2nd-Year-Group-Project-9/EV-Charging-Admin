@@ -5,7 +5,9 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Dashboard | Plug Me</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script id="tailwind-config">
         tailwind.config = {
@@ -68,9 +70,9 @@
                         "full": "0.75rem"
                     },
                     "fontFamily": {
-                        "headline": ["Manrope"],
-                        "body": ["Inter"],
-                        "label": ["Inter"]
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
                     }
                 },
             },
@@ -82,84 +84,109 @@
         }
     </style>
 </head>
-<body class="bg-background text-on-surface flex min-h-screen">
+<body class="bg-background font-body text-on-surface flex min-h-screen">
 
 <!-- SideNavBar -->
-    <aside id="sidebar" class="h-screen w-64 fixed left-0 top-0 -translate-x-full lg:translate-x-0 transition-transform duration-300 z-[60] bg-slate-100 dark:bg-slate-950 flex flex-col p-4 gap-2 ">
-        <div class="mb-8 px-2 flex flex-col">
-            <h1 class="text-teal-900 dark:text-teal-100 font-black text-2xl font-headline tracking-tight">Plug Me</h1>
-            <span class="text-xs font-semibold tracking-wide uppercase text-slate-500">Partner Portal</span>
+    <aside id="sidebar" class="group h-screen w-64 lg:w-20 lg:hover:w-64 fixed left-0 top-0 -translate-x-full lg:translate-x-0 transition-all duration-300 z-[60] bg-slate-100 dark:bg-slate-950 flex flex-col p-4 gap-2 overflow-x-hidden">
+        <div class="mb-8 px-2 flex flex-col overflow-hidden">
+            <h1 class="text-teal-900 dark:text-teal-100 font-black text-2xl font-headline tracking-tight whitespace-nowrap opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Plug Me</h1>
+            <span class="text-xs font-semibold tracking-wide uppercase text-slate-500 whitespace-nowrap opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Partner Portal</span>
         </div>
         <nav class="flex-1 space-y-1">
-            <a href="Dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-teal-700 dark:text-teal-300 bg-white dark:bg-slate-900 rounded-lg shadow-sm font-bold transition-transform duration-200">
-                <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-                <span class="text-sm font-label tracking-wide uppercase font-semibold">Dashboard</span>
+            <a href="Dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-teal-700 dark:text-teal-300 bg-white dark:bg-slate-900 rounded-lg shadow-sm font-bold transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="dashboard">dashboard</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Dashboard</span>
             </a>
-            <a href="stations.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
-                <span class="material-symbols-outlined" data-icon="ev_station">ev_station</span>
-                <span class="text-sm font-label tracking-wide uppercase font-semibold">Charging Stations</span>
+            <a href="stations.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="ev_station">ev_station</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Charging Stations</span>
             </a>
-            <a href="analytics.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
-                <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
-                <span class="text-sm font-label tracking-wide uppercase font-semibold">Analytics</span>
+            <a href="analytics.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="analytics">analytics</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Analytics</span>
             </a>
-            <a href="settings.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
-                <span class="material-symbols-outlined" data-icon="settings">settings</span>
-                <span class="text-sm font-label tracking-wide uppercase font-semibold">Settings</span>
+            <a href="settings.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="settings">settings</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Settings</span>
             </a>
         </nav>
         <div class="mt-auto pt-4 space-y-1">
-            <a data-action="logout" class="flex items-center gap-3 px-3 py-2.5 text-error hover:bg-error/5 rounded-lg transition-colors cursor-pointer logout-btn">
-                <span class="material-symbols-outlined" data-icon="logout">logout</span>
-                <span class="text-sm font-semibold tracking-wide uppercase">Logout</span>
+            <a data-action="logout" class="flex items-center gap-3 px-3 py-2.5 text-error hover:bg-error/5 rounded-lg transition-colors cursor-pointer logout-btn whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="logout">logout</span>
+                <span class="text-sm font-semibold tracking-wide uppercase opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Logout</span>
             </a>
         </div>
     </aside>
 
 <!-- Main Content Canvas -->
-<main class="lg:ml-64 flex-1 flex flex-col min-h-screen">
-        <header class="w-full sticky top-0 z-40 bg-slate-50/70 backdrop-blur-xl flex justify-between items-center px-8 py-4 shadow-[0px_24px_48px_rgba(0,83,91,0.06)]">
-            <div class="flex items-center gap-4">
+<main class="lg:ml-20 transition-all duration-300 flex-1 flex flex-col min-h-screen">
+        <header class="w-full sticky top-0 z-40 bg-slate-50/70 backdrop-blur-xl flex flex-wrap justify-between items-center px-4 md:px-8 py-4 shadow-[0px_24px_48px_rgba(0,83,91,0.06)] gap-4">
+            <div class="flex items-center gap-2 sm:gap-4">
                 <button id="mobile-menu-btn" class="lg:hidden text-slate-600 hover:text-primary transition-colors flex items-center justify-center mr-2">
                     <span class="material-symbols-outlined text-3xl">menu</span>
                 </button>
-                <h2 class="text-2xl font-headline font-bold text-primary">Network Overview</h2>
+                <h2 class="text-xl sm:text-2xl font-headline font-bold text-primary">Network Overview</h2>
             </div>
-            <div class="flex items-center gap-4">
-                <div class="relative">
+            <div class="flex items-center gap-2 sm:gap-4">
+                <div class="relative hidden sm:block">
                     <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
                     <input type="text" id="searchInput" placeholder="Search infrastructure..." class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-sm w-48 sm:w-80 focus:ring-2 focus:ring-primary/20">
                 </div>
-                <div class="w-px h-6 bg-slate-200 mx-2"></div>
-                <div class="text-right">
+                <button class="sm:hidden w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-slate-600">
+                    <span class="material-symbols-outlined">search</span>
+                </button>
+                <div class="w-px h-6 bg-slate-200 mx-1 sm:mx-2"></div>
+                <div class="text-right hidden sm:block">
                     <p class="text-sm font-bold text-teal-800" id="profile-name">Loading...</p>
                     <p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Station Owner</p>
                 </div>
-                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shrink-0">
                     <span class="material-symbols-outlined">person</span>
                 </div>
             </div>
         </header>
 
 <!-- Dashboard Content -->
-<div class="p-8 space-y-8 max-w-[1400px]">
+<div class="p-4 md:p-8 space-y-6 md:space-y-8 max-w-[1400px]">
     <!-- Stats Row -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         <div class="bg-surface-container-lowest p-6 rounded-3xl shadow-sm border border-slate-100">
             <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Total Stations</p>
-            <h3 class="text-3xl font-headline font-extrabold text-primary">24</h3>
+            <h3 id="stat-total-stations" class="text-3xl font-headline font-extrabold text-primary">0</h3>
         </div>
         <div class="bg-surface-container-lowest p-6 rounded-3xl shadow-sm border border-slate-100">
             <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Total Revenue</p>
-            <h3 class="text-3xl font-headline font-extrabold text-primary">$1,240</h3>
+            <h3 id="stat-total-revenue" class="text-3xl font-headline font-extrabold text-primary">Rs. 0</h3>
         </div>
         <div class="bg-surface-container-lowest p-6 rounded-3xl shadow-sm border border-slate-100">
             <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Uptime</p>
-            <h3 class="text-3xl font-headline font-extrabold text-tertiary">99.8%</h3>
+            <h3 id="stat-uptime" class="text-3xl font-headline font-extrabold text-tertiary">0%</h3>
         </div>
         <div class="bg-surface-container-lowest p-6 rounded-3xl shadow-sm border border-slate-100">
             <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Active Users</p>
-            <h3 class="text-3xl font-headline font-extrabold text-secondary">1.2k</h3>
+            <h3 id="stat-active-users" class="text-3xl font-headline font-extrabold text-secondary">0</h3>
+        </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mt-6 md:mt-8">
+        <div class="lg:col-span-2 bg-white rounded-3xl p-4 md:p-6 shadow-sm border border-slate-100 flex flex-col">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                <h3 class="text-base font-bold text-slate-800">Energy Consumption Trends</h3>
+                <div class="flex gap-2">
+                    <button class="px-3 py-1 text-xs font-bold bg-surface-container-low text-primary rounded-lg">Week</button>
+                    <button class="px-3 py-1 text-xs font-bold text-slate-500 hover:bg-slate-50 rounded-lg transition-colors">Month</button>
+                </div>
+            </div>
+            <div class="h-[250px] md:h-[300px] w-full mt-auto relative">
+                <canvas id="usageChart"></canvas>
+            </div>
+        </div>
+        <div class="bg-white rounded-3xl p-4 md:p-6 shadow-sm border border-slate-100">
+            <h3 class="text-base font-bold text-slate-800 mb-6">Device Status</h3>
+            <div class="h-[200px] md:h-[250px] w-full relative flex items-center justify-center">
+                <canvas id="statusChart"></canvas>
+            </div>
         </div>
     </div>
 
@@ -186,8 +213,10 @@
     </div>
 </div>
 
-<script src="../assets/js/auth.js"></script>
-<script>
+<script type="module" src="../assets/js/auth.js"></script>
+<script type="module">
+    import { Auth } from '../assets/js/auth.js';
+    import { StationsDB } from '../assets/js/stations.js';
     // ── Security: admin role required ─────────────────────────────────────
     const user = Auth.refreshSession();
 
@@ -233,6 +262,34 @@
         // ── Populate profile name ──────────────────────────────────────────
         const nameEl = document.getElementById('profile-name');
         if (nameEl) nameEl.innerText = user.name;
+
+        // ── Populate Dashboard Stats ──────────────────────────────────────
+        async function loadDashboardStats() {
+            if (user.status === 'approved') {
+                const stations = await StationsDB.getStations(user.uid);
+                const activeStations = stations.filter(s => s.status === 'active');
+                
+                // Total Stations
+                document.getElementById('stat-total-stations').innerText = stations.length;
+                
+                // Total Revenue (Rs. 35,000 per active station)
+                const totalRevenue = activeStations.length * 35000;
+                document.getElementById('stat-total-revenue').innerText = `Rs. ${totalRevenue.toLocaleString()}`;
+                
+                // Uptime
+                if (stations.length > 0) {
+                    const uptimePct = Math.round((activeStations.length / stations.length) * 100);
+                    document.getElementById('stat-uptime').innerText = `${uptimePct}%`;
+                } else {
+                    document.getElementById('stat-uptime').innerText = '0%';
+                }
+                
+                // Active Users (e.g. active stations * 4)
+                const activeUsers = activeStations.length * 4;
+                document.getElementById('stat-active-users').innerText = activeUsers;
+            }
+        }
+        loadDashboardStats();
     }
 </script>
 

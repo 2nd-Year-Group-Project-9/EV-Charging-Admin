@@ -6,7 +6,7 @@
     <title>Sign Up | Plug Me</title>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
@@ -70,16 +70,16 @@
                         "full": "0.75rem"
                     },
                     "fontFamily": {
-                        "headline": ["Manrope"],
-                        "body": ["Inter"],
-                        "label": ["Inter"]
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
                     }
                 },
             },
         }
     </script>
 </head>
-<body class="bg-background min-h-screen flex flex-col md:flex-row">
+<body class="bg-background font-body min-h-screen flex flex-col md:flex-row">
     <div class="hidden md:flex md:w-1/2 lg:w-3/5 relative bg-primary overflow-hidden">
         <div class="absolute inset-0 z-0">
             <img alt="EV Charging Station" class="w-full h-full object-cover mix-blend-overlay opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIYhcaGODeUItih4i_aPwlook6J752xdnWdeX04JsUQs6g9oYf1paqjiN-_P9MZ901G0ZqYiOrBlUfGH2E5bQOoMA_CBhPogKd7IcvbQBucV1QMeuuZoOjlCiN64O3P5fcfLTuKZVI_X0Locu6nzXHx2Q7r3WqyIxSU8H1ULziq1GH81hvwDltfHp1Apq97CzdbztH5Fl6IN8-h77ehEV6Mwai4v5gPW2rsfW7WDMuNXOqv1jiC_GwtOk-JIo999fyRoQadChYajE2"/>
@@ -161,8 +161,10 @@
             </p>
         </div>
     </div>
-    <script src="../assets/js/auth.js"></script>
-    <script>
+    <script type="module" src="../assets/js/auth.js"></script>
+    <script type="module">
+        import { Auth } from '../assets/js/auth.js';
+
         // ── Guard: redirect already-logged-in users ────────────────────────
         (function() {
             const u = Auth.refreshSession();
@@ -208,9 +210,9 @@
             btn.disabled = true;
             btn.innerHTML = '<span class="material-symbols-outlined animate-spin">autorenew</span> Creating account…';
 
-            setTimeout(() => {
+            setTimeout(async () => {
                 // Creates admin with isApproved=0 and status='pending_onboarding'
-                const result = Auth.signup(name, email, password);
+                const result = await Auth.signup(name, email, password);
                 if (result.success) {
                     window.location.replace('../admin/onboarding.html');
                 } else {

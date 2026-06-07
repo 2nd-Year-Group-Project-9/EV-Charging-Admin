@@ -5,7 +5,9 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Settings | Plug Me</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script id="tailwind-config">
         tailwind.config = {
@@ -23,9 +25,9 @@
                         "error": "#ba1a1a"
                     },
                     "fontFamily": {
-                        "headline": ["Manrope"],
-                        "body": ["Inter"],
-                        "label": ["Inter"]
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
                     }
                 },
             },
@@ -40,57 +42,57 @@
         .toggle-checkbox:checked + .toggle-label { background-color: #00535b; }
     </style>
 </head>
-<body class="bg-background text-on-surface flex min-h-screen">
+<body class="bg-background font-body text-on-surface flex min-h-screen">
 
 <!-- SideNavBar -->
-<aside id="sidebar" class="h-screen w-64 fixed left-0 top-0 -translate-x-full lg:translate-x-0 transition-transform duration-300 z-[60] bg-slate-100 dark:bg-slate-950 flex flex-col p-4 gap-2 ">
-    <div class="mb-8 px-2 flex flex-col">
-        <h1 class="text-teal-900 dark:text-teal-100 font-black text-2xl font-headline tracking-tight">Plug Me</h1>
-        <span class="text-xs font-semibold tracking-wide uppercase text-slate-500">Partner Portal</span>
+<aside id="sidebar" class="group h-screen w-64 lg:w-20 lg:hover:w-64 fixed left-0 top-0 -translate-x-full lg:translate-x-0 transition-all duration-300 z-[60] bg-slate-100 dark:bg-slate-950 flex flex-col p-4 gap-2 overflow-x-hidden shadow-2xl lg:shadow-none hover:shadow-2xl">
+    <div class="mb-8 px-2 flex flex-col overflow-hidden">
+        <h1 class="text-teal-900 dark:text-teal-100 font-black text-2xl font-headline tracking-tight whitespace-nowrap opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Plug Me</h1>
+        <span class="text-xs font-semibold tracking-wide uppercase text-slate-500 whitespace-nowrap opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Partner Portal</span>
     </div>
     <nav class="flex-1 space-y-1">
-        <a href="Dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
-            <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-            <span class="text-sm font-label tracking-wide uppercase font-semibold">Dashboard</span>
+        <a href="Dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+            <span class="material-symbols-outlined shrink-0" data-icon="dashboard">dashboard</span>
+            <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Dashboard</span>
         </a>
-        <a href="stations.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
-            <span class="material-symbols-outlined" data-icon="ev_station">ev_station</span>
-            <span class="text-sm font-label tracking-wide uppercase font-semibold">Charging Stations</span>
+        <a href="stations.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+            <span class="material-symbols-outlined shrink-0" data-icon="ev_station">ev_station</span>
+            <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Charging Stations</span>
         </a>
-        <a href="analytics.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
-            <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
-            <span class="text-sm font-label tracking-wide uppercase font-semibold">Analytics</span>
+        <a href="analytics.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+            <span class="material-symbols-outlined shrink-0" data-icon="analytics">analytics</span>
+            <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Analytics</span>
         </a>
-        <a href="settings.html" class="flex items-center gap-3 px-3 py-2.5 text-teal-700 dark:text-teal-300 bg-white dark:bg-slate-900 rounded-lg shadow-sm font-bold transition-transform duration-200">
-            <span class="material-symbols-outlined" data-icon="settings">settings</span>
-            <span class="text-sm font-label tracking-wide uppercase font-semibold">Settings</span>
+        <a href="settings.html" class="flex items-center gap-3 px-3 py-2.5 text-teal-700 dark:text-teal-300 bg-white dark:bg-slate-900 rounded-lg shadow-sm font-bold transition-transform duration-200 whitespace-nowrap">
+            <span class="material-symbols-outlined shrink-0" data-icon="settings">settings</span>
+            <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Settings</span>
         </a>
     </nav>
     <div class="mt-auto pt-4 space-y-1">
-        <a data-action="logout" class="flex items-center gap-3 px-3 py-2.5 text-error hover:bg-error/5 rounded-lg transition-colors cursor-pointer logout-btn">
-            <span class="material-symbols-outlined" data-icon="logout">logout</span>
-            <span class="text-sm font-semibold tracking-wide uppercase">Logout</span>
+        <a data-action="logout" class="flex items-center gap-3 px-3 py-2.5 text-error hover:bg-error/5 rounded-lg transition-colors cursor-pointer logout-btn whitespace-nowrap">
+            <span class="material-symbols-outlined shrink-0" data-icon="logout">logout</span>
+            <span class="text-sm font-semibold tracking-wide uppercase opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Logout</span>
         </a>
     </div>
 </aside>
 
 <!-- Main Content Canvas -->
-<main class="lg:ml-64 flex-1 flex flex-col min-h-screen">
+<main class="lg:ml-20 transition-all duration-300 flex-1 flex flex-col min-h-screen">
     <!-- TopNavBar -->
-    <header class="w-full sticky top-0 z-40 bg-slate-50/70 backdrop-blur-xl flex justify-between items-center px-8 py-4 shadow-[0px_24px_48px_rgba(0,83,91,0.06)]">
-        <div class="flex items-center gap-4">
+    <header class="w-full sticky top-0 z-40 bg-slate-50/70 backdrop-blur-xl flex flex-wrap justify-between items-center px-4 md:px-8 py-4 shadow-[0px_24px_48px_rgba(0,83,91,0.06)] gap-4">
+        <div class="flex items-center gap-2 sm:gap-4">
                 <button id="mobile-menu-btn" class="lg:hidden text-slate-600 hover:text-primary transition-colors flex items-center justify-center mr-2">
                     <span class="material-symbols-outlined text-3xl">menu</span>
                 </button>
-            <h2 class="text-2xl font-headline font-bold text-primary">Partner Settings</h2>
+            <h2 class="text-xl sm:text-2xl font-headline font-bold text-primary">Partner Settings</h2>
         </div>
         <div class="flex items-center gap-4">
-            <div class="w-px h-6 bg-slate-200 mx-2"></div>
-            <div class="text-right">
+            <div class="w-px h-6 bg-slate-200 mx-1 sm:mx-2"></div>
+            <div class="text-right hidden sm:block">
                 <p class="text-sm font-bold text-teal-800" id="profile-name">Loading...</p>
                 <p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Station Owner</p>
             </div>
-            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shrink-0">
                 <span class="material-symbols-outlined">person</span>
             </div>
         </div>
@@ -136,10 +138,10 @@
                         </div>
                         <div class="space-y-2">
                             <label class="text-xs font-bold text-slate-500 uppercase tracking-widest">Company / Business Name</label>
-                            <input type="text" placeholder="e.g. GreenCharge LLC" class="w-full px-4 py-3 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 transition-all font-semibold text-slate-700">
+                            <input type="text" id="setting-company" placeholder="e.g. GreenCharge LLC" class="w-full px-4 py-3 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 transition-all font-semibold text-slate-700">
                         </div>
                         <div class="pt-4 text-right">
-                            <button class="bg-primary text-white px-6 py-3 rounded-full font-bold shadow-md shadow-primary/20 hover:bg-teal-800 transition-colors">
+                            <button id="save-profile-btn" class="bg-primary text-white px-6 py-3 rounded-full font-bold shadow-md shadow-primary/20 hover:bg-teal-800 transition-colors">
                                 Save Profile Changes
                             </button>
                         </div>
@@ -225,8 +227,9 @@
     </div>
 </main>
 
-<script src="../assets/js/auth.js"></script>
-<script>
+<script type="module" src="../assets/js/auth.js"></script>
+<script type="module">
+    import { Auth } from '../assets/js/auth.js';
     // ── Security ─────────────────────────────────────
     const user = Auth.refreshSession();
     if (!user || user.role !== 'admin') window.location.replace('../auth/login.html');
@@ -243,8 +246,37 @@
     
     const inputName = document.getElementById('setting-name');
     const inputEmail = document.getElementById('setting-email');
+    const inputCompany = document.getElementById('setting-company');
+    
     if(inputName && user) inputName.value = user.name;
     if(inputEmail && user) inputEmail.value = user.email;
+    if(inputCompany && user && user.onboardingData) {
+        inputCompany.value = user.onboardingData.company || '';
+    }
+
+    const saveBtn = document.getElementById('save-profile-btn');
+    if (saveBtn) {
+        saveBtn.onclick = async (e) => {
+            e.preventDefault();
+            const name = inputName.value.trim();
+            const company = inputCompany ? inputCompany.value.trim() : '';
+            if (!name) {
+                alert('Name is required.');
+                return;
+            }
+            saveBtn.disabled = true;
+            saveBtn.innerText = 'Saving...';
+            const result = await Auth.updateProfile(name, company);
+            saveBtn.disabled = false;
+            saveBtn.innerText = 'Save Profile Changes';
+            if (result.success) {
+                alert('Profile updated successfully!');
+                window.location.reload();
+            } else {
+                alert('Failed to update profile: ' + result.message);
+            }
+        };
+    }
 </script>
 
 <!-- Mobile Sidebar Overlay -->

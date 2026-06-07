@@ -1,62 +1,22 @@
-// ============================================================
-//  Plug Me – Role-Based Authentication Engine
-//  Roles   : 'superadmin' | 'admin'
-//  Statuses: 'pending_onboarding' | 'pending_approval' | 'approved' | 'rejected'
-//  isApproved: 0 = Not Approved, 1 = Approved
-// ============================================================
+import { auth, db } from './firebase-config.js';
+import { 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    signOut,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { 
+    doc, 
+    setDoc, 
+    getDoc, 
+    updateDoc, 
+    collection, 
+    getDocs, 
+    deleteDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const AUTH_KEY    = 'plugme_auth_user';
-const ADMINS_KEY  = 'plugme_admins_list';
-const SCHEMA_VER  = 'plugme_schema_v3';   // bump this to force a re-seed
+const AUTH_KEY = 'plugme_auth_user';
 
-// ----------------------------------------------------------
-//  Seed initial mock data (or re-seed on schema upgrade)
-// ----------------------------------------------------------
-(function seedData() {
-    // If old schema, wipe everything and re-seed
-    if (!localStorage.getItem(SCHEMA_VER)) {
-        localStorage.removeItem(ADMINS_KEY);
-        localStorage.removeItem(AUTH_KEY);
-        localStorage.setItem(SCHEMA_VER, '1');
-    }
-    if (localStorage.getItem(ADMINS_KEY)) return;
-
-    const seed = [
-        {
-            id          : 'super_1',
-            name        : 'Super Admin',
-            email       : 'superadmin@gmail.com',
-            password    : '123456',
-            role        : 'superadmin',
-            isApproved  : 1,
-            status      : 'approved',
-            createdAt   : new Date().toISOString()
-        },
-        {
-            id          : 'admin_1',
-            name        : 'Alex Rivera',
-            email       : 'admin@plugme.com',
-            password    : 'password123',
-            role        : 'admin',
-            isApproved  : 1,
-            status      : 'approved',
-            onboardingData: {
-                company    : 'Rivera Energy',
-                taxId      : 'DE-123456',
-                stations   : '6-20',
-                location   : 'Berlin, Germany',
-                description: 'EV charging network for urban fleets.'
-            },
-            createdAt   : new Date().toISOString()
-        }
-    ];
-
-    localStorage.setItem(ADMINS_KEY, JSON.stringify(seed));
-})();
-
-// ----------------------------------------------------------
-//  Helper – resolve path prefix from current URL
-// ----------------------------------------------------------
 function _pathPrefix() {
     const p = window.location.pathname;
     return (p.includes('/admin/') || p.includes('/super-admin/') || p.includes('/auth/'))
@@ -64,63 +24,77 @@ function _pathPrefix() {
         : '';
 }
 
-// ----------------------------------------------------------
-//  Auth API
-// ----------------------------------------------------------
-const Auth = {
+export const Auth = {
+    async signup(name, email, password) {
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const fbUser = userCredential.user;
+            
+            const userData = {
+                name: name,
+                email: email,
+                role: 'admin',
+                status: 'pending_onboarding',
+                isApproved: 0,
+                createdAt: new Date().toISOString()
+            };
 
-    // ---- Create a new Admin account -----------------------
-    signup(name, email, password) {
-        const admins = JSON.parse(localStorage.getItem(ADMINS_KEY)) || [];
-
-        if (admins.find(a => a.email.toLowerCase() === email.toLowerCase())) {
-            return { success: false, message: 'An account with this email already exists.' };
+            await setDoc(doc(db, "users", fbUser.uid), userData);
+            userData.uid = fbUser.uid;
+            
+            localStorage.setItem(AUTH_KEY, JSON.stringify(userData));
+            return { success: true, user: userData };
+        } catch (err) {
+            console.error('Signup error:', err);
+            return { success: false, message: err.message };
         }
-
-        const newAdmin = {
-            id          : 'admin_' + Date.now(),
-            name        : name.trim(),
-            email       : email.toLowerCase().trim(),
-            password,
-            role        : 'admin',
-            isApproved  : 0,               // Not Approved by default
-            status      : 'pending_onboarding',
-            onboardingData: null,
-            createdAt   : new Date().toISOString()
-        };
-
-        admins.push(newAdmin);
-        localStorage.setItem(ADMINS_KEY, JSON.stringify(admins));
-        // Automatically start a session so the onboarding page can read the user
-        localStorage.setItem(AUTH_KEY, JSON.stringify(newAdmin));
-
-        return { success: true, user: newAdmin };
     },
 
-    // ---- Authenticate and open a session ------------------
-    login(email, password) {
-        const admins = JSON.parse(localStorage.getItem(ADMINS_KEY)) || [];
-        const user   = admins.find(
-            a => a.email.toLowerCase() === email.toLowerCase().trim()
-              && a.password === password
-        );
-
-        if (!user) {
-            return { success: false, message: 'Invalid email or password. Please try again.' };
+    async login(email, password) {
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const fbUser = userCredential.user;
+            
+            const userDoc = await getDoc(doc(db, "users", fbUser.uid));
+            
+            if (userDoc.exists()) {
+                const userData = userDoc.data();
+                userData.uid = fbUser.uid;
+                localStorage.setItem(AUTH_KEY, JSON.stringify(userData));
+                return { success: true, user: userData };
+            } else {
+                if (email === 'superadmin@gmail.com') {
+                    const superAdminData = {
+                        name: 'Super Admin',
+                        email: email,
+                        role: 'superadmin',
+                        status: 'approved',
+                        isApproved: 1,
+                        createdAt: new Date().toISOString()
+                    };
+                    await setDoc(doc(db, "users", fbUser.uid), superAdminData);
+                    superAdminData.uid = fbUser.uid;
+                    localStorage.setItem(AUTH_KEY, JSON.stringify(superAdminData));
+                    return { success: true, user: superAdminData };
+                }
+                return { success: false, message: 'User profile not found.' };
+            }
+        } catch (err) {
+            console.error('Login error:', err);
+            return { success: false, message: err.message };
         }
-
-        // Persist session
-        localStorage.setItem(AUTH_KEY, JSON.stringify(user));
-        return { success: true, user };
     },
 
-    // ---- Destroy session and go to login ------------------
-    logout() {
-        localStorage.removeItem(AUTH_KEY);
-        window.location.href = _pathPrefix() + 'auth/login.html';
+    async logout() {
+        try {
+            await signOut(auth);
+            localStorage.removeItem(AUTH_KEY);
+            window.location.href = _pathPrefix() + 'auth/login.html';
+        } catch (err) {
+            console.error('Logout error:', err);
+        }
     },
 
-    // ---- Read current session user ------------------------
     getCurrentUser() {
         try {
             return JSON.parse(localStorage.getItem(AUTH_KEY)) || null;
@@ -129,77 +103,139 @@ const Auth = {
         }
     },
 
-    // ---- Refresh session from master list (keeps data fresh)
     refreshSession() {
         const session = Auth.getCurrentUser();
         if (!session) return null;
 
-        const admins  = JSON.parse(localStorage.getItem(ADMINS_KEY)) || [];
-        const fresh   = admins.find(a => a.id === session.id);
-        if (fresh) {
-            localStorage.setItem(AUTH_KEY, JSON.stringify(fresh));
-            return fresh;
+        // Background update using Firestore
+        if (auth.currentUser) {
+            getDoc(doc(db, "users", auth.currentUser.uid)).then(userDoc => {
+                if (userDoc.exists()) {
+                    const data = userDoc.data();
+                    data.uid = auth.currentUser.uid;
+                    const oldStatus = session.status;
+                    const oldApproved = session.isApproved;
+                    
+                    localStorage.setItem(AUTH_KEY, JSON.stringify(data));
+                    
+                    if (data.status !== oldStatus || data.isApproved !== oldApproved) {
+                        window.location.reload();
+                    }
+                }
+            }).catch(err => console.error("Session refresh error:", err));
         }
+
         return session;
     },
 
-    // ---- Save onboarding form data and mark pending -------
-    updateOnboarding(onboardingData) {
-        const user = Auth.getCurrentUser();
-        if (!user) return { success: false, message: 'Not authenticated.' };
+    async updateOnboarding(onboardingData) {
+        const session = Auth.getCurrentUser();
+        if (!session || !session.uid) return { success: false, message: 'Not authenticated.' };
 
-        const admins = JSON.parse(localStorage.getItem(ADMINS_KEY)) || [];
-        const idx    = admins.findIndex(a => a.id === user.id);
-
-        if (idx === -1) return { success: false, message: 'User not found.' };
-
-        admins[idx].onboardingData = onboardingData;
-        admins[idx].status         = 'pending_approval';
-        // isApproved stays 0 until super admin approves
-
-        localStorage.setItem(ADMINS_KEY, JSON.stringify(admins));
-        localStorage.setItem(AUTH_KEY, JSON.stringify(admins[idx]));
-
-        return { success: true };
+        try {
+            const userRef = doc(db, "users", session.uid);
+            await updateDoc(userRef, {
+                onboardingData: onboardingData,
+                status: 'pending_approval'
+            });
+            
+            const updatedDoc = await getDoc(userRef);
+            const data = updatedDoc.data();
+            data.uid = session.uid;
+            localStorage.setItem(AUTH_KEY, JSON.stringify(data));
+            
+            return { success: true, user: data };
+        } catch (err) {
+            console.error('Onboarding error:', err);
+            return { success: false, message: err.message };
+        }
     },
 
-    // ---- Super Admin: Approve an admin --------------------
-    approveAdmin(adminId) {
-        const admins = JSON.parse(localStorage.getItem(ADMINS_KEY)) || [];
-        const idx    = admins.findIndex(a => a.id === adminId);
+    async updateProfile(name, company) {
+        const session = Auth.getCurrentUser();
+        if (!session || !session.uid) return { success: false, message: 'Not authenticated.' };
 
-        if (idx === -1) return { success: false };
-
-        admins[idx].isApproved  = 1;
-        admins[idx].status      = 'approved';
-        admins[idx].approvedAt  = new Date().toISOString();
-
-        localStorage.setItem(ADMINS_KEY, JSON.stringify(admins));
-        return { success: true };
+        try {
+            const userRef = doc(db, "users", session.uid);
+            await updateDoc(userRef, { name, company });
+            
+            const updatedDoc = await getDoc(userRef);
+            const data = updatedDoc.data();
+            data.uid = session.uid;
+            localStorage.setItem(AUTH_KEY, JSON.stringify(data));
+            
+            return { success: true, user: data };
+        } catch (err) {
+            console.error('Profile update error:', err);
+            return { success: false, message: err.message };
+        }
     },
 
-    // ---- Super Admin: Reject an admin ---------------------
-    rejectAdmin(adminId) {
-        const admins = JSON.parse(localStorage.getItem(ADMINS_KEY)) || [];
-        const idx    = admins.findIndex(a => a.id === adminId);
-
-        if (idx === -1) return { success: false };
-
-        admins[idx].isApproved  = 0;
-        admins[idx].status      = 'rejected';
-        admins[idx].rejectedAt  = new Date().toISOString();
-
-        localStorage.setItem(ADMINS_KEY, JSON.stringify(admins));
-        return { success: true };
+    async getAdminsList() {
+        try {
+            const querySnapshot = await getDocs(collection(db, "users"));
+            const admins = [];
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                if (data.role === 'admin') {
+                    // Normalize onboardingData if it was stored at the root level
+                    if (!data.onboardingData && data.company) {
+                        data.onboardingData = {
+                            company: data.company,
+                            taxId: data.taxId,
+                            stations: data.stations,
+                            location: data.location,
+                            description: data.description
+                        };
+                    }
+                    admins.push({ id: doc.id, ...data });
+                }
+            });
+            return admins;
+        } catch (err) {
+            console.error('Error fetching admins:', err);
+            return [];
+        }
     },
 
-    // ---- Page guard: redirect if wrong role / not logged in
-    // Usage examples:
-    //   Auth.requireRole('superadmin')   → only super admins
-    //   Auth.requireRole('admin')        → only admins (any status)
-    //   Auth.requireRole('admin', true)  → only APPROVED admins
+    async approveAdmin(adminId) {
+        try {
+            await updateDoc(doc(db, "users", adminId), {
+                isApproved: 1,
+                status: 'approved'
+            });
+            return { success: true };
+        } catch (err) {
+            console.error('Approve error:', err);
+            return { success: false };
+        }
+    },
+
+    async rejectAdmin(adminId) {
+        try {
+            await updateDoc(doc(db, "users", adminId), {
+                isApproved: 0,
+                status: 'rejected'
+            });
+            return { success: true };
+        } catch (err) {
+            console.error('Reject error:', err);
+            return { success: false };
+        }
+    },
+
+    async deleteAdmin(adminId) {
+        try {
+            await deleteDoc(doc(db, "users", adminId));
+            return { success: true };
+        } catch (err) {
+            console.error('Delete error:', err);
+            return { success: false };
+        }
+    },
+
     requireRole(requiredRole, requireApproved = false) {
-        const user   = Auth.refreshSession();
+        const user = Auth.refreshSession();
         const prefix = _pathPrefix();
 
         if (!user) {
@@ -208,7 +244,6 @@ const Auth = {
         }
 
         if (user.role !== requiredRole) {
-            // Wrong role → redirect to own dashboard
             const dest = user.role === 'superadmin'
                 ? prefix + 'super-admin/dashboard.html'
                 : prefix + 'admin/dashboard.html';
@@ -217,27 +252,28 @@ const Auth = {
         }
 
         if (requireApproved && user.isApproved !== 1) {
-            // Admin exists but isn't approved yet
             if (user.status === 'pending_onboarding') {
                 window.location.replace(prefix + 'admin/onboarding.html');
             } else {
-                // pending_approval or rejected → stay on dashboard (overlay shown)
+                // E.g., pending approval or rejected
+                window.location.replace(prefix + 'admin/onboarding.html'); 
             }
         }
 
         return user;
     },
 
-    // ---- Get redirect URL for a user after login ----------
     getRedirectUrl(user) {
         const prefix = _pathPrefix();
         if (user.role === 'superadmin') {
             return prefix + 'super-admin/dashboard.html';
         }
-        // Admin
         if (user.status === 'pending_onboarding') {
             return prefix + 'admin/onboarding.html';
         }
         return prefix + 'admin/dashboard.html';
     }
 };
+
+// Make it available globally for inline scripts that might still rely on window.Auth
+window.Auth = Auth;

@@ -9,9 +9,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@700;800&amp;display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
     <!-- Material Symbols -->
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
@@ -82,21 +80,17 @@
                         "full": "0.75rem"
                     },
                     "fontFamily": {
-                        "headline": ["Manrope"],
-                        "body": ["Inter"],
-                        "label": ["Inter"]
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
                     }
                 },
             },
         }
     </script>
     <style>
-        body {
+        body, .font-headline {
             font-family: 'Inter', sans-serif;
-        }
-
-        .font-headline {
-            font-family: 'Manrope', sans-serif;
         }
 
         .material-symbols-outlined {
@@ -236,8 +230,10 @@
             </p>
         </div>
     </div>
-    <script src="../assets/js/auth.js"></script>
-    <script>
+    <script type="module" src="../assets/js/auth.js"></script>
+    <script type="module">
+        import { Auth } from '../assets/js/auth.js';
+
         // ── Guard: redirect already-logged-in users ────────────────────────
         (function() {
             const u = Auth.refreshSession();
@@ -277,8 +273,8 @@
             btn.innerHTML = '<span class="material-symbols-outlined animate-spin">autorenew</span> Signing in…';
 
             // Small delay for UX feedback
-            setTimeout(() => {
-                const result = Auth.login(email, password);
+            setTimeout(async () => {
+                const result = await Auth.login(email, password);
 
                 if (result.success) {
                     window.location.replace(Auth.getRedirectUrl(result.user));

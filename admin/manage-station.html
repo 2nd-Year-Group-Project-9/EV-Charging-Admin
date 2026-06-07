@@ -2,7 +2,9 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
@@ -20,8 +22,8 @@
                     "surface-container-lowest": "#ffffff"
             },
             "fontFamily": {
-                    "headline": ["Manrope"],
-                    "body": ["Inter"]
+                    "headline": ["Inter", "sans-serif"],
+                    "body": ["Inter", "sans-serif"]
             }
           },
         },
@@ -42,23 +44,23 @@
 <span class="text-xs text-slate-500 uppercase tracking-widest font-semibold">Energy Management</span>
 </div>
 <nav class="flex-1 space-y-1">
-<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200" href="dashboard.html">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="text-sm font-semibold tracking-wide uppercase">Dashboard</span>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap" href="dashboard.html">
+<span class="material-symbols-outlined shrink-0">dashboard</span>
+<span class="text-sm font-semibold tracking-wide uppercase opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Dashboard</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-teal-700 dark:text-teal-300 bg-white dark:bg-slate-900 rounded-lg shadow-sm font-bold" href="stations.html">
-<span class="material-symbols-outlined">ev_station</span>
-<span class="text-sm font-semibold tracking-wide uppercase">Charging Stations</span>
+<a class="flex items-center gap-3 px-4 py-3 text-teal-700 dark:text-teal-300 bg-white dark:bg-slate-900 rounded-lg shadow-sm font-bold whitespace-nowrap" href="stations.html">
+<span class="material-symbols-outlined shrink-0">ev_station</span>
+<span class="text-sm font-semibold tracking-wide uppercase opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Charging Stations</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200" href="#">
-<span class="material-symbols-outlined">bolt</span>
-<span class="text-sm font-semibold tracking-wide uppercase">Energy Grid</span>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap" href="#">
+<span class="material-symbols-outlined shrink-0">bolt</span>
+<span class="text-sm font-semibold tracking-wide uppercase opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Energy Grid</span>
 </a>
 </nav>
 <div class="mt-auto pt-4 space-y-1 border-t border-slate-200/50">
-<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 logout-btn" href="#">
-<span class="material-symbols-outlined">logout</span>
-<span class="text-sm font-semibold tracking-wide uppercase">Logout</span>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 logout-btn whitespace-nowrap" href="#">
+<span class="material-symbols-outlined shrink-0">logout</span>
+<span class="text-sm font-semibold tracking-wide uppercase opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Logout</span>
 </a>
 </div>
 </aside>
@@ -73,8 +75,9 @@
     </div>
 </main>
 </div>
-<script src="../assets/js/auth.js"></script>
-<script>
+<script type="module" src="../assets/js/auth.js"></script>
+<script type="module">
+    import { Auth } from '../assets/js/auth.js';
     const user = Auth.getCurrentUser();
     if (!user || user.role !== 'admin') {
         window.location.href = '../auth/login.html';

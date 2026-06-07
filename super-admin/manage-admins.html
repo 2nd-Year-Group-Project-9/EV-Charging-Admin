@@ -5,7 +5,9 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Plug Me | Admin Management</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
@@ -69,9 +71,9 @@
                     "full": "0.75rem"
             },
             "fontFamily": {
-                    "headline": ["Manrope"],
-                    "body": ["Inter"],
-                    "label": ["Inter"]
+                    "headline": ["Inter", "sans-serif"],
+                    "body": ["Inter", "sans-serif"],
+                    "label": ["Inter", "sans-serif"]
             }
           },
         },
@@ -85,66 +87,69 @@
         font-family: 'Inter', sans-serif;
       }
       h1, h2, h3 {
-        font-family: 'Manrope', sans-serif;
+        font-family: 'Inter', sans-serif;
       }
     </style>
 </head>
-<body class="bg-background text-on-surface flex min-h-screen">
+<body class="bg-background font-body text-on-surface flex min-h-screen">
 <!-- SideNavBar -->
-<aside id="sidebar" class="h-screen w-64 fixed left-0 top-0 -translate-x-full lg:translate-x-0 transition-transform duration-300 z-[60] bg-slate-100 dark:bg-slate-950 flex flex-col p-4 gap-2 ">
-        <div class="mb-8 px-2 flex flex-col">
-            <h1 class="text-teal-900 dark:text-teal-100 font-black text-2xl font-headline tracking-tight">Plug Me</h1>
-            <span class="text-xs font-semibold tracking-wide uppercase text-slate-500">Energy Management</span>
+<aside id="sidebar" class="group h-screen w-64 lg:w-20 lg:hover:w-64 fixed left-0 top-0 -translate-x-full lg:translate-x-0 transition-all duration-300 z-[60] bg-slate-100 dark:bg-slate-950 flex flex-col p-4 gap-2 overflow-x-hidden shadow-2xl lg:shadow-none hover:shadow-2xl">
+        <div class="mb-8 px-2 flex flex-col overflow-hidden">
+            <h1 class="text-teal-900 dark:text-teal-100 font-black text-2xl font-headline tracking-tight whitespace-nowrap opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Plug Me</h1>
+            <span class="text-xs font-semibold tracking-wide uppercase text-slate-500 whitespace-nowrap opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Energy Management</span>
         </div>
         <nav class="flex-1 space-y-1">
-            <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
-                <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-                <span class="text-sm font-label tracking-wide uppercase font-semibold">Dashboard</span>
+            <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="dashboard">dashboard</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Dashboard</span>
             </a>
-            <a href="manage-admins.html" class="flex items-center gap-3 px-3 py-2.5 text-teal-700 dark:text-teal-300 bg-white dark:bg-slate-900 rounded-lg shadow-sm font-bold transition-transform duration-200">
-                <span class="material-symbols-outlined" data-icon="group">group</span>
-                <span class="text-sm font-label tracking-wide uppercase font-semibold">Manage Admins</span>
+            <a href="manage-admins.html" class="flex items-center gap-3 px-3 py-2.5 text-teal-700 dark:text-teal-300 bg-white dark:bg-slate-900 rounded-lg shadow-sm font-bold transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="group">group</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Manage Admins</span>
             </a>
-            <a href="manage-stations.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
-                <span class="material-symbols-outlined" data-icon="ev_station">ev_station</span>
-                <span class="text-sm font-label tracking-wide uppercase font-semibold">Charging Stations</span>
+            <a href="manage-stations.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="ev_station">ev_station</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Charging Stations</span>
             </a>
-            <a href="reports.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
-                <span class="material-symbols-outlined" data-icon="assessment">assessment</span>
-                <span class="text-sm font-label tracking-wide uppercase font-semibold">Reports</span>
+            <a href="reports.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="assessment">assessment</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Reports</span>
             </a>
-            <a href="settings.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
-                <span class="material-symbols-outlined" data-icon="settings">settings</span>
-                <span class="text-sm font-label tracking-wide uppercase font-semibold">Settings</span>
+            <a href="settings.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="settings">settings</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Settings</span>
             </a>
         </nav>
         <div class="mt-auto pt-4 space-y-1">
-            <a data-action="logout" class="flex items-center gap-3 px-3 py-2.5 text-error hover:bg-error/5 rounded-lg transition-colors cursor-pointer">
-                <span class="material-symbols-outlined" data-icon="logout">logout</span>
-                <span class="text-sm font-semibold tracking-wide uppercase">Logout</span>
+            <a data-action="logout" class="flex items-center gap-3 px-3 py-2.5 text-error hover:bg-error/5 rounded-lg transition-colors cursor-pointer whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="logout">logout</span>
+                <span class="text-sm font-semibold tracking-wide uppercase opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Logout</span>
             </a>
         </div>
     </aside>
 <!-- Main Canvas -->
 <main class="flex-1 lg:ml-64 min-h-screen flex flex-col">
 <!-- TopNavBar -->
-        <header class="w-full sticky top-0 z-40 bg-slate-50/70 backdrop-blur-xl flex justify-between items-center px-8 py-4 shadow-[0px_24px_48px_rgba(0,83,91,0.06)]">
-            <div class="flex items-center gap-4">
+        <header class="w-full sticky top-0 z-40 bg-slate-50/70 backdrop-blur-xl flex flex-wrap justify-between items-center px-4 md:px-8 py-4 shadow-[0px_24px_48px_rgba(0,83,91,0.06)] gap-4">
+            <div class="flex items-center gap-2 sm:gap-4">
                 <button id="mobile-menu-btn" class="lg:hidden text-slate-600 hover:text-primary transition-colors flex items-center justify-center mr-2">
                     <span class="material-symbols-outlined text-3xl">menu</span>
                 </button>
-                <h2 class="text-2xl font-headline font-bold text-primary">User Management</h2>
+                <h2 class="text-xl sm:text-2xl font-headline font-bold text-primary">User Management</h2>
             </div>
-            <div class="flex items-center gap-4">
-                <div class="relative">
+            <div class="flex items-center gap-2 sm:gap-4">
+                <div class="relative hidden sm:block">
                     <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
                     <input type="text" id="searchInput" placeholder="Search across grid..." class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-sm w-48 sm:w-80 focus:ring-2 focus:ring-primary/20">
                 </div>
-                <div class="w-px h-6 bg-slate-200 mx-2"></div>
-                <div class="text-right">
+                <button class="sm:hidden w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-slate-600">
+                    <span class="material-symbols-outlined">search</span>
+                </button>
+                <div class="w-px h-6 bg-slate-200 mx-1 sm:mx-2"></div>
+                <div class="text-right hidden sm:block">
                     <p class="text-sm font-bold text-teal-800">Super Admin</p>
                 </div>
-                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shrink-0">
                     <span class="material-symbols-outlined">admin_panel_settings</span>
                 </div>
             </div>
@@ -190,108 +195,7 @@
 </tr>
 </thead>
 <tbody>
-<!-- Admin Row 1 -->
-<tr class="group hover:scale-[1.01] transition-transform duration-200">
-<td class="bg-surface-container-lowest px-6 py-5 rounded-l-2xl">
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-xl bg-primary-fixed-dim flex items-center justify-center overflow-hidden">
-<img alt="Admin face" class="w-full h-full object-cover" data-alt="Headshot of a mid-30s woman with glasses smiling professionally, soft daylight, minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhTIaMeiPEioBsGcZnFNfbMMPUJ9qRjTqpRGOLWCbTXogILS4u-Ze8tgFcX3CR38sduTx2C7SLL1ekCp2kXqUfjJd80vbTDN0nOQy4p_9zon4MD2-eyim0YrIQamhUdLHPu8UtFfrsv_lJv33FmZcDPWTFRSiwfYq0D-XySkD6LZIS2E23M8j6s_nOb0AgAbk8AKEw6i5FwXL1RKrvgWPCGR_lkdY0pdpWZj_xnR_u5Ps_d4SXyDd9AHqxLYxaTrpyYiHv-qKpgHIL"/>
-</div>
-<div>
-<p class="font-bold text-on-surface">Alex Rivers</p>
-<p class="text-xs text-on-surface-variant">Regional Supervisor</p>
-</div>
-</div>
-</td>
-<td class="bg-surface-container-lowest px-6 py-5">
-<p class="text-sm font-medium">alex.rivers@plugme.com</p>
-<p class="text-xs text-on-surface-variant">+1 (555) 0123 456</p>
-</td>
-<td class="bg-surface-container-lowest px-6 py-5">
-<span class="inline-flex items-center px-4 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase bg-tertiary-fixed text-on-tertiary-fixed-variant">
-                                        Approved
-                                    </span>
-</td>
-<td class="bg-surface-container-lowest px-6 py-5 rounded-r-2xl text-right">
-<div class="flex justify-end gap-2">
-<button class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-primary-fixed-dim text-primary transition-colors" title="View Profile">
-<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
-</button>
-<button class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-error-container text-error transition-colors" title="Revoke">
-<span class="material-symbols-outlined" data-icon="block">block</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Admin Row 2 -->
-<tr class="group hover:scale-[1.01] transition-transform duration-200">
-<td class="bg-surface-container-lowest px-6 py-5 rounded-l-2xl">
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-xl bg-secondary-fixed-dim flex items-center justify-center overflow-hidden">
-<img alt="Admin face" class="w-full h-full object-cover" data-alt="Close up of a young man with a friendly expression, outdoor lighting, high resolution portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiknaBQKb_Nj7u0qUMS2_ReGyls1qm51KOuezIjr6zipc4bvZ5WylstVKPnY4E8tKTdV0PVYXJX60fS4eC-blzn-hB971ZIFEe73rDabCfYiliuI5yAptR8vF-oyeeW46jHHdk2VPpJAC6rTFbe9g_90AGWX-4R3N6BcC9Mc4YLkKqx96sGzws67yk2TGY1abJAxLJYlDEuAtfHdPAqIs99aTGrkFWoSYBp4mUE7QL_TBrGGqST-q9deI2IjmD8JBTgyWspIJB4vLZ"/>
-</div>
-<div>
-<p class="font-bold text-on-surface">Jordan Smith</p>
-<p class="text-xs text-on-surface-variant">Maintenance Lead</p>
-</div>
-</div>
-</td>
-<td class="bg-surface-container-lowest px-6 py-5">
-<p class="text-sm font-medium">j.smith@plugme.com</p>
-<p class="text-xs text-on-surface-variant">+1 (555) 0987 654</p>
-</td>
-<td class="bg-surface-container-lowest px-6 py-5">
-<span class="inline-flex items-center px-4 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase bg-secondary-fixed text-on-secondary-fixed-variant">
-                                        Pending
-                                    </span>
-</td>
-<td class="bg-surface-container-lowest px-6 py-5 rounded-r-2xl text-right">
-<div class="flex justify-end gap-2">
-<button class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-tertiary-fixed text-tertiary transition-colors" title="Approve">
-<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
-</button>
-<button class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-error-container text-error transition-colors" title="Reject">
-<span class="material-symbols-outlined" data-icon="cancel">cancel</span>
-</button>
-<button class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-primary-fixed-dim text-primary transition-colors" title="View Details">
-<span class="material-symbols-outlined" data-icon="info">info</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Admin Row 3 -->
-<tr class="group hover:scale-[1.01] transition-transform duration-200">
-<td class="bg-surface-container-lowest px-6 py-5 rounded-l-2xl">
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-xl bg-surface-dim flex items-center justify-center overflow-hidden">
-<img alt="Admin face" class="w-full h-full object-cover" data-alt="Middle-aged executive man in a neutral office setting, confident posture, soft cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_iG0Ljj43uy-9ylLSHqNVXhXUFfOCQUATo80tRM90G9sP8X7VOcLp_bbEzpKxp6ZTLGuBKw6vfT3m21xG4T9Hxv_IW66mQC6OswQr_jO0seY9ZcmTUBqJ1oO9S7vJZxXF9agO3PdOMZI7nOBa-rdqx4-arnfTogUdYMnkxJJIctcdsQLS247i4Tj2i5vJLs_snVhpGHf_IZI_mIZoUMdQ2CXi4K9gzyvnwFSvJblGHymhLK5JtYgnWabu8bYnczhqkdpu2xDqaoqW"/>
-</div>
-<div>
-<p class="font-bold text-on-surface">Elena Vance</p>
-<p class="text-xs text-on-surface-variant">External Auditor</p>
-</div>
-</div>
-</td>
-<td class="bg-surface-container-lowest px-6 py-5">
-<p class="text-sm font-medium">e.vance.contract@plugme.com</p>
-<p class="text-xs text-on-surface-variant">+1 (555) 4433 221</p>
-</td>
-<td class="bg-surface-container-lowest px-6 py-5">
-<span class="inline-flex items-center px-4 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase bg-surface-dim text-on-surface-variant">
-                                        Rejected
-                                    </span>
-</td>
-<td class="bg-surface-container-lowest px-6 py-5 rounded-r-2xl text-right">
-<div class="flex justify-end gap-2">
-<button class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-slate-200 text-on-surface transition-colors" title="Re-evaluate">
-<span class="material-symbols-outlined" data-icon="history">history</span>
-</button>
-<button class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-error-container text-error transition-colors" title="Delete">
-<span class="material-symbols-outlined" data-icon="delete">delete</span>
-</button>
-</div>
-</td>
-</tr>
+<!-- Dynamic data will be loaded here -->
 </tbody>
 </table>
 </div>
@@ -313,8 +217,10 @@
 </div>
 </div>
 </main>
-<script src="../assets/js/auth.js"></script>
-<script>
+<script type="module" src="../assets/js/auth.js"></script>
+<script type="module">
+    import { Auth } from '../assets/js/auth.js';
+    import { StationsDB } from '../assets/js/stations.js';
     // ── Security: superadmin role required ────────────────────────────────
     const user = Auth.requireRole('superadmin');
     if (!user) throw new Error('Access denied');
@@ -339,8 +245,9 @@
     let searchQuery   = '';
 
     // ── Render admin table ────────────────────────────────────────────────
-    function renderAdmins() {
-        const admins  = JSON.parse(localStorage.getItem('plugme_admins_list')) || [];
+    async function renderAdmins() {
+        const admins  = await Auth.getAdminsList();
+        const stations = await StationsDB.getStations();
         const tbody   = document.querySelector('tbody');
         tbody.innerHTML = '';
 
@@ -375,6 +282,7 @@
         }
 
         rows.forEach(admin => {
+            const adminStations = stations.filter(s => s.adminId === admin.id);
             const row = document.createElement('tr');
             row.className = 'group hover:scale-[1.01] transition-transform duration-200';
 
@@ -389,28 +297,71 @@
                 statusBadge = '<span class="inline-flex items-center gap-1 px-4 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase bg-slate-100 text-slate-500"><span class="material-symbols-outlined text-xs" style="font-size:12px">hourglass_empty</span>Incomplete</span>';
             }
 
-            const approveBtn = `<button onclick="handleApprove('${admin.id}')" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-tertiary-fixed text-tertiary transition-colors" title="Approve">
+            const approveBtn = `<button onclick="handleApprove('${admin.id}')" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-tertiary-fixed text-teal-800 transition-colors" title="Approve">
                 <span class="material-symbols-outlined">check_circle</span></button>`;
             const rejectBtn  = `<button onclick="handleReject('${admin.id}')" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-error-container text-error transition-colors" title="Reject">
                 <span class="material-symbols-outlined">cancel</span></button>`;
+            const deleteBtn  = `<button onclick="handleDelete('${admin.id}')" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-error-container text-error transition-colors" title="Delete">
+                <span class="material-symbols-outlined">delete</span></button>`;
 
             const actionBtns = admin.status === 'pending_approval'
                 ? approveBtn + rejectBtn
                 : admin.status === 'approved'
                     ? `<button onclick="handleReject('${admin.id}')" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-error-container text-error transition-colors" title="Revoke"><span class="material-symbols-outlined">block</span></button>`
                     : admin.status === 'rejected'
-                        ? approveBtn
-                        : '';
+                        ? approveBtn + deleteBtn
+                        : deleteBtn;
+
+            const onboardingDetails = admin.onboardingData ? `
+                <div class="mt-2 text-xs text-slate-600 bg-slate-50/50 p-3 rounded-xl border border-slate-100/80 leading-relaxed max-w-md space-y-1">
+                    <p><span class="font-semibold text-slate-700">Tax ID:</span> ${admin.onboardingData.taxId || 'N/A'}</p>
+                    <p><span class="font-semibold text-slate-700">Expected Stations:</span> ${admin.onboardingData.stations || 'N/A'}</p>
+                    <p class="mt-1 italic"><span class="font-semibold text-slate-700 not-italic block">Request Description:</span> "${admin.onboardingData.description || 'No description'}"</p>
+                </div>
+            ` : '';
+
+            let stationsSection = '';
+            if (adminStations.length > 0) {
+                const badges = adminStations.map(s => {
+                    let statusColor = 'bg-slate-50 text-slate-600 border-slate-200';
+                    if (s.status === 'active') {
+                        statusColor = 'bg-teal-50 text-teal-700 border-teal-200';
+                    } else if (s.status === 'maintaining') {
+                        statusColor = 'bg-amber-50 text-amber-700 border-amber-200';
+                    }
+                    return `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-lg text-[11px] font-semibold border ${statusColor} shrink-0">
+                        <span class="material-symbols-outlined text-[12px] fill-current">ev_station</span>
+                        ${s.name}
+                    </span>`;
+                }).join(' ');
+
+                stationsSection = `
+                    <div class="mt-3">
+                        <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Registered Stations (${adminStations.length})</p>
+                        <div class="flex flex-wrap gap-1.5">${badges}</div>
+                    </div>
+                `;
+            } else if (admin.status === 'approved') {
+                stationsSection = `
+                    <div class="mt-3">
+                        <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-400 italic">
+                            <span class="material-symbols-outlined text-xs">info</span> No stations added yet
+                        </span>
+                    </div>
+                `;
+            }
 
             row.innerHTML = `
                 <td class="bg-surface-container-lowest px-6 py-5 rounded-l-2xl">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-primary-fixed-dim flex items-center justify-center">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-primary-fixed-dim flex items-center justify-center shrink-0">
                             <span class="material-symbols-outlined text-2xl text-primary">person</span>
                         </div>
                         <div>
                             <p class="font-bold text-on-surface">${admin.name}</p>
                             <p class="text-xs text-on-surface-variant">${admin.onboardingData?.company || 'New Partner'}</p>
+                            ${onboardingDetails}
+                            ${stationsSection}
                         </div>
                     </div>
                 </td>
@@ -427,26 +378,44 @@
     }
 
     // ── Approve handler ───────────────────────────────────────────────────
-    function handleApprove(id) {
-        const result = Auth.approveAdmin(id);
+    async function handleApprove(id) {
+        const result = await Auth.approveAdmin(id);
         if (result.success) {
             showToast('Admin approved successfully!', 'success');
-            renderAdmins();
+            await renderAdmins();
         } else {
             showToast('Failed to approve admin.', 'error');
         }
     }
 
     // ── Reject handler ────────────────────────────────────────────────────
-    function handleReject(id) {
-        const result = Auth.rejectAdmin(id);
+    async function handleReject(id) {
+        const result = await Auth.rejectAdmin(id);
         if (result.success) {
             showToast('Admin request rejected.', 'error');
-            renderAdmins();
+            await renderAdmins();
         } else {
             showToast('Failed to reject admin.', 'error');
         }
     }
+
+    // ── Delete handler ────────────────────────────────────────────────────
+    async function handleDelete(id) {
+        if (confirm("Are you sure you want to delete this admin? This cannot be undone.")) {
+            const result = await Auth.deleteAdmin(id);
+            if (result.success) {
+                showToast('Admin deleted successfully!', 'success');
+                await renderAdmins();
+            } else {
+                showToast('Failed to delete admin.', 'error');
+            }
+        }
+    }
+
+    // Bind to window for inline onclick handlers
+    window.handleApprove = handleApprove;
+    window.handleReject = handleReject;
+    window.handleDelete = handleDelete;
 
     // ── Filter buttons ────────────────────────────────────────────────────
     document.querySelectorAll('.flex.gap-2.p-1 button').forEach((btn, i) => {

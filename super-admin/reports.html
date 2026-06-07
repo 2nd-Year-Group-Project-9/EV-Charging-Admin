@@ -7,7 +7,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     <!-- Scripts -->
@@ -30,9 +30,9 @@
                         "surface-container-lowest": "#ffffff",
                     },
                     fontFamily: {
-                        headline: ["Manrope"],
-                        body: ["Inter"],
-                        label: ["Inter"]
+                        headline: ["Inter", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
+                        label: ["Inter", "sans-serif"]
                     }
                 }
             }
@@ -50,60 +50,60 @@
 
 <div class="flex min-h-screen">
     <!-- SideNavBar -->
-    <aside id="sidebar" class="h-screen w-64 fixed left-0 top-0 -translate-x-full lg:translate-x-0 transition-transform duration-300 z-[60] bg-slate-100 dark:bg-slate-950 flex flex-col p-4 gap-2 ">
-        <div class="mb-8 px-2 flex flex-col">
-            <h1 class="text-teal-900 dark:text-teal-100 font-black text-2xl font-headline tracking-tight">Plug Me</h1>
-            <span class="text-xs font-semibold tracking-wide uppercase text-slate-500">Energy Management</span>
+    <aside id="sidebar" class="group h-screen w-64 lg:w-20 lg:hover:w-64 fixed left-0 top-0 -translate-x-full lg:translate-x-0 transition-all duration-300 z-[60] bg-slate-100 dark:bg-slate-950 flex flex-col p-4 gap-2 overflow-x-hidden shadow-2xl lg:shadow-none hover:shadow-2xl">
+        <div class="mb-8 px-2 flex flex-col overflow-hidden">
+            <h1 class="text-teal-900 dark:text-teal-100 font-black text-2xl font-headline tracking-tight whitespace-nowrap opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Plug Me</h1>
+            <span class="text-xs font-semibold tracking-wide uppercase text-slate-500 whitespace-nowrap opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Energy Management</span>
         </div>
         <nav class="flex-1 space-y-1">
-            <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
-                <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-                <span class="text-sm font-label tracking-wide uppercase font-semibold">Dashboard</span>
+            <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="dashboard">dashboard</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Dashboard</span>
             </a>
-            <a href="manage-admins.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
-                <span class="material-symbols-outlined" data-icon="group">group</span>
-                <span class="text-sm font-label tracking-wide uppercase font-semibold">Manage Admins</span>
+            <a href="manage-admins.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="group">group</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Manage Admins</span>
             </a>
-            <a href="manage-stations.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
-                <span class="material-symbols-outlined" data-icon="ev_station">ev_station</span>
-                <span class="text-sm font-label tracking-wide uppercase font-semibold">Charging Stations</span>
+            <a href="manage-stations.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="ev_station">ev_station</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Charging Stations</span>
             </a>
-            <a href="reports.html" class="flex items-center gap-3 px-3 py-2.5 text-teal-700 dark:text-teal-300 bg-white dark:bg-slate-900 rounded-lg shadow-sm font-bold transition-transform duration-200">
-                <span class="material-symbols-outlined" data-icon="assessment">assessment</span>
-                <span class="text-sm font-label tracking-wide uppercase font-semibold">Reports</span>
+            <a href="reports.html" class="flex items-center gap-3 px-3 py-2.5 text-teal-700 dark:text-teal-300 bg-white dark:bg-slate-900 rounded-lg shadow-sm font-bold transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="assessment">assessment</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Reports</span>
             </a>
-            <a href="settings.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
-                <span class="material-symbols-outlined" data-icon="settings">settings</span>
-                <span class="text-sm font-label tracking-wide uppercase font-semibold">Settings</span>
+            <a href="settings.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="settings">settings</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Settings</span>
             </a>
         </nav>
         <div class="mt-auto pt-4 space-y-1">
-            <a data-action="logout" class="flex items-center gap-3 px-3 py-2.5 text-error hover:bg-error/5 rounded-lg transition-colors cursor-pointer">
-                <span class="material-symbols-outlined" data-icon="logout">logout</span>
-                <span class="text-sm font-semibold tracking-wide uppercase">Logout</span>
+            <a data-action="logout" class="flex items-center gap-3 px-3 py-2.5 text-error hover:bg-error/5 rounded-lg transition-colors cursor-pointer whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="logout">logout</span>
+                <span class="text-sm font-semibold tracking-wide uppercase opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Logout</span>
             </a>
         </div>
     </aside>
 
     <!-- Main Content -->
     <main class="lg:ml-64 flex-1 flex flex-col">
-        <header class="w-full sticky top-0 z-40 bg-slate-50/70 backdrop-blur-xl flex justify-between items-center px-8 py-4 shadow-[0px_24px_48px_rgba(0,83,91,0.06)]">
-            <div class="flex items-center gap-4">
+        <header class="w-full sticky top-0 z-40 bg-slate-50/70 backdrop-blur-xl flex flex-wrap justify-between items-center px-4 md:px-8 py-4 shadow-[0px_24px_48px_rgba(0,83,91,0.06)] gap-4">
+            <div class="flex items-center gap-2 sm:gap-4">
                 <button id="mobile-menu-btn" class="lg:hidden text-slate-600 hover:text-primary transition-colors flex items-center justify-center mr-2">
                     <span class="material-symbols-outlined text-3xl">menu</span>
                 </button>
-                <h2 class="text-2xl font-headline font-bold text-primary">System Reports</h2>
+                <h2 class="text-xl sm:text-2xl font-headline font-bold text-primary">System Reports</h2>
             </div>
             <div class="flex items-center gap-4">
                 <button class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 hover:bg-primary/20 transition-colors">
                     <span class="material-symbols-outlined text-[20px]">download</span>
                     Export CSV
                 </button>
-                <div class="w-px h-6 bg-slate-200 mx-2"></div>
-                <div class="text-right">
+                <div class="w-px h-6 bg-slate-200 mx-1 sm:mx-2"></div>
+                <div class="text-right hidden sm:block">
                     <p class="text-sm font-bold text-teal-800">Super Admin</p>
                 </div>
-                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shrink-0">
                     <span class="material-symbols-outlined">admin_panel_settings</span>
                 </div>
             </div>
@@ -113,39 +113,39 @@
             
             <!-- Quick Stats -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-surface-container-lowest p-6 rounded-3xl shadow-sm border border-slate-100">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="w-12 h-12 rounded-full bg-teal-50 flex items-center justify-center text-teal-600">
-                            <span class="material-symbols-outlined">payments</span>
-                        </div>
-                        <span class="bg-tertiary/10 text-tertiary text-xs font-bold px-2 py-1 rounded-lg">+14%</span>
-                    </div>
-                    <p class="text-sm font-bold text-slate-500 uppercase tracking-wide">Total Revenue (30d)</p>
-                    <h3 class="text-4xl font-headline font-black text-primary mt-1">$45,290</h3>
-                </div>
+<div class="bg-surface-container-lowest p-6 rounded-3xl shadow-sm border border-slate-100">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-full bg-teal-50 flex items-center justify-center text-teal-600">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<span class="bg-tertiary/10 text-tertiary text-xs font-bold px-2 py-1 rounded-lg">+14%</span>
+</div>
+<p class="text-sm font-bold text-slate-500 uppercase tracking-wide">Total Revenue (30d)</p>
+<h3 id="reports-revenue" class="text-4xl font-headline font-black text-primary mt-1">Rs. 0</h3>
+</div>
 
-                <div class="bg-surface-container-lowest p-6 rounded-3xl shadow-sm border border-slate-100">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
-                            <span class="material-symbols-outlined">bolt</span>
-                        </div>
-                        <span class="bg-tertiary/10 text-tertiary text-xs font-bold px-2 py-1 rounded-lg">+8%</span>
-                    </div>
-                    <p class="text-sm font-bold text-slate-500 uppercase tracking-wide">Energy Dispensed (30d)</p>
-                    <h3 class="text-4xl font-headline font-black text-primary mt-1">124.5 <span class="text-xl text-slate-400">MWh</span></h3>
-                </div>
+<div class="bg-surface-container-lowest p-6 rounded-3xl shadow-sm border border-slate-100">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<span class="bg-tertiary/10 text-tertiary text-xs font-bold px-2 py-1 rounded-lg">+11%</span>
+</div>
+<p class="text-sm font-bold text-slate-500 uppercase tracking-wide">Energy Dispensed (30d)</p>
+<h3 id="reports-energy" class="text-4xl font-headline font-black text-primary mt-1">0 <span class="text-xl text-slate-400">MWh</span></h3>
+</div>
 
-                <div class="bg-surface-container-lowest p-6 rounded-3xl shadow-sm border border-slate-100">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="w-12 h-12 rounded-full bg-purple-50 flex items-center justify-center text-purple-600">
-                            <span class="material-symbols-outlined">timer</span>
-                        </div>
-                        <span class="bg-error/10 text-error text-xs font-bold px-2 py-1 rounded-lg">-2%</span>
-                    </div>
-                    <p class="text-sm font-bold text-slate-500 uppercase tracking-wide">Avg Session Time</p>
-                    <h3 class="text-4xl font-headline font-black text-primary mt-1">42 <span class="text-xl text-slate-400">mins</span></h3>
-                </div>
-            </div>
+<div class="bg-surface-container-lowest p-6 rounded-3xl shadow-sm border border-slate-100">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-full bg-purple-50 flex items-center justify-center text-purple-600">
+<span class="material-symbols-outlined">timer</span>
+</div>
+<span class="bg-error/10 text-error text-xs font-bold px-2 py-1 rounded-lg">-2%</span>
+</div>
+<p class="text-sm font-bold text-slate-500 uppercase tracking-wide">Avg Session Time</p>
+<h3 id="reports-session-time" class="text-4xl font-headline font-black text-primary mt-1">0 <span class="text-xl text-slate-400">mins</span></h3>
+</div>
+</div>
 
             <!-- Main Chart Area (Mockup) -->
             <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100">
@@ -210,67 +210,30 @@
 
             <!-- Bottom Section -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Top Stations -->
                 <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100">
-                    <h3 class="text-xl font-bold font-headline text-primary mb-6">Top Stations by Revenue</h3>
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center p-4 bg-surface-container-low rounded-2xl">
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-teal-700 font-bold">1</div>
-                                <div>
-                                    <p class="font-bold text-primary">Tesla Superhub Alpha</p>
-                                    <p class="text-xs text-slate-500">San Francisco, CA</p>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <p class="font-bold text-teal-700">$12,450</p>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center p-4 bg-surface-container-low rounded-2xl">
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 font-bold">2</div>
-                                <div>
-                                    <p class="font-bold text-primary">Berlin Tiergarten Express</p>
-                                    <p class="text-xs text-slate-500">Berlin, Germany</p>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <p class="font-bold text-teal-700">$9,120</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<h3 class="text-xl font-bold font-headline text-primary mb-6">Top Stations by Revenue</h3>
+<div id="top-stations-list" class="space-y-4">
+    <p class="text-slate-400 italic text-sm">No stations added yet.</p>
+</div>
+</div>
 
-                <!-- Recent Activity Log Placeholder -->
-                <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100">
-                    <h3 class="text-xl font-bold font-headline text-primary mb-6">Automated Alerts</h3>
-                    <div class="space-y-4">
-                        <div class="flex gap-4 p-4 rounded-2xl border border-error-container bg-error/5">
-                            <span class="material-symbols-outlined text-error">warning</span>
-                            <div>
-                                <p class="font-bold text-error">London Soho Square Offline</p>
-                                <p class="text-xs text-slate-600 mt-1">Station has not reported heartbeat for 24 hours.</p>
-                                <p class="text-[10px] font-bold text-slate-400 mt-2 uppercase">2 Hours Ago</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 p-4 rounded-2xl border border-slate-100 bg-surface-container-low">
-                            <span class="material-symbols-outlined text-tertiary">check_circle</span>
-                            <div>
-                                <p class="font-bold text-primary">Firmware Update Successful</p>
-                                <p class="text-xs text-slate-600 mt-1">Successfully pushed v2.4.1 to 14 active stations.</p>
-                                <p class="text-[10px] font-bold text-slate-400 mt-2 uppercase">Yesterday</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!-- Recent Activity Log Placeholder -->
+<div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100">
+<h3 class="text-xl font-bold font-headline text-primary mb-6">Automated Alerts</h3>
+<div id="automated-alerts-list" class="space-y-4">
+    <p class="text-slate-400 italic text-sm">No alerts reported.</p>
+</div>
+</div>
             </div>
             
         </div>
     </main>
 </div>
 
-<script src="../assets/js/auth.js"></script>
-<script>
+<script type="module" src="../assets/js/auth.js"></script>
+<script type="module">
+    import { Auth } from '../assets/js/auth.js';
+    import { StationsDB } from '../assets/js/stations.js';
     // Security
     const currentUser = Auth.requireRole('superadmin');
     if (!currentUser) throw new Error('Access denied');
@@ -279,6 +242,90 @@
     document.querySelectorAll('[data-action="logout"]').forEach(el => {
         el.onclick = e => { e.preventDefault(); Auth.logout(); };
     });
+
+    // Populate Report Statistics
+    async function loadReports() {
+        const stations = await StationsDB.getStations();
+        const activeStations = stations.filter(s => s.status === 'active');
+
+        // Total Revenue (Rs. 35,000 per active station)
+        const revenue = activeStations.length * 35000;
+        document.getElementById('reports-revenue').innerText = `Rs. ${revenue.toLocaleString()}`;
+
+        // Energy Dispensed (24 MWh per active station)
+        const energy = activeStations.length * 24;
+        document.getElementById('reports-energy').innerHTML = `${energy} <span class="text-xl text-slate-400">MWh</span>`;
+
+        // Avg Session Time (35 mins default if any active stations)
+        const sessionTime = activeStations.length > 0 ? 35 : 0;
+        document.getElementById('reports-session-time').innerHTML = `${sessionTime} <span class="text-xl text-slate-400">mins</span>`;
+
+        // Top Stations by Revenue
+        const topStationsList = document.getElementById('top-stations-list');
+        topStationsList.innerHTML = '';
+        if (stations.length > 0) {
+            // Sort by ports descending
+            const sorted = [...stations].sort((a, b) => b.ports - a.ports);
+            sorted.slice(0, 4).forEach(station => {
+                const stationRev = station.status === 'active' ? 35000 : 0;
+                topStationsList.innerHTML += `
+                    <div class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                        <div>
+                            <p class="font-bold text-primary text-sm">${station.name}</p>
+                            <p class="text-xs text-slate-400">${station.ports} ports • ${station.location}</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-headline font-bold text-slate-900 text-sm">Rs. ${stationRev.toLocaleString()}</p>
+                            <p class="text-[10px] text-teal-600 font-bold uppercase tracking-wider">30d Total</p>
+                        </div>
+                    </div>
+                `;
+            });
+        } else {
+            topStationsList.innerHTML = '<p class="text-slate-400 italic text-sm">No stations added yet.</p>';
+        }
+
+        // Automated Alerts list
+        const alertsList = document.getElementById('automated-alerts-list');
+        alertsList.innerHTML = '';
+        if (stations.length > 0) {
+            stations.forEach(station => {
+                const status = station.status || 'active';
+                let alertColor = 'border-teal-400 bg-teal-50/50';
+                let icon = 'check_circle';
+                let iconColor = 'text-teal-600';
+                let title = 'Online Operational';
+                let msg = `Station "${station.name}" is active. ${station.ports} ports online.`;
+
+                if (status === 'maintaining') {
+                    alertColor = 'border-amber-400 bg-amber-50/50';
+                    icon = 'build';
+                    iconColor = 'text-amber-600';
+                    title = 'Under Maintenance';
+                    msg = `Station "${station.name}" is undergoing scheduled maintenance.`;
+                } else if (status === 'inactive') {
+                    alertColor = 'border-red-400 bg-red-50/50';
+                    icon = 'warning';
+                    iconColor = 'text-red-600';
+                    title = 'Offline Alert';
+                    msg = `Station "${station.name}" is offline. Ports are currently unavailable.`;
+                }
+
+                alertsList.innerHTML += `
+                    <div class="flex items-start gap-3 p-3.5 border-l-4 rounded-r-xl ${alertColor}">
+                        <span class="material-symbols-outlined ${iconColor} text-[20px] mt-0.5">${icon}</span>
+                        <div>
+                            <p class="text-xs font-bold text-slate-900">${title}</p>
+                            <p class="text-[11px] text-slate-600 mt-0.5">${msg}</p>
+                        </div>
+                    </div>
+                `;
+            });
+        } else {
+            alertsList.innerHTML = '<p class="text-slate-400 italic text-sm">No alerts reported.</p>';
+        }
+    }
+    loadReports();
 </script>
 
 <!-- Mobile Sidebar Overlay -->

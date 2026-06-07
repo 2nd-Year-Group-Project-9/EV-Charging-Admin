@@ -7,7 +7,7 @@
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <!-- Icons -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -74,9 +74,9 @@
                 "full": "0.75rem"
             },
             "fontFamily": {
-                "headline": ["Manrope"],
-                "body": ["Inter"],
-                "label": ["Inter"]
+                "headline": ["Inter", "sans-serif"],
+                "body": ["Inter", "sans-serif"],
+                "label": ["Inter", "sans-serif"]
             }
           },
         },
@@ -94,59 +94,62 @@
 </head>
 <body class="bg-background font-body text-on-surface">
 <!-- SideNavBar (Authority: JSON) -->
-<aside id="sidebar" class="h-screen w-64 fixed left-0 top-0 -translate-x-full lg:translate-x-0 transition-transform duration-300 z-[60] bg-slate-100 dark:bg-slate-950 flex flex-col p-4 gap-2 ">
-        <div class="mb-8 px-2 flex flex-col">
-            <h1 class="text-teal-900 dark:text-teal-100 font-black text-2xl font-headline tracking-tight">Plug Me</h1>
-            <span class="text-xs font-semibold tracking-wide uppercase text-slate-500">Energy Management</span>
+<aside id="sidebar" class="group h-screen w-64 lg:w-20 lg:hover:w-64 fixed left-0 top-0 -translate-x-full lg:translate-x-0 transition-all duration-300 z-[60] bg-slate-100 dark:bg-slate-950 flex flex-col p-4 gap-2 overflow-x-hidden shadow-2xl lg:shadow-none hover:shadow-2xl">
+        <div class="mb-8 px-2 flex flex-col overflow-hidden">
+            <h1 class="text-teal-900 dark:text-teal-100 font-black text-2xl font-headline tracking-tight whitespace-nowrap opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Plug Me</h1>
+            <span class="text-xs font-semibold tracking-wide uppercase text-slate-500 whitespace-nowrap opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Energy Management</span>
         </div>
         <nav class="flex-1 space-y-1">
-            <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-teal-700 dark:text-teal-300 bg-white dark:bg-slate-900 rounded-lg shadow-sm font-bold transition-transform duration-200">
-                <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-                <span class="text-sm font-label tracking-wide uppercase font-semibold">Dashboard</span>
+            <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-teal-700 dark:text-teal-300 bg-white dark:bg-slate-900 rounded-lg shadow-sm font-bold transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="dashboard">dashboard</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Dashboard</span>
             </a>
-            <a href="manage-admins.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
-                <span class="material-symbols-outlined" data-icon="group">group</span>
-                <span class="text-sm font-label tracking-wide uppercase font-semibold">Manage Admins</span>
+            <a href="manage-admins.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="group">group</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Manage Admins</span>
             </a>
-            <a href="manage-stations.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
-                <span class="material-symbols-outlined" data-icon="ev_station">ev_station</span>
-                <span class="text-sm font-label tracking-wide uppercase font-semibold">Charging Stations</span>
+            <a href="manage-stations.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="ev_station">ev_station</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Charging Stations</span>
             </a>
-            <a href="reports.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
-                <span class="material-symbols-outlined" data-icon="assessment">assessment</span>
-                <span class="text-sm font-label tracking-wide uppercase font-semibold">Reports</span>
+            <a href="reports.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="assessment">assessment</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Reports</span>
             </a>
-            <a href="settings.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
-                <span class="material-symbols-outlined" data-icon="settings">settings</span>
-                <span class="text-sm font-label tracking-wide uppercase font-semibold">Settings</span>
+            <a href="settings.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="settings">settings</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Settings</span>
             </a>
         </nav>
         <div class="mt-auto pt-4 space-y-1">
-            <a data-action="logout" class="flex items-center gap-3 px-3 py-2.5 text-error hover:bg-error/5 rounded-lg transition-colors cursor-pointer">
-                <span class="material-symbols-outlined" data-icon="logout">logout</span>
-                <span class="text-sm font-semibold tracking-wide uppercase">Logout</span>
+            <a data-action="logout" class="flex items-center gap-3 px-3 py-2.5 text-error hover:bg-error/5 rounded-lg transition-colors cursor-pointer whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="logout">logout</span>
+                <span class="text-sm font-semibold tracking-wide uppercase opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Logout</span>
             </a>
         </div>
     </aside>
 <!-- Main Content Area -->
 <main class="lg:ml-64 min-h-screen">
-        <header class="w-full sticky top-0 z-40 bg-slate-50/70 backdrop-blur-xl flex justify-between items-center px-8 py-4 shadow-[0px_24px_48px_rgba(0,83,91,0.06)]">
-            <div class="flex items-center gap-4">
+        <header class="w-full sticky top-0 z-40 bg-slate-50/70 backdrop-blur-xl flex flex-wrap justify-between items-center px-4 md:px-8 py-4 shadow-[0px_24px_48px_rgba(0,83,91,0.06)] gap-4">
+            <div class="flex items-center gap-2 sm:gap-4">
                 <button id="mobile-menu-btn" class="lg:hidden text-slate-600 hover:text-primary transition-colors flex items-center justify-center mr-2">
                     <span class="material-symbols-outlined text-3xl">menu</span>
                 </button>
-                <h2 class="text-2xl font-headline font-bold text-primary">System Overview</h2>
+                <h2 class="text-xl sm:text-2xl font-headline font-bold text-primary">System Overview</h2>
             </div>
-            <div class="flex items-center gap-4">
-                <div class="relative">
+            <div class="flex items-center gap-2 sm:gap-4">
+                <div class="relative hidden sm:block">
                     <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
                     <input type="text" id="searchInput" placeholder="Search systems or admins..." class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-sm w-48 sm:w-80 focus:ring-2 focus:ring-primary/20">
                 </div>
-                <div class="w-px h-6 bg-slate-200 mx-2"></div>
-                <div class="text-right">
+                <button class="sm:hidden w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-slate-600">
+                    <span class="material-symbols-outlined">search</span>
+                </button>
+                <div class="w-px h-6 bg-slate-200 mx-1 sm:mx-2"></div>
+                <div class="text-right hidden sm:block">
                     <p class="text-sm font-bold text-teal-800">Super Admin</p>
                 </div>
-                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shrink-0">
                     <span class="material-symbols-outlined">admin_panel_settings</span>
                 </div>
             </div>
@@ -163,9 +166,9 @@
 <span class="text-tertiary text-xs font-bold bg-tertiary-fixed px-2 py-1 rounded-full">+12%</span>
 </div>
 <p class="text-on-surface-variant text-sm font-label tracking-wide uppercase font-semibold">Total Admins</p>
-<h2 class="text-4xl font-headline font-extrabold text-on-surface mt-1">1,284</h2>
+<h2 class="text-4xl font-headline font-extrabold text-on-surface mt-1">0</h2>
 <div class="mt-4 h-1 w-full bg-surface-container rounded-full overflow-hidden">
-<div class="h-full bg-primary w-3/4 rounded-full"></div>
+<div class="h-full bg-primary w-0 rounded-full"></div>
 </div>
 </div>
 </div>
@@ -177,9 +180,9 @@
 <span class="text-on-secondary-fixed-variant text-xs font-bold bg-secondary-fixed px-2 py-1 rounded-full">+8%</span>
 </div>
 <p class="text-on-surface-variant text-sm font-label tracking-wide uppercase font-semibold">Total Stations</p>
-<h2 class="text-4xl font-headline font-extrabold text-on-surface mt-1">42,903</h2>
+<h2 class="text-4xl font-headline font-extrabold text-on-surface mt-1">0</h2>
 <div class="mt-4 h-1 w-full bg-surface-container rounded-full overflow-hidden">
-<div class="h-full bg-secondary w-1/2 rounded-full"></div>
+<div class="h-full bg-secondary w-0 rounded-full"></div>
 </div>
 </div>
 </div>
@@ -191,9 +194,9 @@
 <span class="text-on-tertiary-fixed-variant text-xs font-bold bg-tertiary-fixed px-2 py-1 rounded-full">94% Capacity</span>
 </div>
 <p class="text-on-surface-variant text-sm font-label tracking-wide uppercase font-semibold">Active Stations</p>
-<h2 class="text-4xl font-headline font-extrabold text-on-surface mt-1">40,122</h2>
+<h2 class="text-4xl font-headline font-extrabold text-on-surface mt-1">0</h2>
 <div class="mt-4 h-1 w-full bg-surface-container rounded-full overflow-hidden">
-<div class="h-full bg-tertiary w-[94%] rounded-full"></div>
+<div class="h-full bg-tertiary w-0 rounded-full"></div>
 </div>
 </div>
 </div>
@@ -285,44 +288,8 @@
 <h3 class="text-xl font-headline font-bold text-primary">Requests</h3>
 <span class="text-[10px] font-bold bg-primary text-white px-2 py-0.5 rounded-full">4 PENDING</span>
 </div>
-<div class="space-y-3 flex-1 overflow-y-auto pr-2" style="max-height: 300px;">
-<!-- Request Card -->
-<div class="bg-surface-container-lowest p-3 rounded-2xl shadow-sm border-l-4 border-secondary transition-transform hover:-translate-y-1 duration-200 flex items-center justify-between">
-<div class="flex gap-3 items-center">
-<div class="w-10 h-10 rounded-full bg-slate-200 shrink-0">
-<img alt="Admin candidate" class="rounded-full w-full h-full object-cover" data-alt="minimalist user portrait icon with soft pastel circular background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFLa4aN-U6V2td_dO9aJoqkF_8GecCCsiywyH41OgGwssphoMbYx1RHrsxdotIDdx6MA4e6vrKDvH1lyBwmSGmsRq1d6pB6I9a7mMNGZXbBVmxVkaUQdWEHNhHkBfOB8bqj-XDA-VVfqAt93H0LewHIaR_65nJoDQlRLjoHXCBNS-hatSF6EByM8dtpPTImO6AXcz9NN1cMKeqPxmqCCtJUHNS4yvDKI5dEOkXAQvoJ9pJA4dGk7koukU88HxUl3It0dqDKZRmafJV"/>
-</div>
-<div class="min-w-0">
-<h4 class="text-sm font-bold truncate">Jonathan Doe</h4>
-<p class="text-[10px] text-on-surface-variant truncate">Regional Manager | Berlin</p>
-</div>
-</div>
-<button class="material-symbols-outlined text-primary hover:bg-primary/5 p-1 rounded shrink-0">check_circle</button>
-</div>
-<div class="bg-surface-container-lowest p-3 rounded-2xl shadow-sm border-l-4 border-tertiary transition-transform hover:-translate-y-1 duration-200 flex items-center justify-between">
-<div class="flex gap-3 items-center">
-<div class="w-10 h-10 rounded-full bg-slate-200 shrink-0">
-<img alt="Admin candidate" class="rounded-full w-full h-full object-cover" data-alt="professional minimalist profile icon for a female user with a modern geometric background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbB0tOPCjco0VqyxPta4VQmxWVYVumB8PDyZSpTUmkLsuN6tPjaraaH5r5dsgE7IuwfDe2QQTtE71JQdflewov4oq2_ZvEkm6UzzQGxqANbVrZwTUnRLIGYBNY8aGyoNjwzrM4s5ODtxTDDZZPXCJiR0klZBEf4QElGXdStG4BdeQIlkpnhxIsCKlRYN0qOc31gcuQldPb-0ri0_sGTBcRb6giKnIk-jXdqoZW0xe1Ptaf386JpCA6YXmp6pH0NzYVVJIOhiI7_clW"/>
-</div>
-<div class="min-w-0">
-<h4 class="text-sm font-bold truncate">Sarah Koenig</h4>
-<p class="text-[10px] text-on-surface-variant truncate">Grid Specialist | Oslo</p>
-</div>
-</div>
-<button class="material-symbols-outlined text-primary hover:bg-primary/5 p-1 rounded shrink-0">check_circle</button>
-</div>
-<div class="bg-surface-container-lowest p-3 rounded-2xl shadow-sm border-l-4 border-error transition-transform hover:-translate-y-1 duration-200 flex items-center justify-between">
-<div class="flex gap-3 items-center">
-<div class="w-10 h-10 rounded-full bg-slate-200 shrink-0">
-<img alt="Admin candidate" class="rounded-full w-full h-full object-cover" data-alt="clean vector style user icon for a business professional on a neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALMG2Ve1kpKa0ggQ97o-Kb7otns5PdCTVTuXT0Mm7VB0XuSAT84NVACAbpuxspzy5A5GwOnKGjHsE5UE1o2wvvp4z2EHSVFi6-CfEqe78Vk_WYbPoY893CcZ6Z7mythQxrnYRLrO11ZYR8xSkSpcW2Ri3afUIN_4_pC2cWva-QHJXmFTVtSkuEdDkbe1pnFf-2YC5duEsQ_NFzBzmI6nvB1PzAP4a_sRO2XG1olzd-L3kqmCxU7sdU4Dr9iA4eXudDMcYjtlg_tntY"/>
-</div>
-<div class="min-w-0">
-<h4 class="text-sm font-bold truncate">Marcus Bell</h4>
-<p class="text-[10px] text-on-surface-variant truncate">Station Auditor | London</p>
-</div>
-</div>
-<button class="material-symbols-outlined text-primary hover:bg-primary/5 p-1 rounded shrink-0">check_circle</button>
-</div>
+<div id="requests-container" class="space-y-3 flex-1 overflow-y-auto pr-2" style="max-height: 300px;">
+<!-- Request cards will be dynamically loaded here -->
 </div>
 <a href="manage-admins.html" class="w-full py-2 mt-auto text-xs font-bold text-primary hover:bg-primary/5 rounded-lg border border-primary/20 transition-colors shrink-0 text-center inline-block">
     View All Requests
@@ -351,66 +318,19 @@
 <th class="pb-6 px-4 text-sm font-label tracking-widest uppercase opacity-60 text-center">Status</th>
 </tr>
 </thead>
-<tbody class="space-y-4">
-<!-- Row 1 -->
-<tr class="hover:bg-surface-container-low transition-colors rounded-xl group cursor-pointer">
-<td class="py-5 px-4 font-bold text-primary">#PM-BER-102</td>
-<td class="py-5 px-4">
-<div class="flex flex-col">
-<span class="text-sm font-bold">Berlin Tiergarten</span>
-<span class="text-xs text-on-surface-variant">District 4, DE</span>
-</div>
-</td>
-<td class="py-5 px-4 text-center text-sm font-bold text-tertiary">99.98%</td>
-<td class="py-5 px-4 text-right text-sm font-bold">€12,450.00</td>
-<td class="py-5 px-4">
-<div class="flex justify-center">
-<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-4 py-1 rounded-full text-xs font-bold">AVAILABLE</span>
-</div>
-</td>
-</tr>
-<!-- Row 2 -->
-<tr class="hover:bg-surface-container-low transition-colors rounded-xl group cursor-pointer">
-<td class="py-5 px-4 font-bold text-primary">#PM-OSL-449</td>
-<td class="py-5 px-4">
-<div class="flex flex-col">
-<span class="text-sm font-bold">Oslo Central</span>
-<span class="text-xs text-on-surface-variant">Harbor District, NO</span>
-</div>
-</td>
-<td class="py-5 px-4 text-center text-sm font-bold text-tertiary">99.12%</td>
-<td class="py-5 px-4 text-right text-sm font-bold">€10,892.40</td>
-<td class="py-5 px-4">
-<div class="flex justify-center">
-<span class="bg-secondary-fixed text-on-secondary-fixed-variant px-4 py-1 rounded-full text-xs font-bold">BUSY</span>
-</div>
-</td>
-</tr>
-<!-- Row 3 -->
-<tr class="hover:bg-surface-container-low transition-colors rounded-xl group cursor-pointer">
-<td class="py-5 px-4 font-bold text-primary">#PM-LON-082</td>
-<td class="py-5 px-4">
-<div class="flex flex-col">
-<span class="text-sm font-bold">London Soho Square</span>
-<span class="text-xs text-on-surface-variant">Westminster, UK</span>
-</div>
-</td>
-<td class="py-5 px-4 text-center text-sm font-bold text-tertiary">98.45%</td>
-<td class="py-5 px-4 text-right text-sm font-bold">€9,215.15</td>
-<td class="py-5 px-4">
-<div class="flex justify-center">
-<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-4 py-1 rounded-full text-xs font-bold">AVAILABLE</span>
-</div>
-</td>
-</tr>
+<tbody class="space-y-4" id="stations-tbody">
+<!-- Dynamic data will be loaded here -->
 </tbody>
 </table>
+</div>
 </div>
 </section>
 </div>
 </main>
-<script src="../assets/js/auth.js"></script>
-<script>
+<script type="module" src="../assets/js/auth.js"></script>
+<script type="module">
+    import { Auth } from '../assets/js/auth.js';
+    import { StationsDB } from '../assets/js/stations.js';
     // ── Security: superadmin role required ────────────────────────────────
     const user = Auth.requireRole('superadmin');
     if (!user) throw new Error('Access denied');  // requireRole already redirected
@@ -420,23 +340,143 @@
         el.onclick = e => { e.preventDefault(); Auth.logout(); };
     });
 
-    // ── Live Stats from localStorage ──────────────────────────────────────
-    function updateStats() {
-        const admins        = JSON.parse(localStorage.getItem('plugme_admins_list')) || [];
-        const allAdmins     = admins.filter(a => a.role === 'admin');
-        const pendingCount  = allAdmins.filter(a => a.status === 'pending_approval').length;
-        const approvedCount = allAdmins.filter(a => a.isApproved === 1).length;
+    // ── Live Stats & Requests Rendering ───────────────────────────────────
+    async function loadDashboardData() {
+        try {
+            const admins = await Auth.getAdminsList();
+            
+            // Save to localStorage for stats consistency
+            localStorage.setItem('plugme_admins_list', JSON.stringify(admins));
+            
+            const allAdmins = admins.filter(a => a.role === 'admin');
+            const pendingCount = allAdmins.filter(a => a.status === 'pending_approval').length;
+            const approvedCount = allAdmins.filter(a => a.isApproved === 1).length;
 
-        // Total admins stat card (first .text-4xl)
-        const statCards = document.querySelectorAll('.text-4xl.font-headline.font-extrabold');
-        if (statCards[0]) statCards[0].innerText = allAdmins.length.toLocaleString();
+            // Total admins stat card (first .text-4xl)
+            const statCards = document.querySelectorAll('.text-4xl.font-headline.font-extrabold');
+            if (statCards[0]) statCards[0].innerText = allAdmins.length.toLocaleString();
 
-        // Update the pending requests badge in the sidebar / dashboard
-        const pendingBadge = document.querySelector('.text-\\[10px\\].font-bold.bg-primary');
-        if (pendingBadge) pendingBadge.textContent = `${pendingCount} PENDING`;
+            // Update the pending requests badge in the sidebar / dashboard
+            const pendingBadge = document.querySelector('.text-\\[10px\\].font-bold.bg-primary');
+            if (pendingBadge) pendingBadge.textContent = `${pendingCount} PENDING`;
+
+            // Render requests container
+            const container = document.getElementById('requests-container');
+            if (container) {
+                container.innerHTML = '';
+                const pendingRequests = allAdmins.filter(a => a.status === 'pending_approval');
+                if (pendingRequests.length === 0) {
+                    container.innerHTML = '<p class="text-xs text-on-surface-variant text-center py-6">No pending requests</p>';
+                } else {
+                    pendingRequests.forEach(admin => {
+                        const card = document.createElement('div');
+                        card.className = "bg-surface-container-lowest p-4 rounded-2xl shadow-sm border-l-4 border-primary transition-transform hover:-translate-y-0.5 duration-200 flex flex-col gap-3";
+                        
+                        card.innerHTML = `
+                            <div class="flex items-center justify-between">
+                                <div class="flex gap-3 items-center">
+                                    <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                                        <span class="material-symbols-outlined">person</span>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <h4 class="text-sm font-bold truncate">${admin.name}</h4>
+                                        <p class="text-[10px] text-on-surface-variant truncate">${admin.onboardingData?.company || 'New Partner'} | ${admin.onboardingData?.location || 'N/A'}</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-1 shrink-0">
+                                    <button onclick="handleApproveRequest('${admin.id}')" class="material-symbols-outlined text-teal-600 hover:bg-teal-50 p-1.5 rounded-lg transition-colors" title="Approve">check_circle</button>
+                                    <button onclick="handleRejectRequest('${admin.id}')" class="material-symbols-outlined text-red-600 hover:bg-red-50 p-1.5 rounded-lg transition-colors" title="Reject">cancel</button>
+                                </div>
+                            </div>
+                            ${admin.onboardingData?.description ? `
+                                <div class="text-[11px] text-slate-500 bg-slate-50 p-2.5 rounded-xl border border-slate-100 italic leading-relaxed">
+                                    "${admin.onboardingData.description}"
+                                </div>
+                            ` : ''}
+                        `;
+                        container.appendChild(card);
+                    });
+                }
+            }
+
+            // Render stations list and counters
+            const stationsTbody = document.getElementById('stations-tbody');
+            if (stationsTbody) {
+                stationsTbody.innerHTML = '';
+                const stations = await StationsDB.getStations();
+                
+                // Update total stations stat card (second card: Total Stations)
+                if (statCards[1]) statCards[1].innerText = stations.length.toLocaleString();
+
+                // Update active stations count (third card: Active Stations)
+                const activeCount = stations.filter(s => s.status === 'active').length;
+                if (statCards[2]) statCards[2].innerText = activeCount.toLocaleString();
+
+                if (stations.length === 0) {
+                    stationsTbody.innerHTML = `
+                        <tr><td colspan="5" class="py-8 text-center text-on-surface-variant font-bold">
+                            No stations registered yet.
+                        </td></tr>`;
+                } else {
+                    // Show up to 3 stations
+                    stations.slice(0, 3).forEach(station => {
+                        const tr = document.createElement('tr');
+                        tr.className = "hover:bg-surface-container-low transition-colors rounded-xl group cursor-pointer";
+                        
+                        const statusColor = station.status === 'active' 
+                            ? 'bg-tertiary-fixed text-on-tertiary-fixed-variant' 
+                            : 'bg-surface-container-high text-on-surface-variant';
+                        const statusLabel = station.status === 'active' ? 'AVAILABLE' : 'OFFLINE';
+                        
+                        tr.innerHTML = `
+                            <td class="py-5 px-4 font-bold text-primary">#${station.id.substring(0, 8).toUpperCase()}</td>
+                            <td class="py-5 px-4">
+                                <div class="flex flex-col">
+                                    <span class="text-sm font-bold">${station.name}</span>
+                                    <span class="text-xs text-on-surface-variant">${station.location}</span>
+                                </div>
+                            </td>
+                            <td class="py-5 px-4 text-center text-sm font-bold text-tertiary">${station.status === 'active' ? '99.9%' : '0%'}</td>
+                            <td class="py-5 px-4 text-right text-sm font-bold">${station.status === 'active' ? 'Rs. 35,000.00' : 'Rs. 0.00'}</td>
+                            <td class="py-5 px-4">
+                                <div class="flex justify-center">
+                                    <span class="${statusColor} px-4 py-1 rounded-full text-xs font-bold">${statusLabel}</span>
+                                </div>
+                            </td>
+                        `;
+                        stationsTbody.appendChild(tr);
+                    });
+                }
+            }
+        } catch (error) {
+            console.error("Error loading dashboard data:", error);
+        }
     }
 
-    updateStats();
+    async function handleApproveRequest(id) {
+        const result = await Auth.approveAdmin(id);
+        if (result.success) {
+            await loadDashboardData();
+        } else {
+            alert('Failed to approve admin request.');
+        }
+    }
+
+    async function handleRejectRequest(id) {
+        const result = await Auth.rejectAdmin(id);
+        if (result.success) {
+            await loadDashboardData();
+        } else {
+            alert('Failed to reject admin request.');
+        }
+    }
+
+    // Bind to window for inline onclick execution
+    window.handleApproveRequest = handleApproveRequest;
+    window.handleRejectRequest = handleRejectRequest;
+
+    // Load data initially
+    loadDashboardData();
 </script>
 
 <!-- Mobile Sidebar Overlay -->

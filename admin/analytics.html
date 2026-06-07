@@ -5,7 +5,9 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Analytics | Plug Me</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script id="tailwind-config">
         tailwind.config = {
@@ -24,9 +26,9 @@
                         "secondary": "#0061a4"
                     },
                     "fontFamily": {
-                        "headline": ["Manrope"],
-                        "body": ["Inter"],
-                        "label": ["Inter"]
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
                     }
                 },
             },
@@ -39,104 +41,104 @@
         .bar { transition: height 1s ease-out; }
     </style>
 </head>
-<body class="bg-background text-on-surface flex min-h-screen">
+<body class="bg-background font-body text-on-surface flex min-h-screen">
 
 <!-- SideNavBar -->
-<aside id="sidebar" class="h-screen w-64 fixed left-0 top-0 -translate-x-full lg:translate-x-0 transition-transform duration-300 z-[60] bg-slate-100 dark:bg-slate-950 flex flex-col p-4 gap-2 ">
-    <div class="mb-8 px-2 flex flex-col">
-        <h1 class="text-teal-900 dark:text-teal-100 font-black text-2xl font-headline tracking-tight">Plug Me</h1>
-        <span class="text-xs font-semibold tracking-wide uppercase text-slate-500">Partner Portal</span>
+<aside id="sidebar" class="group h-screen w-64 lg:w-20 lg:hover:w-64 fixed left-0 top-0 -translate-x-full lg:translate-x-0 transition-all duration-300 z-[60] bg-slate-100 dark:bg-slate-950 flex flex-col p-4 gap-2 overflow-x-hidden shadow-2xl lg:shadow-none hover:shadow-2xl">
+    <div class="mb-8 px-2 flex flex-col overflow-hidden">
+        <h1 class="text-teal-900 dark:text-teal-100 font-black text-2xl font-headline tracking-tight whitespace-nowrap opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Plug Me</h1>
+        <span class="text-xs font-semibold tracking-wide uppercase text-slate-500 whitespace-nowrap opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Partner Portal</span>
     </div>
     <nav class="flex-1 space-y-1">
-        <a href="Dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
-            <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-            <span class="text-sm font-label tracking-wide uppercase font-semibold">Dashboard</span>
+        <a href="Dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+            <span class="material-symbols-outlined shrink-0" data-icon="dashboard">dashboard</span>
+            <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Dashboard</span>
         </a>
-        <a href="stations.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
-            <span class="material-symbols-outlined" data-icon="ev_station">ev_station</span>
-            <span class="text-sm font-label tracking-wide uppercase font-semibold">Charging Stations</span>
+        <a href="stations.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+            <span class="material-symbols-outlined shrink-0" data-icon="ev_station">ev_station</span>
+            <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Charging Stations</span>
         </a>
-        <a href="analytics.html" class="flex items-center gap-3 px-3 py-2.5 text-teal-700 dark:text-teal-300 bg-white dark:bg-slate-900 rounded-lg shadow-sm font-bold transition-transform duration-200">
-            <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
-            <span class="text-sm font-label tracking-wide uppercase font-semibold">Analytics</span>
+        <a href="analytics.html" class="flex items-center gap-3 px-3 py-2.5 text-teal-700 dark:text-teal-300 bg-white dark:bg-slate-900 rounded-lg shadow-sm font-bold transition-transform duration-200 whitespace-nowrap">
+            <span class="material-symbols-outlined shrink-0" data-icon="analytics">analytics</span>
+            <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Analytics</span>
         </a>
-        <a href="settings.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200">
-            <span class="material-symbols-outlined" data-icon="settings">settings</span>
-            <span class="text-sm font-label tracking-wide uppercase font-semibold">Settings</span>
+        <a href="settings.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+            <span class="material-symbols-outlined shrink-0" data-icon="settings">settings</span>
+            <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Settings</span>
         </a>
     </nav>
     <div class="mt-auto pt-4 space-y-1">
-        <a data-action="logout" class="flex items-center gap-3 px-3 py-2.5 text-error hover:bg-error/5 rounded-lg transition-colors cursor-pointer logout-btn">
-            <span class="material-symbols-outlined" data-icon="logout">logout</span>
-            <span class="text-sm font-semibold tracking-wide uppercase">Logout</span>
+        <a data-action="logout" class="flex items-center gap-3 px-3 py-2.5 text-error hover:bg-error/5 rounded-lg transition-colors cursor-pointer logout-btn whitespace-nowrap">
+            <span class="material-symbols-outlined shrink-0" data-icon="logout">logout</span>
+            <span class="text-sm font-semibold tracking-wide uppercase opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Logout</span>
         </a>
     </div>
 </aside>
 
 <!-- Main Content Canvas -->
-<main class="lg:ml-64 flex-1 flex flex-col min-h-screen">
+<main class="lg:ml-20 transition-all duration-300 flex-1 flex flex-col min-h-screen">
     <!-- TopNavBar -->
-    <header class="w-full sticky top-0 z-40 bg-slate-50/70 backdrop-blur-xl flex justify-between items-center px-8 py-4 shadow-[0px_24px_48px_rgba(0,83,91,0.06)]">
-        <div class="flex items-center gap-4">
+    <header class="w-full sticky top-0 z-40 bg-slate-50/70 backdrop-blur-xl flex flex-wrap justify-between items-center px-4 md:px-8 py-4 shadow-[0px_24px_48px_rgba(0,83,91,0.06)] gap-4">
+        <div class="flex items-center gap-2 sm:gap-4">
                 <button id="mobile-menu-btn" class="lg:hidden text-slate-600 hover:text-primary transition-colors flex items-center justify-center mr-2">
                     <span class="material-symbols-outlined text-3xl">menu</span>
                 </button>
-            <h2 class="text-2xl font-headline font-bold text-primary">Station Analytics</h2>
+            <h2 class="text-xl sm:text-2xl font-headline font-bold text-primary">Station Analytics</h2>
         </div>
         <div class="flex items-center gap-4">
             <button class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 hover:bg-primary/20 transition-colors">
                 <span class="material-symbols-outlined text-[20px]">download</span>
                 Export Report
             </button>
-            <div class="w-px h-6 bg-slate-200 mx-2"></div>
-            <div class="text-right">
+            <div class="w-px h-6 bg-slate-200 mx-1 sm:mx-2"></div>
+            <div class="text-right hidden sm:block">
                 <p class="text-sm font-bold text-teal-800" id="profile-name">Loading...</p>
                 <p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Station Owner</p>
             </div>
-            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shrink-0">
                 <span class="material-symbols-outlined">person</span>
             </div>
         </div>
     </header>
 
     <!-- Content Area -->
-    <div class="p-8 space-y-8 max-w-[1400px]">
+    <div class="p-4 md:p-8 space-y-6 md:space-y-8 max-w-[1400px]">
         
         <!-- Summary Cards -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-gradient-to-br from-primary to-[#006d77] p-8 rounded-3xl shadow-xl shadow-primary/20 text-white relative overflow-hidden group hover:-translate-y-1 transition-all duration-300">
-                <div class="absolute -right-4 -top-4 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
-                <div class="flex justify-between items-start mb-4 relative z-10">
-                    <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center backdrop-blur-sm">
-                        <span class="material-symbols-outlined text-white">payments</span>
-                    </div>
-                    <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">+18.2%</span>
-                </div>
-                <p class="text-sm font-bold text-white/70 uppercase tracking-widest relative z-10">Monthly Revenue</p>
-                <h3 class="text-5xl font-headline font-extrabold mt-2 relative z-10">$8,492</h3>
-            </div>
+<div class="bg-gradient-to-br from-primary to-[#006d77] p-8 rounded-3xl shadow-xl shadow-primary/20 text-white relative overflow-hidden group hover:-translate-y-1 transition-all duration-300">
+<div class="absolute -right-4 -top-4 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center backdrop-blur-sm">
+<span class="material-symbols-outlined text-white">payments</span>
+</div>
+<span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">+15%</span>
+</div>
+<p class="text-sm font-bold text-white/70 uppercase tracking-widest relative z-10">Monthly Revenue</p>
+<h3 id="analytics-revenue" class="text-5xl font-headline font-extrabold mt-2 relative z-10">Rs. 0</h3>
+</div>
 
-            <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
-                        <span class="material-symbols-outlined">bolt</span>
-                    </div>
-                    <span class="bg-tertiary/10 text-tertiary text-xs font-bold px-3 py-1 rounded-full">+5.4%</span>
-                </div>
-                <p class="text-sm font-bold text-slate-500 uppercase tracking-widest">Energy Delivered</p>
-                <h3 class="text-5xl font-headline font-extrabold text-primary mt-2">18.2 <span class="text-xl text-slate-400">MWh</span></h3>
-            </div>
+<div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<span class="bg-tertiary/10 text-tertiary text-xs font-bold px-3 py-1 rounded-full">+12%</span>
+</div>
+<p class="text-sm font-bold text-slate-500 uppercase tracking-widest">Energy Delivered</p>
+<h3 id="analytics-energy" class="text-5xl font-headline font-extrabold text-primary mt-2">0 <span class="text-xl text-slate-400">MWh</span></h3>
+</div>
 
-            <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="w-12 h-12 rounded-2xl bg-purple-50 flex items-center justify-center text-purple-600">
-                        <span class="material-symbols-outlined">ev_charger</span>
-                    </div>
-                </div>
-                <p class="text-sm font-bold text-slate-500 uppercase tracking-widest">Total Charging Sessions</p>
-                <h3 class="text-5xl font-headline font-extrabold text-primary mt-2">1,204</h3>
-            </div>
-        </div>
+<div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-2xl bg-purple-50 flex items-center justify-center text-purple-600">
+<span class="material-symbols-outlined">ev_charger</span>
+</div>
+</div>
+<p class="text-sm font-bold text-slate-500 uppercase tracking-widest">Total Charging Sessions</p>
+<h3 id="analytics-sessions" class="text-5xl font-headline font-extrabold text-primary mt-2">0</h3>
+</div>
+</div>
 
         <!-- Charts Area -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -188,33 +190,22 @@
                 </div>
             </div>
 
-            <!-- Best Performing Station -->
             <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100 flex flex-col">
-                <h3 class="text-xl font-bold font-headline text-primary mb-2">Top Performer</h3>
-                <p class="text-sm text-slate-500 mb-6">Your highest revenue station this month.</p>
-                
-                <div class="flex-1 flex flex-col items-center justify-center text-center p-6 bg-gradient-to-b from-slate-50 to-white rounded-2xl border border-slate-100 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4">
-                        <span class="material-symbols-outlined text-amber-400 text-3xl drop-shadow-md">military_tech</span>
-                    </div>
-                    <div class="w-20 h-20 bg-teal-50 rounded-full flex items-center justify-center mb-4">
-                        <span class="material-symbols-outlined text-teal-600 text-3xl">ev_station</span>
-                    </div>
-                    <h4 class="font-bold text-lg text-primary">Downtown Hub - Alpha</h4>
-                    <p class="text-xs text-slate-500 mt-1 mb-4">Seattle, WA</p>
-                    <div class="w-full bg-surface-container-low rounded-xl p-4">
-                        <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Generated</p>
-                        <p class="font-headline font-black text-2xl text-teal-700">$3,420</p>
-                    </div>
-                </div>
-            </div>
+<h3 class="text-xl font-bold font-headline text-primary mb-2">Top Performer</h3>
+<p class="text-sm text-slate-500 mb-6">Your highest capacity station based on ports count.</p>
+<div id="top-performer-container" class="flex-1 flex flex-col justify-center">
+    <p class="text-slate-400 italic text-center">No stations added yet.</p>
+</div>
+</div>
         </div>
 
     </div>
 </main>
 
-<script src="../assets/js/auth.js"></script>
-<script>
+<script type="module" src="../assets/js/auth.js"></script>
+<script type="module">
+    import { Auth } from '../assets/js/auth.js';
+    import { StationsDB } from '../assets/js/stations.js';
     // ── Security ─────────────────────────────────────
     const user = Auth.refreshSession();
     if (!user || user.role !== 'admin') window.location.replace('../auth/login.html');
@@ -228,6 +219,54 @@
     // Profile Name
     const nameEl = document.getElementById('profile-name');
     if (nameEl && user) nameEl.innerText = user.name;
+
+    // Load Analytics data
+    async function loadAnalytics() {
+        const stations = await StationsDB.getStations(user.uid);
+        const activeStations = stations.filter(s => s.status === 'active');
+
+        // Monthly Revenue (Rs. 35,000 per active station)
+        const revenue = activeStations.length * 35000;
+        document.getElementById('analytics-revenue').innerText = `Rs. ${revenue.toLocaleString()}`;
+
+        // Energy Delivered (15 MWh per active station)
+        const energy = activeStations.length * 15;
+        document.getElementById('analytics-energy').innerHTML = `${energy} <span class="text-xl text-slate-400">MWh</span>`;
+
+        // Total Sessions (85 per active station)
+        const sessions = activeStations.length * 85;
+        document.getElementById('analytics-sessions').innerText = sessions;
+
+        // Populate Top Performer
+        const performerContainer = document.getElementById('top-performer-container');
+        if (stations.length > 0) {
+            // Sort by ports count descending
+            const sorted = [...stations].sort((a, b) => b.ports - a.ports);
+            const topStation = sorted[0];
+
+            performerContainer.innerHTML = `
+                <div class="space-y-4">
+                    <div class="p-4 bg-primary/5 rounded-2xl border border-primary/10">
+                        <h4 class="font-headline font-bold text-lg text-primary">${topStation.name}</h4>
+                        <p class="text-xs text-on-surface-variant mt-1">${topStation.location}</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase">Total Ports</p>
+                            <p class="text-xl font-bold text-primary">${topStation.ports}</p>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase">Status</p>
+                            <p class="text-sm font-bold text-tertiary uppercase">${topStation.status === 'active' ? 'Online' : 'Offline'}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } else {
+            performerContainer.innerHTML = `<p class="text-slate-400 italic text-center">No stations added yet.</p>`;
+        }
+    }
+    loadAnalytics();
 </script>
 
 <!-- Mobile Sidebar Overlay -->

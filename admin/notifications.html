@@ -172,8 +172,10 @@
                     </select>
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-1">Category Label</label>
-                    <input type="text" id="notificationCategory" required class="w-full px-4 py-2 bg-surface-container-low border-transparent rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-transparent" placeholder="e.g. SYSTEM UPDATE">
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-1">Select Station</label>
+                    <select id="notificationCategory" required class="w-full px-4 py-2 bg-surface-container-low border-transparent rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-transparent">
+                        <option value="" disabled selected>Loading stations...</option>
+                    </select>
                 </div>
             </div>
 
@@ -189,6 +191,7 @@
 <script type="module">
     import { Auth } from '../assets/js/auth.js';
     import { NotificationsDB } from '../assets/js/notifications.js';
+    import { StationsDB } from '../assets/js/stations.js';
 
     // Security: admin role required (and must be approved)
     const user = Auth.requireRole('admin', true);
@@ -266,6 +269,23 @@
         });
     }
 
+    let stations = [];
+    async function loadStations() {
+        try {
+            stations = await StationsDB.getStations(user.uid);
+            const select = document.getElementById('notificationCategory');
+            select.innerHTML = '<option value="" disabled selected>Select a station</option>';
+            stations.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s.name;
+                opt.text = s.name;
+                select.appendChild(opt);
+            });
+        } catch (err) {
+            console.error('Error loading stations:', err);
+        }
+    }
+
     // Modal Actions
     async function openModal(id = null) {
         document.getElementById('notificationModal').classList.remove('hidden');
@@ -279,13 +299,23 @@
                 document.getElementById('notificationTitle').value = notif.title;
                 document.getElementById('notificationBody').value = notif.body;
                 document.getElementById('notificationType').value = notif.type || 'system';
-                document.getElementById('notificationCategory').value = notif.category || 'SYSTEM UPDATE';
+                
+                // Add the category option dynamically if it doesn't exist in the list
+                const select = document.getElementById('notificationCategory');
+                const hasOption = Array.from(select.options).some(opt => opt.value === notif.category);
+                if (!hasOption && notif.category) {
+                    const newOpt = document.createElement('option');
+                    newOpt.value = notif.category;
+                    newOpt.text = notif.category;
+                    select.appendChild(newOpt);
+                }
+                select.value = notif.category || '';
             }
         } else {
             document.getElementById('modalTitle').innerText = 'Broadcast Notification';
             document.getElementById('notificationId').value = '';
             document.getElementById('notificationType').value = 'system';
-            document.getElementById('notificationCategory').value = 'SYSTEM UPDATE';
+            document.getElementById('notificationCategory').value = '';
         }
     }
 
@@ -333,6 +363,7 @@
     });
 
     // Initialize
+    loadStations();
     renderNotifications();
 </script>
 

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plug Me | Manage Appointments (Admin)</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <!-- Scripts -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00535b",
+                        "surface-container": "#edeeef",
+                        background: "#f8f9fa",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        tertiary: "#0d5621",
+                        "on-surface-variant": "#3e494a",
+                        "on-surface": "#191c1d",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-container-low": "#f3f4f5",
+                        error: "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#abf4ac",
+                        "on-tertiary-fixed-variant": "#07521d",
+                    },
+                    fontFamily: {
+                        headline: ["Inter", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
+                        label: ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface">
+
+<div class="flex min-h-screen">
+    <!-- SideNavBar -->
+    <aside id="sidebar" class="group h-screen w-64 lg:w-20 lg:hover:w-64 fixed left-0 top-0 -translate-x-full lg:translate-x-0 transition-all duration-300 z-[60] bg-slate-100 dark:bg-slate-950 flex flex-col p-4 gap-2 overflow-x-hidden shadow-2xl lg:shadow-none hover:shadow-2xl">
+        <div class="mb-8 px-2 flex flex-col overflow-hidden">
+            <h1 class="text-teal-900 dark:text-teal-100 font-black text-2xl font-headline tracking-tight whitespace-nowrap opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Plug Me</h1>
+            <span class="text-xs font-semibold tracking-wide uppercase text-slate-500 whitespace-nowrap opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Partner Portal</span>
+        </div>
+        <nav class="flex-1 space-y-1">
+            <a href="Dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="dashboard">dashboard</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Dashboard</span>
+            </a>
+            <a href="stations.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="ev_station">ev_station</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Charging Stations</span>
+            </a>
+            <a href="analytics.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="analytics">analytics</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Analytics</span>
+            </a>
+            <a href="appointments.html" class="flex items-center gap-3 px-3 py-2.5 text-teal-700 dark:text-teal-300 bg-white dark:bg-slate-900 rounded-lg shadow-sm font-bold transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="calendar_month">calendar_month</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Appointments</span>
+            </a>
+            <a href="notifications.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="notifications">notifications</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Notifications</span>
+            </a>
+            <a href="settings.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-teal-500 hover:translate-x-1 transition-transform duration-200 whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="settings">settings</span>
+                <span class="text-sm font-label tracking-wide uppercase font-semibold opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Settings</span>
+            </a>
+        </nav>
+        <div class="mt-auto pt-4 space-y-1">
+            <a data-action="logout" class="flex items-center gap-3 px-3 py-2.5 text-error hover:bg-error/5 rounded-lg transition-colors cursor-pointer logout-btn whitespace-nowrap">
+                <span class="material-symbols-outlined shrink-0" data-icon="logout">logout</span>
+                <span class="text-sm font-semibold tracking-wide uppercase opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="lg:ml-64 flex-1">
+        <header class="w-full sticky top-0 z-40 bg-slate-50/70 backdrop-blur-xl flex flex-wrap justify-between items-center px-4 md:px-8 py-4 shadow-[0px_24px_48px_rgba(0,83,91,0.06)] gap-4">
+            <div class="flex items-center gap-2 sm:gap-4">
+                <button id="mobile-menu-btn" class="lg:hidden text-slate-600 hover:text-primary transition-colors flex items-center justify-center mr-2">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                    <input type="text" id="searchInput" placeholder="Search appointments..." class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-sm w-48 sm:w-80 focus:ring-2 focus:ring-primary/20">
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="text-right hidden sm:block">
+                    <p class="text-sm font-bold text-teal-800" id="profile-name">Loading...</p>
+                    <p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Station Owner</p>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shrink-0">
+                    <span class="material-symbols-outlined">person</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="p-8 max-w-7xl mx-auto space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <h2 class="text-3xl font-headline font-bold text-primary">Station Appointments</h2>
+                    <p class="text-sm text-slate-500">Manage time slot reservations placed by users.</p>
+                </div>
+                <!-- Status Filter Tabs -->
+                <div class="flex bg-slate-100 dark:bg-slate-900 p-1 rounded-xl">
+                    <button onclick="setFilter('all')" id="filter-all" class="px-4 py-1.5 text-xs font-bold rounded-lg transition-all bg-primary text-white">All</button>
+                    <button onclick="setFilter('Pending')" id="filter-Pending" class="px-4 py-1.5 text-xs font-bold rounded-lg transition-all text-slate-500 hover:text-teal-600">Pending</button>
+                    <button onclick="setFilter('Confirmed')" id="filter-Confirmed" class="px-4 py-1.5 text-xs font-bold rounded-lg transition-all text-slate-500 hover:text-teal-600">Confirmed</button>
+                    <button onclick="setFilter('Cancelled')" id="filter-Cancelled" class="px-4 py-1.5 text-xs font-bold rounded-lg transition-all text-slate-500 hover:text-teal-600">Cancelled</button>
+                </div>
+            </div>
+
+            <!-- Appointments Table -->
+            <div class="bg-surface-container-lowest rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left min-w-[900px]">
+                        <thead>
+                            <tr class="bg-surface-container-low/50 text-on-surface-variant border-b border-slate-200">
+                                <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider">User Details</th>
+                                <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider">Charging Station</th>
+                                <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider">Date & Time Slot</th>
+                                <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-center">Status</th>
+                                <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="appointmentsTableBody" class="divide-y divide-slate-100">
+                            <tr>
+                                <td colspan="5" class="text-center py-8 text-slate-500">Loading appointments...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script type="module" src="../assets/js/auth.js"></script>
+<script type="module" src="../assets/js/appointments.js"></script>
+<script type="module">
+    import { Auth } from '../assets/js/auth.js';
+    import { AppointmentsDB } from '../assets/js/appointments.js';
+
+    // Security check: admin role required
+    const user = Auth.requireRole('admin', true);
+    if (!user) throw new Error('Access denied');
+
+    // Populate profile name
+    document.getElementById('profile-name').innerText = user.name;
+
+    // Logout actions
+    document.querySelectorAll('.logout-btn').forEach(btn => {
+        btn.onclick = e => { e.preventDefault(); Auth.logout(); };
+    });
+    document.querySelectorAll('[data-action="logout"]').forEach(el => {
+        el.onclick = e => { e.preventDefault(); Auth.logout(); };
+    });
+
+    let currentFilter = 'all';
+    let appointmentsList = [];
+
+    // Filter selector
+    window.setFilter = function(status) {
+        currentFilter = status;
+        // Update tab styling
+        ['all', 'Pending', 'Confirmed', 'Cancelled'].forEach(s => {
+            const btn = document.getElementById(`filter-${s}`);
+            if (s === status) {
+                btn.className = "px-4 py-1.5 text-xs font-bold rounded-lg transition-all bg-primary text-white";
+            } else {
+                btn.className = "px-4 py-1.5 text-xs font-bold rounded-lg transition-all text-slate-500 hover:text-teal-600";
+            }
+        });
+        renderTable();
+    }
+
+    // Render appointments to table
+    function renderTable() {
+        const tbody = document.getElementById('appointmentsTableBody');
+        const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+        
+        tbody.innerHTML = '';
+
+        // Filter list
+        let filtered = appointmentsList;
+        if (currentFilter !== 'all') {
+            filtered = filtered.filter(a => a.status === currentFilter);
+        }
+        if (searchQuery) {
+            filtered = filtered.filter(a => 
+                (a.userName || '').toLowerCase().includes(searchQuery) ||
+                (a.stationName || '').toLowerCase().includes(searchQuery) ||
+                (a.userEmail || '').toLowerCase().includes(searchQuery)
+            );
+        }
+
+        if (filtered.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="5" class="text-center py-8 text-slate-500">No appointments found.</td></tr>`;
+            return;
+        }
+
+        filtered.forEach(app => {
+            // Status tag
+            let statusBadge = '';
+            if (app.status === 'Confirmed') {
+                statusBadge = `<span class="px-2.5 py-1 bg-green-100 text-green-800 text-[10px] font-extrabold rounded-full uppercase">Confirmed</span>`;
+            } else if (app.status === 'Cancelled') {
+                statusBadge = `<span class="px-2.5 py-1 bg-red-100 text-red-800 text-[10px] font-extrabold rounded-full uppercase">Cancelled</span>`;
+            } else {
+                statusBadge = `<span class="px-2.5 py-1 bg-amber-100 text-amber-800 text-[10px] font-extrabold rounded-full uppercase">Pending</span>`;
+            }
+
+            // Date formatting
+            let dateStr = app.date;
+            try {
+                const dateObj = new Date(app.date);
+                if (!isNaN(dateObj)) {
+                    dateStr = dateObj.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+                }
+            } catch (_) {}
+
+            // Action buttons
+            let actions = '';
+            if (app.status === 'Pending') {
+                actions = `
+                    <button onclick="updateAppointmentStatus('${app.id}', 'Confirmed')" title="Approve" class="p-1.5 text-green-600 hover:bg-green-50 rounded-lg transition-colors">
+                        <span class="material-symbols-outlined text-lg">check_circle</span>
+                    </button>
+                    <button onclick="updateAppointmentStatus('${app.id}', 'Cancelled')" title="Reject" class="p-1.5 text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                        <span class="material-symbols-outlined text-lg">cancel</span>
+                    </button>
+                `;
+            } else if (app.status === 'Confirmed') {
+                actions = `
+                    <button onclick="updateAppointmentStatus('${app.id}', 'Cancelled')" title="Cancel Appointment" class="p-1.5 text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                        <span class="material-symbols-outlined text-lg">cancel</span>
+                    </button>
+                `;
+            } else {
+                actions = `<span class="text-xs text-slate-400 italic">No actions</span>`;
+            }
+
+            tbody.innerHTML += `
+                <tr class="hover:bg-slate-50 transition-colors">
+                    <td class="px-6 py-4">
+                        <div class="font-bold text-slate-800 text-sm">${app.userName || 'Unknown User'}</div>
+                        <div class="text-xs text-slate-500">${app.userEmail || ''}</div>
+                        <div class="text-[10px] text-slate-400 font-semibold mt-0.5">${app.userPhone || ''}</div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="font-semibold text-primary text-sm">${app.stationName || 'Unknown Station'}</span>
+                        <div class="text-[10px] text-slate-400 uppercase tracking-tight mt-0.5">ID: ${app.stationId || ''}</div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="text-sm font-semibold text-slate-700">${dateStr}</div>
+                        <div class="text-xs text-teal-600 font-bold mt-0.5 flex items-center gap-1">
+                            <span class="material-symbols-outlined text-sm">schedule</span>
+                            ${app.timeSlot || ''}
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        ${statusBadge}
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                        <div class="flex items-center justify-end gap-1">
+                            ${actions}
+                        </div>
+                    </td>
+                </tr>
+            `;
+        });
+    }
+
+    // Update Status Action
+    window.updateAppointmentStatus = async function(id, status) {
+        let msg = status === 'Confirmed' 
+            ? "Are you sure you want to approve this slot booking?" 
+            : "Are you sure you want to cancel this appointment?";
+        
+        if (confirm(msg)) {
+            const success = await AppointmentsDB.updateStatus(id, status);
+            if (!success) {
+                alert("Failed to update appointment status. Please check your connection.");
+            }
+        }
+    }
+
+    // Search input binding
+    document.getElementById('searchInput').addEventListener('input', () => {
+        renderTable();
+    });
+
+    // Start listening in real-time (passing user.uid to show only this admin's stations)
+    AppointmentsDB.listenAppointments(user.uid, (appointments) => {
+        appointmentsList = appointments;
+        renderTable();
+    });
+</script>
+
+<!-- Mobile Sidebar Overlay -->
+<div id="mobile-overlay" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[55] hidden lg:hidden transition-opacity opacity-0"></div>
+
+<script>
+    // Mobile Sidebar Toggle
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('mobile-overlay');
+
+        if(mobileMenuBtn && sidebar && overlay) {
+            function toggleSidebar() {
+                const isOpen = !sidebar.classList.contains('-translate-x-full');
+                if (isOpen) {
+                    sidebar.classList.add('-translate-x-full');
+                    overlay.classList.add('opacity-0');
+                    setTimeout(() => overlay.classList.add('hidden'), 300);
+                } else {
+                    overlay.classList.remove('hidden');
+                    setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                    sidebar.classList.remove('-translate-x-full');
+                }
+            }
+
+            mobileMenuBtn.addEventListener('click', toggleSidebar);
+            overlay.addEventListener('click', toggleSidebar);
+        }
+    });
+</script>
+</body>
+</html>

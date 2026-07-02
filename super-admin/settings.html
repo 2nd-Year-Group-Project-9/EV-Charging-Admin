@@ -32,6 +32,20 @@
                             "950": "#050b30",
                         },
 
+                        teal: {
+                            "50": "#e8eaf6",
+                            "100": "#c5cae9",
+                            "200": "#9fa8da",
+                            "300": "#7986cb",
+                            "400": "#5c6bc0",
+                            "500": "#1A2FA0",
+                            "600": "#1565c0",
+                            "700": "#0d47a1",
+                            "800": "#1a237e",
+                            "900": "#0f172a",
+                            "950": "#050b30",
+                        },
+
                         primary: "#1A2FA0",
                         "surface-container": "#E1EBF2",
                         background: "#F0F4F8",
@@ -62,6 +76,7 @@
 <body class="bg-background font-body text-on-surface">
 
 <div class="flex min-h-screen">
+    <!-- SideNavBar -->
     <!-- SideNavBar -->
     <!-- SideNavBar -->
     <aside id="sidebar" class="group h-screen w-64 lg:w-20 lg:hover:w-64 fixed left-0 top-0 -translate-x-full lg:translate-x-0 transition-all duration-300 z-[60] bg-[#0B1340] dark:bg-slate-950 flex flex-col p-4 gap-2 overflow-x-hidden shadow-2xl lg:shadow-none hover:shadow-2xl">
@@ -127,7 +142,10 @@
             </div>
         </header>
 
-        <div class="p-8 max-w-4xl mx-auto space-y-8 w-full">
+        <div class="p-4 md:p-8 space-y-6 md:space-y-8 w-full xl:max-w-none">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+            <!-- Left Column: Platform Settings -->
+            <div class="lg:col-span-2 space-y-6 md:space-y-8">
             
             <!-- Global Platform Settings -->
             <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100">
@@ -172,8 +190,28 @@
                 </form>
             </div>
 
-            <!-- Security Settings -->
-            <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100">
+
+            <!-- Danger Zone -->
+            <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-error-container">
+                <h3 class="text-xl font-bold font-headline text-error mb-2">Danger Zone</h3>
+                <p class="text-sm text-slate-500 mb-6">These actions affect the entire database and cannot be undone.</p>
+                
+                <div class="flex items-center justify-between p-4 border border-error-container rounded-2xl">
+                    <div>
+                        <p class="font-bold text-on-surface">Factory Reset Database</p>
+                        <p class="text-xs text-slate-500 mt-1">Clears all stations, admins, and logs. Restores default seed data.</p>
+                    </div>
+                    <button onclick="resetSystem()" class="px-6 py-2 bg-error text-white font-bold rounded-xl shadow-md hover:bg-error/90 transition-colors">Wipe Data</button>
+                </div>
+            </div>
+            
+
+                        </div>
+
+            <!-- Right Column: Security Policies -->
+            <div class="space-y-6 md:space-y-8">
+                <!-- Security Settings -->
+                <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100">
                 <div class="flex items-center gap-4 mb-6">
                     <div class="w-10 h-10 rounded-full bg-error/10 flex items-center justify-center text-error">
                         <span class="material-symbols-outlined">security</span>
@@ -207,24 +245,11 @@
                         </label>
                     </div>
                 </div>
-            </div>
-
-            <!-- Danger Zone -->
-            <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-error-container">
-                <h3 class="text-xl font-bold font-headline text-error mb-2">Danger Zone</h3>
-                <p class="text-sm text-slate-500 mb-6">These actions affect the entire database and cannot be undone.</p>
-                
-                <div class="flex items-center justify-between p-4 border border-error-container rounded-2xl">
-                    <div>
-                        <p class="font-bold text-on-surface">Factory Reset Database</p>
-                        <p class="text-xs text-slate-500 mt-1">Clears all stations, admins, and logs. Restores default seed data.</p>
-                    </div>
-                    <button onclick="resetSystem()" class="px-6 py-2 bg-error text-white font-bold rounded-xl shadow-md hover:bg-error/90 transition-colors">Wipe Data</button>
-                </div>
-            </div>
-            
+            </div></div>
         </div>
-    </main>
+            
+    </div>
+</main>
 </div>
 
 <script type="module" src="../assets/js/auth.js"></script>

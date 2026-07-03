@@ -5,6 +5,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Analytics | Plug Me</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
@@ -111,7 +112,7 @@
             <h2 class="text-xl sm:text-2xl font-headline font-bold text-primary">Station Analytics</h2>
         </div>
         <div class="flex items-center gap-4">
-            <button class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 hover:bg-primary/20 transition-colors">
+            <button id="export-report-btn" class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 hover:bg-primary/20 transition-colors">
                 <span class="material-symbols-outlined text-[20px]">download</span>
                 Export Report
             </button>
@@ -131,106 +132,132 @@
         
         <!-- Summary Cards -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<div class="bg-gradient-to-br from-primary to-[#2A3EB1] p-8 rounded-3xl shadow-xl shadow-primary/20 text-white relative overflow-hidden group hover:-translate-y-1 transition-all duration-300">
-<div class="absolute -right-4 -top-4 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
-<div class="flex justify-between items-start mb-4 relative z-10">
-<div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center backdrop-blur-sm">
-<span class="material-symbols-outlined text-white">payments</span>
-</div>
-<span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">+15%</span>
-</div>
-<p class="text-sm font-bold text-white/70 uppercase tracking-widest relative z-10">Monthly Revenue</p>
-<h3 id="analytics-revenue" class="text-5xl font-headline font-extrabold mt-2 relative z-10">Rs. 0</h3>
-</div>
+            <!-- Card 1: Revenue -->
+            <div class="bg-gradient-to-br from-primary to-[#2A3EB1] p-8 rounded-3xl shadow-xl shadow-primary/20 text-white relative overflow-hidden group hover:-translate-y-1 transition-all duration-300">
+                <div class="absolute -right-4 -top-4 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
+                <div class="flex justify-between items-start mb-4 relative z-10">
+                    <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center backdrop-blur-sm">
+                        <span class="material-symbols-outlined text-white">payments</span>
+                    </div>
+                    <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Earnings</span>
+                </div>
+                <p id="revenue-period-label" class="text-sm font-bold text-white/70 uppercase tracking-widest relative z-10">Today's Revenue</p>
+                <h3 id="analytics-revenue" class="text-5xl font-headline font-extrabold mt-2 relative z-10">Rs. 0</h3>
+            </div>
 
-<div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-<div class="flex justify-between items-start mb-4">
-<div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
-<span class="material-symbols-outlined">bolt</span>
-</div>
-<span class="bg-tertiary/10 text-tertiary text-xs font-bold px-3 py-1 rounded-full">+12%</span>
-</div>
-<p class="text-sm font-bold text-slate-500 uppercase tracking-widest">Energy Delivered</p>
-<h3 id="analytics-energy" class="text-5xl font-headline font-extrabold text-primary mt-2">0 <span class="text-xl text-slate-400">MWh</span></h3>
-</div>
+            <!-- Card 2: Energy -->
+            <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
+                        <span class="material-symbols-outlined">bolt</span>
+                    </div>
+                    <span class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-full">Consumed</span>
+                </div>
+                <p id="energy-period-label" class="text-sm font-bold text-slate-500 uppercase tracking-widest">Energy Delivered</p>
+                <h3 id="analytics-energy" class="text-5xl font-headline font-extrabold text-primary mt-2">0 <span class="text-xl text-slate-400">kWh</span></h3>
+            </div>
 
-<div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-<div class="flex justify-between items-start mb-4">
-<div class="w-12 h-12 rounded-2xl bg-purple-50 flex items-center justify-center text-purple-600">
-<span class="material-symbols-outlined">ev_charger</span>
-</div>
-</div>
-<p class="text-sm font-bold text-slate-500 uppercase tracking-widest">Total Charging Sessions</p>
-<h3 id="analytics-sessions" class="text-5xl font-headline font-extrabold text-primary mt-2">0</h3>
-</div>
-</div>
+            <!-- Card 3: Sessions -->
+            <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-50 flex items-center justify-center text-purple-600">
+                        <span class="material-symbols-outlined">ev_charger</span>
+                    </div>
+                    <span class="bg-purple-50 text-purple-700 text-xs font-bold px-3 py-1 rounded-full">Usage</span>
+                </div>
+                <p id="sessions-period-label" class="text-sm font-bold text-slate-500 uppercase tracking-widest">Total Charging Sessions</p>
+                <h3 id="analytics-sessions" class="text-5xl font-headline font-extrabold text-primary mt-2">0</h3>
+            </div>
+        </div>
 
         <!-- Charts Area -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <!-- Utilization Graph -->
-            <div class="lg:col-span-2 bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100">
-                <div class="flex justify-between items-center mb-8">
+            <div class="lg:col-span-2 bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100 flex flex-col justify-between">
+                <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 mb-6">
                     <div>
                         <h3 class="text-xl font-bold font-headline text-primary">Station Utilization</h3>
-                        <p class="text-sm text-slate-500">Average port occupancy over 24 hours</p>
+                        <p class="text-sm text-slate-500 mt-1">Average energy throughput over the selected period</p>
                     </div>
-                    <select class="bg-surface-container-low border-transparent rounded-xl focus:ring-2 focus:ring-primary/20 text-sm font-bold text-primary">
-                        <option>Today</option>
-                        <option>Yesterday</option>
-                        <option>Last 7 Days</option>
+                    <select id="date-filter" class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2 text-sm font-bold text-primary focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
+                        <option value="Today">Today (Daily)</option>
+                        <option value="Yesterday">Yesterday</option>
+                        <option value="Last 7 Days">Last 7 Days (Weekly)</option>
+                        <option value="Last 30 Days">Last 30 Days (Monthly)</option>
+                        <option value="All Time">All Time</option>
                     </select>
                 </div>
                 
-                <!-- Pure CSS Mockup of Area Chart -->
-                <div class="h-64 relative flex items-end">
-                    <!-- Background Grid -->
-                    <div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
-                        <div class="border-b border-slate-100 w-full"></div>
-                        <div class="border-b border-slate-100 w-full"></div>
-                        <div class="border-b border-slate-100 w-full"></div>
-                        <div class="border-b border-slate-100 w-full"></div>
-                        <div class="border-b border-slate-100 w-full"></div>
-                    </div>
-                    <!-- Chart SVG Mock -->
-                    <svg viewBox="0 0 1000 200" class="w-full h-full preserve-3d z-10" preserveAspectRatio="none">
-                        <!-- Gradient def -->
-                        <defs>
-                            <linearGradient id="chart-gradient" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#1A2FA0" stop-opacity="0.3"/>
-                                <stop offset="100%" stop-color="#1A2FA0" stop-opacity="0"/>
-                            </linearGradient>
-                        </defs>
-                        <!-- Area -->
-                        <path d="M0,200 L0,150 C100,100 200,180 300,120 C400,60 500,140 600,80 C700,20 800,120 900,40 C950,10 980,60 1000,90 L1000,200 Z" fill="url(#chart-gradient)"></path>
-                        <!-- Line -->
-                        <path d="M0,150 C100,100 200,180 300,120 C400,60 500,140 600,80 C700,20 800,120 900,40 C950,10 980,60 1000,90" fill="none" stroke="#1A2FA0" stroke-width="4" stroke-linecap="round"></path>
-                    </svg>
-                </div>
-                <div class="flex justify-between items-center mt-4 text-xs font-bold text-slate-400">
-                    <div>12 AM</div>
-                    <div>6 AM</div>
-                    <div>12 PM</div>
-                    <div>6 PM</div>
-                    <div>11 PM</div>
+                <!-- Chart.js Canvas -->
+                <div class="h-72 relative flex-1">
+                    <canvas id="utilizationChart"></canvas>
                 </div>
             </div>
 
-            <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100 flex flex-col">
-<h3 class="text-xl font-bold font-headline text-primary mb-2">Top Performer</h3>
-<p class="text-sm text-slate-500 mb-6">Your highest capacity station based on ports count.</p>
-<div id="top-performer-container" class="flex-1 flex flex-col justify-center">
-    <p class="text-slate-400 italic text-center">No stations added yet.</p>
-</div>
-</div>
+            <!-- Top Performer -->
+            <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-xl font-bold font-headline text-primary">Top Performer</h3>
+                    <p class="text-sm text-slate-500 mt-1">Your highest capacity station based on ports count.</p>
+                </div>
+                <div id="top-performer-container" class="flex-1 flex flex-col justify-center py-6">
+                    <p class="text-slate-400 italic text-center">No stations added yet.</p>
+                </div>
+            </div>
         </div>
 
+        <!-- History Table Section -->
+        <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-slate-100 mt-8">
+            <div class="flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center mb-6 pb-6 border-b border-slate-100">
+                <div>
+                    <h3 class="text-xl font-bold font-headline text-primary">Complete Charging History</h3>
+                    <p class="text-xs text-slate-400 mt-1">Click column headers to sort results or use the tools to filter.</p>
+                </div>
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    <!-- Search Input -->
+                    <div class="relative min-w-[240px]">
+                        <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">search</span>
+                        <input type="text" id="search-sessions" placeholder="Search by customer name or email..." class="pl-10 pr-4 py-2 w-full bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
+                    </div>
+                    <!-- Station Filter -->
+                    <select id="station-filter" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 text-slate-700 font-medium">
+                        <option value="All">All Stations</option>
+                    </select>
+                    <!-- Status Filter -->
+                    <select id="status-filter" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 text-slate-700 font-medium">
+                        <option value="All">All Statuses</option>
+                        <option value="completed">Completed</option>
+                        <option value="active">Active</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-slate-100 select-none">
+                            <th class="pb-3 px-4 text-xs font-bold text-slate-400 uppercase tracking-wider cursor-pointer hover:text-primary transition-colors" data-sort="user">User <span class="sort-icon text-[10px]"></span></th>
+                            <th class="pb-3 px-4 text-xs font-bold text-slate-400 uppercase tracking-wider cursor-pointer hover:text-primary transition-colors" data-sort="station">Station <span class="sort-icon text-[10px]"></span></th>
+                            <th class="pb-3 px-4 text-xs font-bold text-slate-400 uppercase tracking-wider cursor-pointer hover:text-primary transition-colors" data-sort="date">Date & Time <span class="sort-icon text-[10px]">▼</span></th>
+                            <th class="pb-3 px-4 text-xs font-bold text-slate-400 uppercase tracking-wider cursor-pointer hover:text-primary transition-colors" data-sort="duration">Duration <span class="sort-icon text-[10px]"></span></th>
+                            <th class="pb-3 px-4 text-xs font-bold text-slate-400 uppercase tracking-wider cursor-pointer hover:text-primary transition-colors" data-sort="energy">Energy <span class="sort-icon text-[10px]"></span></th>
+                            <th class="pb-3 px-4 text-xs font-bold text-slate-400 uppercase tracking-wider cursor-pointer hover:text-primary transition-colors" data-sort="cost">Paid Amount <span class="sort-icon text-[10px]"></span></th>
+                            <th class="pb-3 px-4 text-xs font-bold text-slate-400 uppercase tracking-wider cursor-pointer hover:text-primary transition-colors" data-sort="status">Status <span class="sort-icon text-[10px]"></span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-table-body">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </main>
 
 <script type="module" src="../assets/js/auth.js"></script>
+<script type="module" src="../assets/js/analytics.js"></script>
 <script type="module">
     import { Auth } from '../assets/js/auth.js';
-    import { StationsDB } from '../assets/js/stations.js';
     // ── Security ─────────────────────────────────────
     const user = Auth.refreshSession();
     if (!user || user.role !== 'admin') window.location.replace('../auth/login.html');
@@ -244,54 +271,6 @@
     // Profile Name
     const nameEl = document.getElementById('profile-name');
     if (nameEl && user) nameEl.innerText = user.name;
-
-    // Load Analytics data
-    async function loadAnalytics() {
-        const stations = await StationsDB.getStations(user.uid);
-        const activeStations = stations.filter(s => s.status === 'active');
-
-        // Monthly Revenue (Rs. 35,000 per active station)
-        const revenue = activeStations.length * 35000;
-        document.getElementById('analytics-revenue').innerText = `Rs. ${revenue.toLocaleString()}`;
-
-        // Energy Delivered (15 MWh per active station)
-        const energy = activeStations.length * 15;
-        document.getElementById('analytics-energy').innerHTML = `${energy} <span class="text-xl text-slate-400">MWh</span>`;
-
-        // Total Sessions (85 per active station)
-        const sessions = activeStations.length * 85;
-        document.getElementById('analytics-sessions').innerText = sessions;
-
-        // Populate Top Performer
-        const performerContainer = document.getElementById('top-performer-container');
-        if (stations.length > 0) {
-            // Sort by ports count descending
-            const sorted = [...stations].sort((a, b) => b.ports - a.ports);
-            const topStation = sorted[0];
-
-            performerContainer.innerHTML = `
-                <div class="space-y-4">
-                    <div class="p-4 bg-primary/5 rounded-2xl border border-primary/10">
-                        <h4 class="font-headline font-bold text-lg text-primary">${topStation.name}</h4>
-                        <p class="text-xs text-on-surface-variant mt-1">${topStation.location}</p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                            <p class="text-[10px] font-bold text-slate-400 uppercase">Total Ports</p>
-                            <p class="text-xl font-bold text-primary">${topStation.ports}</p>
-                        </div>
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                            <p class="text-[10px] font-bold text-slate-400 uppercase">Status</p>
-                            <p class="text-sm font-bold text-tertiary uppercase">${topStation.status === 'active' ? 'Online' : 'Offline'}</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-        } else {
-            performerContainer.innerHTML = `<p class="text-slate-400 italic text-center">No stations added yet.</p>`;
-        }
-    }
-    loadAnalytics();
 </script>
 
 <!-- Mobile Sidebar Overlay -->

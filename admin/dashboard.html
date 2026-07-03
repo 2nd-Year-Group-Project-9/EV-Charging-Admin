@@ -5,6 +5,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Dashboard | Plug Me</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
@@ -173,51 +174,111 @@
 
 <!-- Dashboard Content -->
 <div class="p-4 md:p-8 space-y-6 md:space-y-8 max-w-[1400px]">
-    <!-- Stats Row -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-        <div class="bg-surface-container-lowest p-6 rounded-3xl shadow-sm border border-slate-100">
-            <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Total Stations</p>
-            <h3 id="stat-total-stations" class="text-3xl font-headline font-extrabold text-primary">0</h3>
-        </div>
-        <div class="bg-surface-container-lowest p-6 rounded-3xl shadow-sm border border-slate-100">
-            <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Total Revenue</p>
-            <h3 id="stat-total-revenue" class="text-3xl font-headline font-extrabold text-primary">Rs. 0</h3>
-        </div>
-        <div class="bg-surface-container-lowest p-6 rounded-3xl shadow-sm border border-slate-100">
-            <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Uptime</p>
-            <h3 id="stat-uptime" class="text-3xl font-headline font-extrabold text-tertiary">0%</h3>
-        </div>
-        <div class="bg-surface-container-lowest p-6 rounded-3xl shadow-sm border border-slate-100">
-            <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Active Users</p>
-            <h3 id="stat-active-users" class="text-3xl font-headline font-extrabold text-secondary">0</h3>
-        </div>
-    </div>
-
-    <!-- Charts Row -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mt-6 md:mt-8">
-        <div class="lg:col-span-2 bg-white rounded-3xl p-4 md:p-6 shadow-sm border border-slate-100 flex flex-col">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-                <h3 class="text-base font-bold text-slate-800">Energy Consumption Trends</h3>
-                <div class="flex gap-2">
-                    <button class="px-3 py-1 text-xs font-bold bg-surface-container-low text-primary rounded-lg">Week</button>
-                    <button class="px-3 py-1 text-xs font-bold text-slate-500 hover:bg-slate-50 rounded-lg transition-colors">Month</button>
+    <!-- Two-column main layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+        
+        <!-- Left: Overview & History (lg:col-span-2) -->
+        <div class="lg:col-span-2 space-y-6 md:space-y-8">
+            <!-- Stats Row -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+                <!-- Total Stations -->
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex items-center justify-between hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                    <div class="space-y-1.5">
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Stations</p>
+                        <h3 id="stat-total-stations" class="text-3xl font-headline font-black text-slate-800">0</h3>
+                    </div>
+                    <div class="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">ev_station</span>
+                    </div>
+                </div>
+                <!-- Today's Revenue -->
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex items-center justify-between hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                    <div class="space-y-1.5">
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Today's Revenue</p>
+                        <h3 id="stat-total-revenue" class="text-3xl font-headline font-black text-slate-800">Rs. 0</h3>
+                    </div>
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">payments</span>
+                    </div>
+                </div>
+                <!-- Uptime -->
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex items-center justify-between hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                    <div class="space-y-1.5">
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Network Uptime</p>
+                        <h3 id="stat-uptime" class="text-3xl font-headline font-black text-emerald-600">0%</h3>
+                    </div>
+                    <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                    </div>
+                </div>
+                <!-- Active Sessions -->
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex items-center justify-between hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                    <div class="space-y-1.5">
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Active Sessions</p>
+                        <h3 id="stat-active-sessions" class="text-3xl font-headline font-black text-indigo-600">0</h3>
+                    </div>
+                    <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                    </div>
                 </div>
             </div>
-            <div class="h-[250px] md:h-[300px] w-full mt-auto relative">
-                <canvas id="usageChart"></canvas>
-            </div>
-        </div>
-        <div class="bg-white rounded-3xl p-4 md:p-6 shadow-sm border border-slate-100">
-            <h3 class="text-base font-bold text-slate-800 mb-6">Device Status</h3>
-            <div class="h-[200px] md:h-[250px] w-full relative flex items-center justify-center">
-                <canvas id="statusChart"></canvas>
-            </div>
-        </div>
-    </div>
 
-    <!-- Charts / Main View Placeholder -->
-    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 h-[400px] flex items-center justify-center text-slate-400 italic">
-        Real-time Network Analytics Visualization
+            <!-- Charged Sessions History -->
+            <div class="bg-white rounded-3xl p-5 md:p-6 shadow-sm border border-slate-100 flex flex-col">
+                <div class="flex justify-between items-center mb-5">
+                    <h3 class="text-base font-bold text-slate-800">Charged Sessions History</h3>
+                    <span class="text-[10px] font-bold text-slate-400 bg-slate-50 px-2 py-1 rounded">Live Sync Active</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-slate-100 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                                <th class="pb-3 px-2">User</th>
+                                <th class="pb-3 px-2">Station</th>
+                                <th class="pb-3 px-2">Date & Time</th>
+                                <th class="pb-3 px-2">Energy</th>
+                                <th class="pb-3 px-2">Paid Amount</th>
+                                <th class="pb-3 px-2">Duration</th>
+                                <th class="pb-3 px-2">Payment</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-table-body" class="text-xs">
+                            <tr>
+                                <td colspan="7" class="text-center py-12 text-slate-400 italic">
+                                    <div class="flex flex-col items-center gap-2 justify-center">
+                                        <span class="material-symbols-outlined text-slate-300 text-3xl animate-spin">sync</span>
+                                        <span>Loading session records...</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Live Monitoring Panel (lg:col-span-1) -->
+        <div class="lg:col-span-1 space-y-6 md:space-y-8">
+            <!-- Device Status Chart -->
+            <div class="bg-white rounded-3xl p-5 md:p-6 shadow-sm border border-slate-100 flex flex-col h-[320px]">
+                <h3 class="text-base font-bold text-slate-800 mb-4">Device Status</h3>
+                <div class="flex-1 w-full relative flex items-center justify-center min-h-0">
+                    <canvas id="statusChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Active Sessions List -->
+            <div class="bg-white rounded-3xl p-5 md:p-6 shadow-sm border border-slate-100 flex flex-col h-[356px]">
+                <h3 class="text-base font-bold text-slate-800 mb-4">Active Sessions</h3>
+                <div id="active-sessions-list" class="flex-1 overflow-y-auto space-y-3 pr-1">
+                    <div class="flex flex-col items-center gap-2 justify-center py-12 text-slate-400 italic">
+                        <span class="material-symbols-outlined text-slate-300 text-3xl animate-pulse">charging_station</span>
+                        <span>Monitoring live sessions...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 </main>
@@ -239,9 +300,10 @@
 </div>
 
 <script type="module" src="../assets/js/auth.js"></script>
+<script type="module" src="../assets/js/dashboard.js"></script>
 <script type="module">
     import { Auth } from '../assets/js/auth.js';
-    import { StationsDB } from '../assets/js/stations.js';
+    
     // ── Security: admin role required ─────────────────────────────────────
     const user = Auth.refreshSession();
 
@@ -256,17 +318,14 @@
     // ── Status-based access control ───────────────────────────────────────
     if (user) {
         if (user.status === 'pending_onboarding') {
-            // Admin hasn't submitted onboarding yet
             window.location.replace('onboarding.html');
         } else if (user.status === 'pending_approval') {
-            // Submitted but waiting for super admin approval
             document.getElementById('pending-overlay').classList.remove('hidden');
             document.querySelector('main').style.filter = 'blur(4px)';
             document.querySelector('main').style.pointerEvents = 'none';
             document.querySelector('aside').style.filter = 'blur(4px)';
             document.querySelector('aside').style.pointerEvents = 'none';
         } else if (user.status === 'rejected') {
-            // Request rejected by super admin
             const overlay = document.getElementById('pending-overlay');
             overlay.querySelector('h2').innerText = 'Request Rejected';
             overlay.querySelector('p').innerText = 'Unfortunately, your request to become a station owner was rejected. Please contact support for more details.';
@@ -277,7 +336,6 @@
             icon.innerText = 'cancel';
             overlay.classList.remove('hidden');
         }
-        // isApproved=1 and status='approved' → full access, no overlay
 
         // ── Connect Logout ─────────────────────────────────────────────────
         document.querySelectorAll('.logout-btn').forEach(btn => {
@@ -287,34 +345,6 @@
         // ── Populate profile name ──────────────────────────────────────────
         const nameEl = document.getElementById('profile-name');
         if (nameEl) nameEl.innerText = user.name;
-
-        // ── Populate Dashboard Stats ──────────────────────────────────────
-        async function loadDashboardStats() {
-            if (user.status === 'approved') {
-                const stations = await StationsDB.getStations(user.uid);
-                const activeStations = stations.filter(s => s.status === 'active');
-                
-                // Total Stations
-                document.getElementById('stat-total-stations').innerText = stations.length;
-                
-                // Total Revenue (Rs. 35,000 per active station)
-                const totalRevenue = activeStations.length * 35000;
-                document.getElementById('stat-total-revenue').innerText = `Rs. ${totalRevenue.toLocaleString()}`;
-                
-                // Uptime
-                if (stations.length > 0) {
-                    const uptimePct = Math.round((activeStations.length / stations.length) * 100);
-                    document.getElementById('stat-uptime').innerText = `${uptimePct}%`;
-                } else {
-                    document.getElementById('stat-uptime').innerText = '0%';
-                }
-                
-                // Active Users (e.g. active stations * 4)
-                const activeUsers = activeStations.length * 4;
-                document.getElementById('stat-active-users').innerText = activeUsers;
-            }
-        }
-        loadDashboardStats();
     }
 </script>
 

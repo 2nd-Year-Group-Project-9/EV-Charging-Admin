@@ -123,15 +123,26 @@ files.forEach(file => {
     <!-- Charts Row -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mt-6 md:mt-8">
         <div class="lg:col-span-2 bg-white rounded-3xl p-4 md:p-6 shadow-sm border border-slate-100 flex flex-col">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-                <h3 class="text-base font-bold text-slate-800">Energy Consumption Trends</h3>
-                <div class="flex gap-2">
-                    <button class="px-3 py-1 text-xs font-bold bg-surface-container-low text-primary rounded-lg">Week</button>
-                    <button class="px-3 py-1 text-xs font-bold text-slate-500 hover:bg-slate-50 rounded-lg transition-colors">Month</button>
-                </div>
-            </div>
-            <div class="h-[250px] md:h-[300px] w-full mt-auto relative">
-                <canvas id="usageChart"></canvas>
+            <h3 class="text-base font-bold text-slate-800 mb-4">Charged Sessions History</h3>
+            <div class="overflow-x-auto flex-1 max-h-[300px]">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-slate-100 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                            <th class="py-2.5 px-3">User</th>
+                            <th class="py-2.5 px-3">Station</th>
+                            <th class="py-2.5 px-3">Date & Time</th>
+                            <th class="py-2.5 px-3">Energy</th>
+                            <th class="py-2.5 px-3">Paid Amount</th>
+                            <th class="py-2.5 px-3">Duration</th>
+                            <th class="py-2.5 px-3">Payment</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-table-body" class="text-xs">
+                        <tr>
+                            <td colspan="7" class="text-center py-8 text-slate-400 italic">Loading history...</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="bg-white rounded-3xl p-4 md:p-6 shadow-sm border border-slate-100">

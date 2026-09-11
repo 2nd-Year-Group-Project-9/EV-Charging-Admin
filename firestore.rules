@@ -1,0 +1,41 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper function to check if user is signed in
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Users collection - allow authenticated users to read and write user documents
+    match /users/{userId} {
+      allow read, write: if isSignedIn();
+
+      match /{allPaths=**} {
+        allow read, write: if isSignedIn();
+      }
+    }
+
+    // Stations collection - allow public read, authenticated write (admins/superadmin)
+    match /stations/{stationId} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+
+    // Notifications collection - allow public read, authenticated write
+    match /notifications/{notificationId} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+
+    // Appointments collection - allow public read and write (portal & mobile app)
+    match /appointments/{appointmentId} {
+      allow read, create, update, delete: if true;
+    }
+
+    // Default rule for all other collections
+    match /{document=**} {
+      allow read, write: if isSignedIn();
+    }
+  }
+}

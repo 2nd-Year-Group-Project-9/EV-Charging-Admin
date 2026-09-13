@@ -8,20 +8,40 @@ import {
     updateDoc, 
     deleteDoc, 
     query, 
-    where 
+    where,
+    onSnapshot 
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+const BACKEND_URL = window.location.hostname === 'localhost' ? 'http://localhost:5000' : 'https://plugme-app-backend.onrender.com';
+
 export const StationsDB = {
-    // ── Get Stations ──
+    // ── Realtime Listener for Stations ──
+    listenToStations(adminId = null, callback) {
+        try {
+            const stationsRef = collection(db, "stations");
+            let q = adminId ? query(stationsRef, where("adminId", "==", adminId)) : stationsRef;
+            
+            return onSnapshot(q, (snapshot) => {
+                const stations = [];
+                snapshot.forEach((doc) => {
+                    stations.push({ id: doc.id, ...doc.data() });
+                });
+                callback(stations);
+            }, (err) => {
+                console.error('Error listening to stations:', err);
+                callback([]);
+            });
+        } catch (err) {
+            console.error('Error setting up station listener:', err);
+            return () => {};
+        }
+    },
+
+    // ── Get Stations (Promise) ──
     async getStations(adminId = null) {
         try {
             const stationsRef = collection(db, "stations");
-            let q;
-            if (adminId) {
-                q = query(stationsRef, where("adminId", "==", adminId));
-            } else {
-                q = stationsRef; // Super Admin sees all
-            }
+            let q = adminId ? query(stationsRef, where("adminId", "==", adminId)) : stationsRef;
             
             const querySnapshot = await getDocs(q);
             const stations = [];
@@ -71,6 +91,10 @@ export const StationsDB = {
                 docRef = doc(collection(db, "stations"));
                 await setDoc(docRef, cleanData);
             }
+
+            // Trigger backend sync asynchronously to notify app immediately
+            fetch(`${BACKEND_URL}/api/health`).catch(() => {});
+
             return true;
         } catch (err) {
             console.error('Error saving station:', err);
@@ -117,3 +141,4 @@ export const StationsDB = {
 
 // Also expose globally for inline script compatibility
 window.StationsDB = StationsDB;
+

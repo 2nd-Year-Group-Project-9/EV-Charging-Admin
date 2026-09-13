@@ -37,16 +37,16 @@ export const DashboardController = {
     listenToStations(adminId) {
         const stationsRef = collection(db, "stations");
         const q = query(stationsRef, where("adminId", "==", adminId));
-        
+
         stationsUnsubscribe = onSnapshot(q, (snapshot) => {
             adminStations = [];
             let available = 0, busy = 0, offline = 0;
-            
+
             snapshot.forEach(doc => {
                 const data = doc.data();
                 data.id = doc.id;
                 adminStations.push(data);
-                
+
                 const currentStatus = data.liveStatus || data.status;
                 if (currentStatus === 'Available' || currentStatus === 'active') available++;
                 else if (currentStatus === 'Busy') busy++;
@@ -55,7 +55,7 @@ export const DashboardController = {
 
             this.updateTopLevelStats();
             this.updateStatusChart(available, busy, offline);
-            
+
             // Re-bind session listener whenever stations change (if needed)
             this.listenToActiveSessions();
             this.listenToHistorySessions();
@@ -64,25 +64,25 @@ export const DashboardController = {
 
     listenToActiveSessions() {
         if (adminStations.length === 0) return;
-        
+
         const stationIds = adminStations.map(s => s.id);
         const sessionsRef = collection(db, "sessions");
-        
+
         // We only listen to active sessions to show live active session count
         const q = query(sessionsRef, where("status", "==", "active"));
-        
+
         if (sessionsUnsubscribe) sessionsUnsubscribe();
-        
+
         sessionsUnsubscribe = onSnapshot(q, (snapshot) => {
             let activeSessionsCount = 0;
-            
+
             snapshot.forEach(doc => {
                 const data = doc.data();
                 if (stationIds.includes(data.station)) {
                     activeSessionsCount++;
                 }
             });
-            
+
             document.getElementById('stat-active-sessions').innerText = activeSessionsCount;
             this.renderActiveSessionsList(snapshot, stationIds);
         });
@@ -90,7 +90,7 @@ export const DashboardController = {
 
     async updateTopLevelStats() {
         document.getElementById('stat-total-stations').innerText = adminStations.length;
-        
+
         // Compute uptime %
         const online = adminStations.filter(s => s.status !== 'inactive' && s.status !== 'maintaining').length;
         const uptime = adminStations.length > 0 ? Math.round((online / adminStations.length) * 100) : 0;
@@ -98,22 +98,22 @@ export const DashboardController = {
 
         // Fetch today's sessions to calculate daily revenue
         const today = new Date();
-        today.setHours(0,0,0,0);
-        
+        today.setHours(0, 0, 0, 0);
+
         const sessionsRef = collection(db, "sessions");
         const q = query(sessionsRef, where("createdAt", ">=", today));
-        
+
         const snap = await getDocs(q);
         let dailyRevenue = 0;
         const stationIds = adminStations.map(s => s.id);
-        
+
         snap.forEach(doc => {
             const data = doc.data();
             if (stationIds.includes(data.station) && data.totalCost) {
                 dailyRevenue += data.totalCost;
             }
         });
-        
+
         document.getElementById('stat-total-revenue').innerText = `Rs. ${dailyRevenue.toLocaleString()}`;
     },
 
@@ -125,7 +125,7 @@ export const DashboardController = {
     renderActiveSessionsList(snapshot, stationIds) {
         const container = document.getElementById('active-sessions-list');
         if (!container) return;
-        
+
         let html = '';
         snapshot.forEach(doc => {
             const data = doc.data();
@@ -133,7 +133,7 @@ export const DashboardController = {
                 // Find station name
                 const station = adminStations.find(s => s.id === data.station);
                 const sName = station ? station.name : data.stationName;
-                
+
                 html += `
                     <div class="flex items-center justify-between p-4 bg-slate-50/50 rounded-2xl border border-slate-100/50 hover:bg-slate-50 transition-colors">
                         <div class="flex items-center gap-3">
@@ -153,7 +153,7 @@ export const DashboardController = {
                 `;
             }
         });
-        
+
         if (html === '') {
             html = `
                 <div class="flex flex-col items-center justify-center py-12 text-slate-400 gap-2">
@@ -162,7 +162,7 @@ export const DashboardController = {
                 </div>
             `;
         }
-        
+
         container.innerHTML = html;
     },
 
@@ -178,7 +178,7 @@ export const DashboardController = {
         // Fetch completed sessions for the admin's stations (limit to first 30 stations chunk to avoid Firestore 'in' limits)
         const chunk = stationIds.slice(0, 30);
         const q = query(
-            sessionsRef, 
+            sessionsRef,
             where("station", "in", chunk),
             where("status", "==", "completed")
         );
@@ -217,9 +217,9 @@ export const DashboardController = {
             const station = adminStations.find(st => st.id === s.station);
             const stationName = station ? station.name : (s.stationName || 'Unknown');
             const portText = s.portNumber ? `Port ${s.portNumber}` : 'Port 1';
-            
-            const dateStr = s.createdAt?.toDate 
-                ? s.createdAt.toDate().toLocaleString() 
+
+            const dateStr = s.createdAt?.toDate
+                ? s.createdAt.toDate().toLocaleString()
                 : (s.createdAt ? new Date(s.createdAt).toLocaleString() : 'N/A');
 
             let durationStr = 'N/A';
@@ -334,3 +334,4 @@ export const DashboardController = {
 document.addEventListener('DOMContentLoaded', () => {
     DashboardController.init();
 });
+
